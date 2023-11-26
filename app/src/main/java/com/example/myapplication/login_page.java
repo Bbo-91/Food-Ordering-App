@@ -44,13 +44,13 @@ public class login_page extends AppCompatActivity implements View.OnClickListene
             Snackbar.make(parentLayout, "Please fill in all fields", Snackbar.LENGTH_SHORT).show();
         }
         else{
-            if(database.adminSearch(email,password) != null){
+            if(admin.Login(email,password)){
                 Snackbar.make(parentLayout, "access granted to admin", Snackbar.LENGTH_SHORT).show();
 
 
             }
             else{
-                if(database.userSearch(email,password)!=null){
+                if(user.Login(email,password)){
                     Snackbar.make(parentLayout, "access granted to user", Snackbar.LENGTH_SHORT).show();
                     Intent intent = new Intent(login_page.this, home.class);
                     startActivity(intent);
