@@ -1,10 +1,12 @@
 package com.example.myapplication;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class user extends person{
 
 
-    public String deliveryAddress;
+    public Map<String, String> delievryAddress = new HashMap<>();
     public user(String email,String username,String password){
         super(username,password,email);
 
