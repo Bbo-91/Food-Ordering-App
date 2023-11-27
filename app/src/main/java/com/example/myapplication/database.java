@@ -35,6 +35,12 @@ public class database {
             }
 
         }
+         for(user u :userList){
+            if(u.email.equals(Admin.email)){
+                return "email isn't available choose another";
+            }
+
+        }
         adminList.add(Admin);
         return "admin created";
 
