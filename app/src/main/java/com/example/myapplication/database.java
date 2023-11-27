@@ -9,7 +9,7 @@ public class database {
     public static String addUser(user User){
 //        check if user already exist
         for(user u :userList){
-            if(u.equals(User)){
+            if(u.email.equals(User.email)){
                 return "duplicate user";
             }
 
@@ -30,7 +30,7 @@ public class database {
     public static String addAdmin(admin Admin){
 //        check if admin already exist
         for(admin a :adminList){
-            if(a.equals(Admin)){
+            if(a.email.equals(Admin.email)){
                 return "duplicate admin";
             }
 
