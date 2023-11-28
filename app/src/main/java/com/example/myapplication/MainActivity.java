@@ -12,6 +12,9 @@ import android.widget.TextView;
 
 import com.google.android.material.snackbar.Snackbar;
 
+import  com.example.myapplication.Classes.user;
+import  com.example.myapplication.Database.database;
+
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     EditText username,email,password;

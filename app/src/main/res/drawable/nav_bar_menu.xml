@@ -1,0 +1,27 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/ResMenu"
+        android:title="Menu"
+        android:icon="@drawable/baseline_restaurant_menu_24"/>
+
+    <item
+        android:id="@+id/ResCart"
+        android:title="Cart"
+        android:icon="@drawable/baseline_add_shopping_cart_24"/>
+
+    <item
+        android:id="@+id/ResSearch"
+        android:title="Search"
+        android:icon="@drawable/baseline_search_24"/>
+
+    <item
+        android:id="@+id/ResTrack"
+        android:title="Track"
+        android:icon="@drawable/baseline_directions_bike_24"/>
+
+    <item
+        android:id="@+id/ResProfile"
+        android:title="Profile"
+        android:icon="@drawable/baseline_person_4_24"/>
+</menu>

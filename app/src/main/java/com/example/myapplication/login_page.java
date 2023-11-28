@@ -9,6 +9,8 @@ import android.widget.EditText;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.myapplication.Classes.admin;
+import com.example.myapplication.Classes.user;
 import com.google.android.material.snackbar.Snackbar;
 
 public class login_page extends AppCompatActivity implements View.OnClickListener {
@@ -52,8 +54,8 @@ public class login_page extends AppCompatActivity implements View.OnClickListene
             else{
                 if(user.Login(email,password)){
                     Snackbar.make(parentLayout, "access granted to user", Snackbar.LENGTH_SHORT).show();
-                    Intent intent = new Intent(login_page.this, home.class);
-                    startActivity(intent);
+                    //Intent intent = new Intent(login_page.this, home.class);
+                    //startActivity(intent);
 
                 }else{
                     Snackbar.make(parentLayout, "invalid credintials", Snackbar.LENGTH_SHORT).show();
