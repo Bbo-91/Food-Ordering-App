@@ -10,10 +10,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.myapplication.Classes.Restaurants;
 import com.google.android.material.snackbar.Snackbar;
 
 import  com.example.myapplication.Classes.user;
 import  com.example.myapplication.Database.database;
+
+import java.util.ArrayList;
+import java.util.List;
+import com.example.myapplication.Classes.*;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
@@ -79,5 +84,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private boolean isValidEmail(String target) {
         return (!target.isEmpty() && Patterns.EMAIL_ADDRESS.matcher(target).matches());
     }
+
+
+
 
     }

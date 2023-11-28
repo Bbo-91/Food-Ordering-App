@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.myapplication.databinding.ActivityUserBinding;
@@ -52,4 +54,7 @@ public class UserActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.fragment_container, fragment);
         fragmentTransaction.commit();
     }
+    
+
+
 }
