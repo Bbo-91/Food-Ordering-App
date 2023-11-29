@@ -1,10 +1,13 @@
 package com.example.myapplication;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,9 +20,10 @@ import com.example.myapplication.Classes.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MenuFragment extends Fragment {
+public class MenuFragment extends Fragment implements RecyclerViewInterface {
     private RecyclerView recyclerView;
     View rootView;
+    Activity menuActivity;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -40,6 +44,9 @@ public class MenuFragment extends Fragment {
         return rootView;
 }
 
+
+
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -56,7 +63,13 @@ public class MenuFragment extends Fragment {
 
         }
 
-        recyclerView.setAdapter(new ResAdapter(getContext(), restaurants));
+        recyclerView.setAdapter(new ResAdapter(getContext(), restaurants, this));
 
+    }
+
+    @Override
+    public void onResClick(int pos) {
+        Intent intent = new Intent(getActivity(), activity_menu.class);
+        startActivity(intent);
     }
 }

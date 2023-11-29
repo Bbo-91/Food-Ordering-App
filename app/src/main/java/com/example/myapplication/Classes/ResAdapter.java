@@ -11,22 +11,26 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.R;
+import com.example.myapplication.RecyclerViewInterface;
 
 import java.util.List;
 
 public class ResAdapter extends RecyclerView.Adapter<ResAdapter.ResViewHolder> {
+    private final RecyclerViewInterface recyclerViewInterface;
     Context context;
     List<Restaurants> restaurantsList;
 
-    public ResAdapter(Context context, List<Restaurants> restaurantsList) {
+    public ResAdapter(Context context, List<Restaurants> restaurantsList, RecyclerViewInterface recyclerViewInterface) {
+
         this.context = context;
         this.restaurantsList = restaurantsList;
+        this.recyclerViewInterface = recyclerViewInterface;
     }
 
     @NonNull
     @Override
     public ResViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ResViewHolder(LayoutInflater.from(context).inflate(R.layout.res_view,parent,false));
+        return new ResViewHolder(LayoutInflater.from(context).inflate(R.layout.res_view,parent,false), recyclerViewInterface);
     }
 
     @Override
@@ -48,12 +52,26 @@ public class ResAdapter extends RecyclerView.Adapter<ResAdapter.ResViewHolder> {
         TextView addressView;
         TextView numberView;
 
-        public ResViewHolder(@NonNull View itemView) {
+        public ResViewHolder(@NonNull View itemView, RecyclerViewInterface recyclerViewInterface) {
             super(itemView);
             imageview=itemView.findViewById(R.id.imageview);
             nameView = itemView.findViewById(R.id.resName);
             addressView = itemView.findViewById(R.id.resAddress);
             numberView = itemView.findViewById(R.id.resNum);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(recyclerViewInterface != null){
+                        int pos = getAdapterPosition();
+
+                        if(pos != RecyclerView.NO_POSITION){
+                            recyclerViewInterface.onResClick(pos);
+                        }
+
+                    }
+                }
+            });
         }
     }
 }
