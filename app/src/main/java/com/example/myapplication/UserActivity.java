@@ -19,6 +19,12 @@ public class UserActivity extends AppCompatActivity {
     private ActivityUserBinding binding;
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        replaceFragment(new MenuFragment());
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityUserBinding.inflate(getLayoutInflater());

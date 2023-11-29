@@ -7,6 +7,7 @@ import java.util.ArrayList;
 public class database {
     private static ArrayList<user> userList = new ArrayList<>();
     private static ArrayList<admin> adminList = new ArrayList<>();
+
     public database(){};
     public static String addUser(user User){
 //        check if user already exist
@@ -48,6 +49,8 @@ public class database {
 
     }
     public static admin adminSearch(String email,String password){
+        admin Admin= new admin("a@gmail.com","Abanoub","123","Slal");
+        adminList.add(Admin);
         for(admin a :adminList){
             if(a.email.equals(email) && a.password.equals(password)){
                 return a;

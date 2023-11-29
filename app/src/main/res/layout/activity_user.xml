@@ -28,6 +28,4 @@
         app:layout_constraintStart_toStartOf="parent"
         android:background="?android:attr/windowBackground"/>
 
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
