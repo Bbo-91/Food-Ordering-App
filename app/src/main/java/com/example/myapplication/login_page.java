@@ -9,9 +9,11 @@ import android.widget.EditText;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.myapplication.Classes.LoginHandler;
 import com.example.myapplication.Classes.admin;
 import com.example.myapplication.Classes.user;
 import com.google.android.material.snackbar.Snackbar;
+import com.example.myapplication.Database.database;
 
 public class login_page extends AppCompatActivity implements View.OnClickListener {
     EditText emailEdit ,passwordEdit;
@@ -47,15 +49,19 @@ public class login_page extends AppCompatActivity implements View.OnClickListene
         }
         else{
             if(admin.Login(email,password)){
-                Snackbar.make(parentLayout, "access granted to admin", Snackbar.LENGTH_SHORT).show();
-
+//                to know that an admin logged in to system
+                admin tmpAdmin = database.adminSearch(email,password);
+                LoginHandler.LOGIN(tmpAdmin);
+                Intent intent = new Intent(login_page.this, AdminActivity.class);
+                startActivity(intent);
 
             }
             else{
                 if(user.Login(email,password)){
-                    Snackbar.make(parentLayout, "access granted to user", Snackbar.LENGTH_SHORT).show();
-                    //Intent intent = new Intent(login_page.this, home.class);
-                    //startActivity(intent);
+                    user tmpUser = database.userSearch(email,password);
+                    LoginHandler.LOGIN(tmpUser);
+                    Intent intent = new Intent(login_page.this, UserActivity.class);
+                    startActivity(intent);
 
                 }else{
                     Snackbar.make(parentLayout, "invalid credintials", Snackbar.LENGTH_SHORT).show();

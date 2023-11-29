@@ -11,5 +11,22 @@
         android:layout_height="match_parent"
         android:text="Profile"
         android:textSize="100dp" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Profile"
+        android:textSize="100dp" />
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonLogOut"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="@color/dark_orange"
+        android:paddingLeft="80dp"
+        android:paddingRight="80dp"
+        android:text="logout"
+        android:textColor="@color/white" />
 
 </FrameLayout>
