@@ -8,6 +8,7 @@ public class database {
     private static ArrayList<user> userList = new ArrayList<>();
     private static ArrayList<admin> adminList = new ArrayList<>();
 
+
     public database(){};
     public static String addUser(user User){
 //        check if user already exist
@@ -21,9 +22,9 @@ public class database {
         return "user added";
 
     }
-    public static user userSearch(String email,String password){
+    public static user userSearch(String email){
         for(user u :userList){
-            if(u.email.equals(email) && u.password.equals(password)){
+            if(u.email.equals(email)){
                 return u;
             }
 
@@ -48,11 +49,10 @@ public class database {
         return "admin created";
 
     }
-    public static admin adminSearch(String email,String password){
-        admin Admin= new admin("a@gmail.com","Abanoub","123","Slal");
-        adminList.add(Admin);
+    public static admin adminSearch(String email){
+
         for(admin a :adminList){
-            if(a.email.equals(email) && a.password.equals(password)){
+            if(a.email.equals(email) ){
                 return a;
             }
 

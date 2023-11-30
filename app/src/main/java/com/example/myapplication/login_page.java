@@ -50,7 +50,7 @@ public class login_page extends AppCompatActivity implements View.OnClickListene
         else{
             if(admin.Login(email,password)){
 //                to know that an admin logged in to system
-               admin tmpAdmin = database.adminSearch(email,password);
+               admin tmpAdmin = database.adminSearch(email);
                 LoginHandler.LOGIN(tmpAdmin);
                 Intent intent = new Intent(login_page.this, AdminActivity.class);
                 startActivity(intent);
@@ -58,7 +58,7 @@ public class login_page extends AppCompatActivity implements View.OnClickListene
             }
             else{
                 if(user.Login(email,password)){
-                    user tmpUser = database.userSearch(email,password);
+                    user tmpUser = database.userSearch(email);
                     LoginHandler.LOGIN(tmpUser);
                     Intent intent = new Intent(login_page.this, UserActivity.class);
                     startActivity(intent);

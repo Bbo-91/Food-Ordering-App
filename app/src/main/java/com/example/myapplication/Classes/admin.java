@@ -10,8 +10,8 @@ public class admin extends person {
 
     }
     public static boolean Login(String email,String password){
-       admin res =  database.adminSearch(email,password);
-       if(res == null) return false;
+       admin res =  database.adminSearch(email);
+       if(res == null || !res.password.equals(password)) return false;
        return true;
 
     }

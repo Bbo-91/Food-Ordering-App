@@ -15,8 +15,8 @@ public class user extends person{
     }
 
     public static boolean Login(String email,String password){
-      user res = database.userSearch(email,password);
-        if(res == null) return false;
+      user res = database.userSearch(email);
+        if(res == null || !res.password.equals(password)) return false;
         return true;
 
     }
