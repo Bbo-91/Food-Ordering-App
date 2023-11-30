@@ -48,9 +48,9 @@ public class login_page extends AppCompatActivity implements View.OnClickListene
             Snackbar.make(parentLayout, "Please fill in all fields", Snackbar.LENGTH_SHORT).show();
         }
         else{
-            admin tmpAdmin = database.adminSearch(email,password);
-            if(tmpAdmin != null){
+            if(admin.Login(email,password)){
 //                to know that an admin logged in to system
+               admin tmpAdmin = database.adminSearch(email,password);
                 LoginHandler.LOGIN(tmpAdmin);
                 Intent intent = new Intent(login_page.this, AdminActivity.class);
                 startActivity(intent);
