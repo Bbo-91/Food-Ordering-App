@@ -5,20 +5,19 @@ import java.util.ArrayList;
 public class Restaurants {
     public String name;
     public String address;
-    public int number;
-    public boolean[] cuisineCheck= new boolean[5];
-    public ArrayList<Dishes> dishes = new ArrayList<Dishes>();
-    public int image;
-
-    public int getImage() {
-        return image;
-    }
-
-    public Restaurants(String name, String address, int number, int image) {
+//    public int number;
+//    public boolean[] cuisineCheck= new boolean[5];
+//    public ArrayList<Dishes> dishes = new ArrayList<Dishes>();
+//    public int image;
+//
+//    public int getImage() {
+//        return image;
+//    }
+    public Restaurants(String name, String address) {
         this.name = name;
         this.address = address;
-        this.number = number;
-        this.image = image;
+//        this.number = number;
+//        this.image = image;
     }
 
     public String getName() {
@@ -37,11 +36,11 @@ public class Restaurants {
         this.address = address;
     }
 
-    public int getNumber() {
-        return number;
-    }
-
-    public void setNumber(int number) {
-        this.number = number;
-    }
+//    public int getNumber() {
+//        return number;
+//    }
+//
+//    public void setNumber(int number) {
+//        this.number = number;
+//    }
 }

@@ -37,8 +37,8 @@ public class ResAdapter extends RecyclerView.Adapter<ResAdapter.ResViewHolder> {
     public void onBindViewHolder(@NonNull ResViewHolder holder, int position) {
         holder.nameView.setText(restaurantsList.get(position).getName());
         holder.addressView.setText(restaurantsList.get(position).getAddress());
-        holder.numberView.setText(String.valueOf(restaurantsList.get(position).getNumber()));
-        holder.imageview.setImageResource(restaurantsList.get(position).getImage());
+//        holder.numberView.setText(String.valueOf(restaurantsList.get(position).getNumber()));
+//        holder.imageview.setImageResource(restaurantsList.get(position).getImage());
     }
 
     @Override

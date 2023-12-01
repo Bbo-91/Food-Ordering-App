@@ -53,7 +53,7 @@ public class MenuFragment extends Fragment implements RecyclerViewInterface {
         recyclerView = rootView.findViewById(R.id.ResView);
 
         List<Restaurants> restaurants = new ArrayList<>();
-        restaurants.add(new Restaurants("arabiata","El Rehab Food court",12345,R.drawable.arabiata));
+        restaurants.add(new Restaurants("arabiata","El Rehab Food court"));
 
         // Now you can use the recyclerView to set up your adapter or perform other
         try {
