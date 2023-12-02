@@ -22,8 +22,10 @@ import java.util.List;
 
 public class MenuFragment extends Fragment implements RecyclerViewInterface {
     private RecyclerView recyclerView;
-    View rootView;
-    Activity menuActivity;
+    private View rootView;
+    private Activity menuActivity;
+
+    private List<Restaurants> restaurants;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -42,7 +44,7 @@ public class MenuFragment extends Fragment implements RecyclerViewInterface {
 
 
         return rootView;
-}
+    }
 
 
 
@@ -52,24 +54,31 @@ public class MenuFragment extends Fragment implements RecyclerViewInterface {
         super.onViewCreated(view, savedInstanceState);
         recyclerView = rootView.findViewById(R.id.ResView);
 
-        List<Restaurants> restaurants = new ArrayList<>();
-        restaurants.add(new Restaurants("arabiata","El Rehab Food court"));
+        restaurants = new ArrayList<>();
+        restaurants.add(new Restaurants("arabiata","El Rehab Food court",12345,R.drawable.arabiata));
+        restaurants.add(new Restaurants("Koshary El Tahrir","Nasr City",12222,R.drawable.koshary_el_tahrir));
 
         // Now you can use the recyclerView to set up your adapter or perform other
-        try {
-            recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        } catch (Throwable e) {
-            Log.i("111",e.toString());
 
-        }
-
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(new ResAdapter(getContext(), restaurants, this));
 
     }
 
     @Override
     public void onResClick(int pos) {
+        // Get the selected restaurant from the list
+        Restaurants selectedRestaurant = restaurants.get(pos);
+
+        // Create an intent to start the new activity
         Intent intent = new Intent(getActivity(), activity_menu.class);
+
+        // Pass information about the selected restaurant to the new activity
+        intent.putExtra("restaurantName", selectedRestaurant.getName());
+        intent.putExtra("restaurantLocation", selectedRestaurant.getAddress());
+        intent.putExtra("restaurantImage", selectedRestaurant.getImage());
+
         startActivity(intent);
     }
+
 }

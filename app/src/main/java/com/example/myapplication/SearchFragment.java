@@ -30,14 +30,7 @@ public class SearchFragment extends Fragment {
 
         test.add("aaa");
         test.add("bbb");
-        Restaurants res1 = new Restaurants("one","cairo");
-        Restaurants res2 = new Restaurants("ond","cairo");
-        Restaurants res3 = new Restaurants("oner","cairo");
-        Restaurants res4 = new Restaurants("bbb","cairo");
-        database.restaurants.add(res1);
-        database.restaurants.add(res2);
-        database.restaurants.add(res3);
-        database.restaurants.add(res4);
+
         // Assuming database.restaurants is a list of Restaurants
         for(Restaurants rest:database.restaurants){
             trie.insert(rest.name);

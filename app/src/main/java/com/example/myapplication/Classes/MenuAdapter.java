@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -17,12 +18,15 @@ import java.util.ArrayList;
 public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder> {
     Context context;
     ArrayList<Dishes> dishes;
+    String restaurantName;
+    int restaurantImageResourceId;
 
-    public MenuAdapter(Context context, ArrayList<Dishes> dishes){
-        this.context=context;
+    public MenuAdapter(Context context, ArrayList<Dishes> dishes, String restaurantName, int restaurantImageResourceId) {
+        this.context = context;
         this.dishes = dishes;
+        this.restaurantName = restaurantName;
+        this.restaurantImageResourceId = restaurantImageResourceId;
     }
-
     @NonNull
     @Override
     public MenuAdapter.MenuViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -52,6 +56,9 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
         TextView PriceView;
         TextView CounterView;
 
+
+
+
         public MenuViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -59,6 +66,7 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
             DescriptionView =itemView.findViewById(R.id.itemDescreption);
             PriceView =itemView.findViewById(R.id.itemPrice);
             CounterView =itemView.findViewById(R.id.Counter);
+
         }
     }
 
