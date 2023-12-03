@@ -29,8 +29,8 @@ public class SearchFragment extends Fragment {
 
         test.add("aaa");
         test.add("bbb");
-        Restaurants.getRestaurants();
-        // Assuming database.restaurants is a list of Restaurants
+        ArrayList<Restaurants> restaurant = Restaurants.getRestaurants();
+
         for(Restaurants rest:database.restaurants){
             trie.insert(rest.name);
         }

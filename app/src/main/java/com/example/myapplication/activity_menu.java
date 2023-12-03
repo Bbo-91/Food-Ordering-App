@@ -33,7 +33,9 @@ public class activity_menu extends AppCompatActivity implements RecyclerViewInte
         String restaurantName = intent.getStringExtra("restaurantName");
         String restaurantLocation = intent.getStringExtra("restaurantLocation");
         int restaurantImageResourceId = intent.getIntExtra("restaurantImage", 0);
-        setUpMenu();
+
+
+        dishes = Dishes.getDishes();
 
         ArrayList<Dishes> filteredDishes = getDishesForRestaurant(restaurantName);
 
@@ -63,11 +65,7 @@ public class activity_menu extends AppCompatActivity implements RecyclerViewInte
 
         return filteredDishes;
     }
-    private void setUpMenu(){
-        dishes.add(new Dishes("Foul Sandwich","balady Bread with foul medames Sandwich", 5, "arabiata"));
-        dishes.add(new Dishes("Foul Box","foul medames Box", 15, "arabiata"));
-        dishes.add(new Dishes("Koshary Box","Large koshary Box", 25, "El Tahrir"));
-    }
+
 
     @Override
     public void onClick(int pos) {

@@ -52,8 +52,8 @@ public class MenuFragment extends Fragment implements RecyclerViewInterface {
         super.onViewCreated(view, savedInstanceState);
         recyclerView = rootView.findViewById(R.id.ResView);
 
-        getRestaurants();
-
+        //getRestaurants();
+        restaurants = Restaurants.getRestaurants();
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(new ResAdapter(getContext(), restaurants, this));
@@ -74,10 +74,10 @@ public class MenuFragment extends Fragment implements RecyclerViewInterface {
         startActivity(intent);
 
     }
-    public void getRestaurants(){
+  /*  public void getRestaurants(){
         restaurants = new ArrayList<>();
         restaurants.add(new Restaurants("arabiata","El Rehab Food court",12345,R.drawable.arabiata));
         restaurants.add(new Restaurants("El Tahrir","Nasr City",12222,R.drawable.koshary_el_tahrir));
-    }
+    }*/
 
 }

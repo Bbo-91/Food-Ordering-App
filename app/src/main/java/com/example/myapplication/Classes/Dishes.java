@@ -2,6 +2,8 @@ package com.example.myapplication.Classes;
 
 import android.health.connect.datatypes.StepsCadenceRecord;
 
+import java.util.ArrayList;
+
 public class Dishes {
     protected String name;
     protected String description;
@@ -50,5 +52,14 @@ public class Dishes {
         }
 
         return sum;
+    }
+
+    public static ArrayList<Dishes> getDishes(){
+        ArrayList<Dishes> dishes = new ArrayList<>();
+        dishes.add(new Dishes("Foul Sandwich","balady Bread with foul medames Sandwich", 5, "arabiata"));
+        dishes.add(new Dishes("Foul Box","foul medames Box", 15, "arabiata"));
+        dishes.add(new Dishes("Koshary Box","Large koshary Box", 25, "El Tahrir"));
+
+        return dishes;
     }
 }
