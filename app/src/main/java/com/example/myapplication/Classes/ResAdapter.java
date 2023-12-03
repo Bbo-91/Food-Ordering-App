@@ -66,7 +66,7 @@ public class ResAdapter extends RecyclerView.Adapter<ResAdapter.ResViewHolder> {
                         int pos = getAdapterPosition();
 
                         if(pos != RecyclerView.NO_POSITION){
-                            recyclerViewInterface.onResClick(pos);
+                            recyclerViewInterface.onClick(pos);
                         }
 
                     }

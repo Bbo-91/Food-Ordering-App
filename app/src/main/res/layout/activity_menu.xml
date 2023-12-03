@@ -9,25 +9,27 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/MenuView"
         android:layout_width="match_parent"
-        android:layout_height="600dp"
-        android:layout_marginTop="130dp" />
+        android:layout_height="579dp"
+        android:layout_marginTop="150dp" />
 
     <ImageView
         android:id="@+id/imageViewMenu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         tools:src="@tools:sample/avatars" />
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="wrap_content"
+        android:layout_width="213dp"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="119dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="106dp"
+        android:layout_marginStart="23dp"
+        android:layout_marginTop="45dp"
+        android:layout_marginEnd="25dp"
         android:layout_toEndOf="@+id/imageViewMenu"
-        android:text="TextView" />
+        android:text="TextView"
+        android:textSize="50dp" />
 
 
 </RelativeLayout>

@@ -20,8 +20,7 @@ import com.example.myapplication.Classes.Restaurants;
 public class SearchFragment extends Fragment {
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_search, container, false);
 
         EditText editText = view.findViewById(R.id.searchInput);
@@ -30,7 +29,6 @@ public class SearchFragment extends Fragment {
 
         test.add("aaa");
         test.add("bbb");
-
         // Assuming database.restaurants is a list of Restaurants
         for(Restaurants rest:database.restaurants){
             trie.insert(rest.name);

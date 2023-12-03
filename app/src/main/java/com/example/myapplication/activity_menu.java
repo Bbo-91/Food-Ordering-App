@@ -16,7 +16,7 @@ import com.example.myapplication.Classes.*;
 
 import java.util.ArrayList;
 
-public class activity_menu extends AppCompatActivity {
+public class activity_menu extends AppCompatActivity implements RecyclerViewInterface {
     private RecyclerView recyclerView;
     View rootView;
     ArrayList<Dishes> dishes = new ArrayList<Dishes>();
@@ -33,13 +33,18 @@ public class activity_menu extends AppCompatActivity {
         String restaurantName = intent.getStringExtra("restaurantName");
         String restaurantLocation = intent.getStringExtra("restaurantLocation");
         int restaurantImageResourceId = intent.getIntExtra("restaurantImage", 0);
-        dishes.add(new Dishes("Foul Sandwich","balady Bread with foul medames Sandwich", 5, "arabiata"));
-        dishes.add(new Dishes("Foul Box","foul medames Sandwich", 15, "arabiata"));
-        dishes.add(new Dishes("Koshary Box","Large koshary Box", 25, "Koshary El Tahrir"));
+        setUpMenu();
 
         ArrayList<Dishes> filteredDishes = getDishesForRestaurant(restaurantName);
 
-        MenuAdapter menuAdapter = new MenuAdapter(this,filteredDishes,restaurantName,restaurantImageResourceId);
+        TextView nameTextView = findViewById(R.id.textView3);
+        nameTextView.setText(restaurantName);
+
+        ImageView restaurantImage = findViewById(R.id.imageViewMenu);
+        restaurantImage.setImageResource(restaurantImageResourceId);
+
+
+        MenuAdapter menuAdapter = new MenuAdapter(this,filteredDishes,restaurantName,restaurantImageResourceId,this);
 
         recyclerView.setAdapter(menuAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -58,7 +63,18 @@ public class activity_menu extends AppCompatActivity {
 
         return filteredDishes;
     }
-    /*private void setUpMenu(){
+    private void setUpMenu(){
+        dishes.add(new Dishes("Foul Sandwich","balady Bread with foul medames Sandwich", 5, "arabiata"));
+        dishes.add(new Dishes("Foul Box","foul medames Box", 15, "arabiata"));
+        dishes.add(new Dishes("Koshary Box","Large koshary Box", 25, "El Tahrir"));
+    }
 
-    }*/
+    @Override
+    public void onClick(int pos) {
+        Dishes selectedDishes = dishes.get(pos);
+
+        Intent intent = new Intent(activity_menu.this, activity_customize.class);
+        startActivity(intent);
+    }
+
 }

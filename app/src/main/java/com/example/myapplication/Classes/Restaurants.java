@@ -7,7 +7,6 @@ public class Restaurants {
     public String address;
     public int number;
     public boolean[] cuisineCheck= new boolean[5];
-    public ArrayList<Dishes> dishes = new ArrayList<Dishes>();
     public int image;
 
     public int getImage() {
