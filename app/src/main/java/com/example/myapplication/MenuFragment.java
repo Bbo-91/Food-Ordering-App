@@ -54,6 +54,7 @@ public class MenuFragment extends Fragment implements RecyclerViewInterface {
 
         getRestaurants();
 
+
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(new ResAdapter(getContext(), restaurants, this));
 
@@ -61,18 +62,17 @@ public class MenuFragment extends Fragment implements RecyclerViewInterface {
 
     @Override
     public void onClick(int pos) {
-        // Get the selected restaurant from the list
+
         Restaurants selectedRestaurant = restaurants.get(pos);
 
-        // Create an intent to start the new activity
         Intent intent = new Intent(getActivity(), activity_menu.class);
 
-        // Pass information about the selected restaurant to the new activity
         intent.putExtra("restaurantName", selectedRestaurant.getName());
         intent.putExtra("restaurantLocation", selectedRestaurant.getAddress());
         intent.putExtra("restaurantImage", selectedRestaurant.getImage());
 
         startActivity(intent);
+
     }
     public void getRestaurants(){
         restaurants = new ArrayList<>();

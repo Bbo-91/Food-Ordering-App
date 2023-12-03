@@ -1,5 +1,7 @@
 package com.example.myapplication.Classes;
 
+import com.example.myapplication.R;
+
 import java.util.ArrayList;
 
 public class Restaurants {
@@ -42,4 +44,12 @@ public class Restaurants {
     public void setNumber(int number) {
         this.number = number;
    }
+
+    public static ArrayList<Restaurants> getRestaurants(){
+        ArrayList<Restaurants> restaurants = new ArrayList<Restaurants>();
+        restaurants.add(new Restaurants("arabiata","El Rehab Food court",12345, R.drawable.arabiata));
+        restaurants.add(new Restaurants("El Tahrir","Nasr City",12222,R.drawable.koshary_el_tahrir));
+
+        return restaurants;
+    }
 }

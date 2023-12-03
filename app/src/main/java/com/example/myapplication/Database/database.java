@@ -54,7 +54,7 @@ public class database {
 
     }
     public static admin adminSearch(String email){
-
+        admin Admin = new admin("a@gmail.com","Abanoub","123","Slal");
         for(admin a :adminList){
             if(a.email.equals(email) ){
                 return a;
