@@ -8,9 +8,7 @@ import java.util.Map;
 public class trie {
     public static TrieNode root = new TrieNode();
 
-    public trie() {
 
-    }
 
     public static void insert(String word) {
         TrieNode cur = root;
