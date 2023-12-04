@@ -81,7 +81,7 @@ public class SearchFragment extends Fragment implements RecyclerViewInterface {
 //        }
 //    }
 
-    private void clearSuggestions(ListView listView) {
+    private void clearSuggestions(ListView listView)    {
         if (getContext() != null) {
             ArrayAdapter<String> emptyAdapter = new ArrayAdapter<>(
                     getContext(),
