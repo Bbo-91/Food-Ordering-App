@@ -25,7 +25,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
         this.context = context;
         this.recyclerViewInterface = recyclerViewInterface;
         this.SearchItems = SearchItems;
-        this.itemList = new ArrayList<>(SearchItems); // Initialize itemList with SearchItems
+        this.itemList = new ArrayList<>(SearchItems);
     }
 
     public void setFilteredList(ArrayList<Object> filteredList) {
