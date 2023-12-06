@@ -4,12 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black"
     tools:context=".MenuFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/MenuView"
         android:layout_width="match_parent"
         android:layout_height="579dp"
+
         android:layout_marginTop="150dp" />
 
     <ImageView
@@ -29,6 +31,7 @@
         android:layout_marginEnd="25dp"
         android:layout_toEndOf="@+id/imageViewMenu"
         android:text="TextView"
+        android:textColor="@color/white"
         android:textSize="50dp" />
 
 

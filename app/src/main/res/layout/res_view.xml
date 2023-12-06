@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="10dp"
+    android:background="@color/black"
     xmlns:tools="http://schemas.android.com/tools">
 
     <ImageView
@@ -18,7 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:layout_toEndOf="@id/imageview"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="25dp"
         tools:text="Name" />
 
@@ -31,7 +32,7 @@
         android:layout_marginStart="15dp"
         android:layout_marginTop="23dp"
         android:layout_toEndOf="@id/imageview"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         tools:text="Address" />
 
     <TextView
@@ -42,7 +43,7 @@
         android:layout_marginStart="15dp"
         android:layout_marginTop="16dp"
         android:layout_toEndOf="@id/imageview"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="20dp"
         tools:text="Number" />
 

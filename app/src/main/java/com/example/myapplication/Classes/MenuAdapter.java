@@ -1,6 +1,7 @@
 package com.example.myapplication.Classes;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.R;
 import com.example.myapplication.RecyclerViewInterface;
+import com.example.myapplication.activity_customize;
+import com.example.myapplication.activity_menu;
 
 import java.util.ArrayList;
 
@@ -81,6 +84,7 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
                     }
                 }
             });
+
         }
 
     }

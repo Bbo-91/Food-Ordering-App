@@ -1,6 +1,10 @@
 package com.example.myapplication.Classes;
 
+import android.content.Intent;
 import android.health.connect.datatypes.StepsCadenceRecord;
+
+import com.example.myapplication.activity_customize;
+import com.example.myapplication.activity_menu;
 
 import java.util.ArrayList;
 
@@ -62,4 +66,6 @@ public class Dishes {
 
         return dishes;
     }
+
+
 }

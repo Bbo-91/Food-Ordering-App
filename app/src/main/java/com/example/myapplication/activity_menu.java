@@ -74,6 +74,10 @@ public class activity_menu extends AppCompatActivity implements RecyclerViewInte
         Dishes selectedDishes = dishes.get(pos);
 
         Intent intent = new Intent(activity_menu.this, activity_customize.class);
+        ArrayList<Dishes> dishes ;
+        dishes = Dishes.getDishes();
+        intent.putExtra("name",dishes.get(pos).getName());
+        intent.putExtra("discription",dishes.get(pos).getDescription());
         startActivity(intent);
     }
 
