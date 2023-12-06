@@ -1,0 +1,145 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Filter Text -->
+    <TextView
+        android:id="@+id/text_filter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Filters"
+        android:textSize="24sp"
+        android:layout_centerHorizontal="true"
+        android:paddingTop="16dp" />
+
+    <!-- Meal Section -->
+    <TextView
+        android:id="@+id/text_meal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Meal"
+        android:textSize="18sp"
+        android:layout_below="@id/text_filter"
+        android:paddingTop="16dp" />
+
+    <RadioGroup
+        android:id="@+id/radioGroupMeal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_meal"
+        android:orientation="vertical">
+
+        <RadioButton
+            android:id="@+id/radio_breakfast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Breakfast"
+            android:padding="8dp" />
+
+        <RadioButton
+            android:id="@+id/radio_lunch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lunch"
+            android:padding="8dp" />
+
+        <RadioButton
+            android:id="@+id/radio_dinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dinner"
+            android:padding="8dp" />
+    </RadioGroup>
+
+    <!-- Cuisine Section -->
+    <TextView
+        android:id="@+id/text_cuisine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cuisine"
+        android:textSize="18sp"
+        android:layout_below="@id/radioGroupMeal"
+        android:paddingTop="16dp" />
+
+    <RadioGroup
+        android:id="@+id/radioGroupCuisine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_cuisine"
+        android:orientation="vertical">
+
+        <RadioButton
+            android:id="@+id/radio_local"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Local"
+            android:padding="8dp" />
+
+        <RadioButton
+            android:id="@+id/radio_italian"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Italian"
+            android:padding="8dp" />
+
+        <RadioButton
+            android:id="@+id/radio_chinese"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Chinese"
+            android:padding="8dp" />
+    </RadioGroup>
+
+    <!-- Price Section with SeekBar -->
+    <TextView
+        android:id="@+id/text_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Price"
+        android:textSize="18sp"
+        android:layout_below="@id/radioGroupCuisine"
+        android:paddingTop="16dp" />
+
+    <SeekBar
+        android:id="@+id/seekbar_price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_price"
+        android:max="27"
+        android:min="0"
+        android:padding="8dp"
+        android:progress="0"
+        android:thumb="@drawable/custom_thumb" />
+
+    <!-- Current Price Indicator -->
+    <TextView
+
+        android:id="@+id/text_current_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Current Price: $30"
+        android:layout_below="@id/seekbar_price"
+        android:layout_centerHorizontal="true"
+        android:paddingTop="8dp"
+        android:fontFamily="@font/main_font"/>
+
+    <!-- Apply and Reset Buttons -->
+    <Button
+        android:id="@+id/button_apply"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Apply"
+        android:layout_below="@id/text_current_price"
+        android:layout_centerHorizontal="true"
+        android:padding="12dp"
+        android:layout_marginTop="50dp"/>
+
+    <Button
+        android:id="@+id/button_reset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reset"
+        android:layout_below="@id/button_apply"
+        android:layout_centerHorizontal="true"
+        android:padding="12dp" />
+</RelativeLayout>
