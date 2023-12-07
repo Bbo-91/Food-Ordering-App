@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black"
     tools:context=".Ratings">
 
     <Button
@@ -13,6 +14,7 @@
         android:layout_marginStart="131dp"
         android:layout_marginEnd="131dp"
         android:layout_marginBottom="92dp"
+        android:backgroundTint="@color/dark_orange"
         android:text="Submit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -29,6 +31,7 @@
         android:gravity="start|top"
         android:hint="Write your feedback here..."
         android:inputType="textMultiLine"
+        android:textColorHint="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/submitBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -44,6 +47,7 @@
         android:layout_marginEnd="147dp"
         android:text="Submit your feedback below"
         android:textStyle="bold"
+        android:textColor="@color/white"
         app:autoSizeTextType="uniform"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.511"
@@ -54,13 +58,14 @@
         android:id="@+id/ratingBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:max="5"
+        android:numStars="5"
+        android:progressBackgroundTint="@color/white"
+        android:rating="0"
         app:layout_constraintBottom_toTopOf="@+id/userComment"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ratingTxt"
-        app:layout_constraintVertical_bias="0.822"
-        android:numStars="5"
-        android:rating="0"
-        android:max="5"/>
+        app:layout_constraintVertical_bias="0.822" />
 </androidx.constraintlayout.widget.ConstraintLayout>

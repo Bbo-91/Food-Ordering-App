@@ -5,32 +5,24 @@ import android.health.connect.datatypes.StepsCadenceRecord;
 import java.util.ArrayList;
 
 public class Dishes {
-    public String name;
+    protected String name;
     protected String description;
     protected float initPrice;
-   public enum cuisines{
-       ITALIC,
-        MEXICAN,
-        RUSSIAN
-    }
-    public enum categories{
-        BREAKFAST,
-        DINNER,
-        LAUNCH
-    }
-    public cuisines cuisineType;
-    public categories category;
 
+    String restaurantName;
+    protected float[] customPrice= new float[3];
+    protected boolean[] customPriceBool= new boolean[3];
 
-    public Dishes(String name, String description, float initPrice,cuisines cuisineType,categories category) {
+    public Dishes(String name, String description, float initPrice, String restaurantName) {
         this.name = name;
         this.description = description;
         this.initPrice = initPrice;
-        this.category = category;
-        this.cuisineType = cuisineType;
-
+        this.restaurantName = restaurantName;
     }
 
+    public String getRestaurantName() {
+        return restaurantName;
+    }
 
     public String getName() {
         return name;
@@ -47,11 +39,27 @@ public class Dishes {
     protected float getPrice()
     {
 
+        float sum=this.initPrice;
 
+        for (int i=0;i<3;i++)
+        {
 
+            if(this.customPriceBool[i])
+            {
+                sum += this.customPrice[i];
+            }
 
-        return initPrice;
+        }
+
+        return sum;
     }
 
+    public static ArrayList<Dishes> getDishes(){
+        ArrayList<Dishes> dishes = new ArrayList<>();
+        dishes.add(new Dishes("Foul Sandwich","balady Bread with foul medames Sandwich", 5, "arabiata"));
+        dishes.add(new Dishes("Foul Box","foul medames Box", 15, "arabiata"));
+        dishes.add(new Dishes("Koshary Box","Large koshary Box", 25, "El Tahrir"));
 
+        return dishes;
+    }
 }
