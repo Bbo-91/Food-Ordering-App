@@ -76,10 +76,4 @@ public class MenuFragment extends Fragment implements RecyclerViewInterface {
 
     }
 
-  /*  public void getRestaurants(){
-        restaurants = new ArrayList<>();
-        restaurants.add(new Restaurants("arabiata","El Rehab Food court",12345,R.drawable.arabiata));
-        restaurants.add(new Restaurants("El Tahrir","Nasr City",12222,R.drawable.koshary_el_tahrir));
-    }*/
-
 }

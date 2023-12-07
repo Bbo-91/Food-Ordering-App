@@ -58,20 +58,7 @@ public class activity_menu extends AppCompatActivity implements RecyclerViewInte
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
     }
-//    private ArrayList<Dishes> getDishesForRestaurant(String restaurantName) {
-//
-//
-//        ArrayList<Dishes> filteredDishes = new ArrayList<>();
-//
-//        // Iterate through all dishes and add only those for the selected restaurant
-//        for (Dishes dish : database.searchRestaurant(restaurantName).menu.dishesList) {
-//            if (dish.getRestaurantName().equals(restaurantName)) {
-//                filteredDishes.add(dish);
-//            }
-//        }
-//
-//        return filteredDishes;
-//    }
+
 private void openFilterDialog() {
     AlertDialog.Builder builder = new AlertDialog.Builder(this);
     builder.setTitle("Custom Dialog");
@@ -95,6 +82,27 @@ private void openFilterDialog() {
         seekBar.setProgress(30);
 
 
+    });
+    seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        int currentProgress = 0;
+        int minPrice = 30; // Minimum price
+
+        @Override
+        public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+            currentProgress = progress;
+            int currentPrice = minPrice + (currentProgress * 10);
+            currentPriceTextView.setText("Current Price: $" + currentPrice);
+        }
+
+        @Override
+        public void onStartTrackingTouch(SeekBar seekBar) {
+            // Not needed, but required to implement
+        }
+
+        @Override
+        public void onStopTrackingTouch(SeekBar seekBar) {
+            // Not needed, but required to implement
+        }
     });
 
     applyButton.setOnClickListener(view -> {
@@ -139,13 +147,15 @@ private void openFilterDialog() {
 
     @Override
     public void onClick(int pos) {
-        Dishes selectedDishes = dishes.get(pos);
+        Dishes selectedDish = dishes.get(pos); // Get the selected dish at 'pos'
 
         Intent intent = new Intent(activity_menu.this, activity_customize.class);
-        ArrayList<Dishes> dishes ;
-        dishes = Dishes.getDishes();
-        intent.putExtra("name",dishes.get(pos).getName());
-        intent.putExtra("discription",dishes.get(pos).getDescription());
+
+        // Pass data of the selected dish to the next activity
+        intent.putExtra("name", selectedDish.getName());
+        intent.putExtra("description", selectedDish.getDescription());
+        // Add any other data you want to pass
+
         startActivity(intent);
     }
 
