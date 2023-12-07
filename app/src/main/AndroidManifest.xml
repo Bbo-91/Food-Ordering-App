@@ -16,6 +16,9 @@
             android:name=".activity_search_items"
             android:exported="false" />
         <activity
+            android:name=".Filter"
+            android:exported="false" />
+        <activity
             android:name=".activity_customize"
             android:exported="false" />
         <activity

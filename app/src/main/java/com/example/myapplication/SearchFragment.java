@@ -44,8 +44,8 @@ public class SearchFragment extends Fragment implements RecyclerViewInterface {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_search, container, false);
 
-        restaurants = Restaurants.getRestaurants();
-        dishes = Dishes.getDishes();
+        restaurants = database.restaurants;
+        dishes = database.dishes;
 
         SearchItems.addAll(restaurants);
         SearchItems.addAll(dishes);

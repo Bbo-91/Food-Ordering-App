@@ -10,8 +10,10 @@ import android.view.MenuItem;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-
+import com.example.myapplication.Classes.Dishes;
 import com.example.myapplication.Classes.LoginHandler;
+import com.example.myapplication.Classes.Restaurants;
+import com.example.myapplication.Database.database;
 import com.example.myapplication.databinding.ActivityUserBinding;
 
 public class UserActivity extends AppCompatActivity {
@@ -29,7 +31,7 @@ public class UserActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityUserBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
+        setup();
         replaceFragment(new MenuFragment());
         binding.bottomNavigationView.setBackground(null);
 
@@ -80,6 +82,17 @@ public class UserActivity extends AppCompatActivity {
         if (item != null) {
             item.setVisible(false);
         }
+    }
+    public void setup(){
+        database.addDish(new Dishes("Foul Sandwich","balady Bread with foul medames Sandwich", 5, Dishes.cuisines.RUSSIAN, Dishes.categories.BREAKFAST ));
+        database.addDish(new Dishes("Foul Box","foul medames Box", 15, Dishes.cuisines.ITALIC, Dishes.categories.LAUNCH));
+        database.addDish(new Dishes("Koshary Box","Large koshary Box", 25, Dishes.cuisines.MEXICAN, Dishes.categories.DINNER));
+        com.example.myapplication.Classes.Menu newMin = new com.example.myapplication.Classes.Menu();
+        newMin.dishesList.add(new Dishes("Foul Sandwich","balady Bread with foul medames Sandwich", 5, Dishes.cuisines.RUSSIAN, Dishes.categories.BREAKFAST ));
+        newMin.dishesList.add(new Dishes("Foul Box","foul medames Box", 15, Dishes.cuisines.ITALIC, Dishes.categories.LAUNCH));
+        newMin.dishesList.add(new Dishes("Koshary Box","Large koshary Box", 25, Dishes.cuisines.MEXICAN, Dishes.categories.DINNER));
+        database.restaurants.add(new Restaurants("arabiata","El Rehab Food court",12345,R.drawable.arabiata,newMin));
+
     }
     
 

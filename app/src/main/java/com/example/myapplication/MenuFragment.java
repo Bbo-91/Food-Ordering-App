@@ -16,10 +16,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.Classes.*;
+import com.example.myapplication.Database.database;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import com.example.myapplication.Classes.Dishes.*;
 public class MenuFragment extends Fragment implements RecyclerViewInterface {
     private RecyclerView recyclerView;
     private View rootView;
@@ -53,7 +54,7 @@ public class MenuFragment extends Fragment implements RecyclerViewInterface {
         recyclerView = rootView.findViewById(R.id.ResView);
 
         //getRestaurants();
-        restaurants = Restaurants.getRestaurants();
+        restaurants = database.restaurants;
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(new ResAdapter(getContext(), restaurants, this));
@@ -74,6 +75,7 @@ public class MenuFragment extends Fragment implements RecyclerViewInterface {
         startActivity(intent);
 
     }
+
   /*  public void getRestaurants(){
         restaurants = new ArrayList<>();
         restaurants.add(new Restaurants("arabiata","El Rehab Food court",12345,R.drawable.arabiata));

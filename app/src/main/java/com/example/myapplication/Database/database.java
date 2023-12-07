@@ -1,5 +1,6 @@
 package com.example.myapplication.Database;
 
+import com.example.myapplication.Classes.Dishes;
 import com.example.myapplication.Classes.Restaurants;
 import  com.example.myapplication.Classes.user;
 import  com.example.myapplication.Classes.admin;
@@ -9,6 +10,8 @@ public class database {
     private static ArrayList<user> userList = new ArrayList<>();
     private static ArrayList<admin> adminList = new ArrayList<>();
     public static ArrayList<Restaurants> restaurants = new ArrayList<>();
+
+    public static ArrayList<Dishes> dishes = new ArrayList<>();
 
 
 
@@ -54,7 +57,6 @@ public class database {
 
     }
     public static admin adminSearch(String email){
-        admin Admin = new admin("a@gmail.com","Abanoub","123","Slal");
         for(admin a :adminList){
             if(a.email.equals(email) ){
                 return a;
@@ -72,5 +74,29 @@ public class database {
         }
         return null;
 
+    }
+    public static Restaurants addRestaurent(Restaurants rest){
+        for(Restaurants r:restaurants){
+            if(r==rest) return null;
+        }
+        restaurants.add(rest);
+        return rest;
+    }
+    public static Dishes searchDishes(String dishName){
+        for(Dishes d:dishes){
+            if(d.name.equals(dishName)){
+                return d;
+            }
+
+        }
+        return null;
+
+    }
+    public static Dishes addDish(Dishes dish){
+        for(Dishes d:dishes){
+            if(d==dish) return null;
+        }
+        dishes.add(dish);
+        return dish;
     }
 }

@@ -30,6 +30,14 @@
         android:layout_toEndOf="@+id/imageViewMenu"
         android:text="TextView"
         android:textSize="50dp" />
+    <Button
+        android:id="@+id/to_filter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reset"
+        android:layout_centerHorizontal="true"
+
+        android:padding="12dp" />
 
 
 </RelativeLayout>
