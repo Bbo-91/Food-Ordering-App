@@ -147,13 +147,13 @@ private void openFilterDialog() {
 
     @Override
     public void onClick(int pos) {
-        Dishes selectedDish = dishes.get(pos); // Get the selected dish at 'pos'
+//        Dishes selectedDish = dishes.get(pos); // Get the selected dish at 'pos'
 
         Intent intent = new Intent(activity_menu.this, activity_customize.class);
-
+        ArrayList<Dishes> dishes = database.dishes;
         // Pass data of the selected dish to the next activity
-        intent.putExtra("name", selectedDish.getName());
-        intent.putExtra("description", selectedDish.getDescription());
+        intent.putExtra("name", dishes.get(pos).getName());
+        intent.putExtra("description", dishes.get(pos).getDescription());
         // Add any other data you want to pass
 
         startActivity(intent);

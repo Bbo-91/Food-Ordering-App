@@ -87,11 +87,17 @@ public class UserActivity extends AppCompatActivity {
         database.addDish(new Dishes("Foul Sandwich","balady Bread with foul medames Sandwich", 5, Dishes.cuisines.RUSSIAN, Dishes.categories.BREAKFAST ));
         database.addDish(new Dishes("Foul Box","foul medames Box", 15, Dishes.cuisines.ITALIC, Dishes.categories.LAUNCH));
         database.addDish(new Dishes("Koshary Box","Large koshary Box", 25, Dishes.cuisines.MEXICAN, Dishes.categories.DINNER));
+        database.addDish(new Dishes("test","balady Bread with foul medames Sandwich", 5, Dishes.cuisines.RUSSIAN, Dishes.categories.BREAKFAST ));
+
         com.example.myapplication.Classes.Menu newMin = new com.example.myapplication.Classes.Menu();
+        com.example.myapplication.Classes.Menu testMin = new com.example.myapplication.Classes.Menu();
+        testMin.dishesList.add(new Dishes("test","balady Bread with foul medames Sandwich", 5, Dishes.cuisines.RUSSIAN, Dishes.categories.BREAKFAST ));
+
         newMin.dishesList.add(new Dishes("Foul Sandwich","balady Bread with foul medames Sandwich", 5, Dishes.cuisines.RUSSIAN, Dishes.categories.BREAKFAST ));
         newMin.dishesList.add(new Dishes("Foul Box","foul medames Box", 15, Dishes.cuisines.ITALIC, Dishes.categories.LAUNCH));
         newMin.dishesList.add(new Dishes("Koshary Box","Large koshary Box", 25, Dishes.cuisines.MEXICAN, Dishes.categories.DINNER));
         database.restaurants.add(new Restaurants("arabiata","El Rehab Food court",12345,R.drawable.arabiata,newMin));
+        database.restaurants.add(new Restaurants("restone","El Rehab Food court",12345,R.drawable.arabiata,testMin));
 
     }
     

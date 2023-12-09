@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class Dishes {
     public String name;
-    protected String description;
+    public String description;
     protected float initPrice;
     public enum cuisines{
         ITALIC,

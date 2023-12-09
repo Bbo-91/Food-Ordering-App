@@ -29,8 +29,9 @@ public class activity_customize extends AppCompatActivity {
 
         extras = getIntent().getExtras();
         if (extras != null) {
+
             name.setText(extras.getString("name"));
-            discription.setText(extras.getString("discription"));
+            discription.setText(extras.getString("description"));
 
         }
         //number of dishes
