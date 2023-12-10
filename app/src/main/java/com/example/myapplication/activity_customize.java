@@ -2,20 +2,28 @@ package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.myapplication.Database.database;
+
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.view.View;
+
+import com.example.myapplication.Classes.Dishes;
+
+import java.util.ArrayList;
 
 public class activity_customize extends AppCompatActivity {
 
-      TextView name , discription,count;
-      Button increment , decrement,addspicy,addextra,addtocart;
-     int numberofdishes =0;
-     Bundle extras;
+    ArrayList<Dishes> dishes = database.dishes;
+
+    TextView name, description, count;
+    Button increment, decrement, addSpicy, addExtra, addToCart;
+    int numberOfDishes = 0;
+    Bundle extras;
 
     @SuppressLint({"MissingInflatedId", "ResourceAsColor"})
     @Override
@@ -23,77 +31,87 @@ public class activity_customize extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customize);
 
-        //transfer name and discription from menu
+        // Transfer name and description from menu
         name = findViewById(R.id.nameofdishe);
-        discription = findViewById(R.id.discritionofdishe);
+        description = findViewById(R.id.discritionofdishe);
 
         extras = getIntent().getExtras();
+        int index = extras.getInt("index");
         if (extras != null) {
 
-            name.setText(extras.getString("name"));
-            discription.setText(extras.getString("description"));
-
+            name.setText(dishes.get(index).getName());
+            description.setText(dishes.get(index).getDescription());
         }
-        //number of dishes
+
+        // Number of dishes
         increment = findViewById(R.id.incrememnt);
         decrement = findViewById(R.id.decrement);
-        count = (TextView) findViewById(R.id.count);
+        count = findViewById(R.id.count);
 
         increment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (numberofdishes >= 10) {
-                    numberofdishes = 10;
-                } else {
-                    numberofdishes++;
+                if (numberOfDishes < 10) {
+                    numberOfDishes++;
                 }
-                count.setText("" + numberofdishes);
-
+                updateCount();
             }
         });
 
         decrement.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (numberofdishes <= 0) {
-                    numberofdishes = 0;
-                } else {
-                    numberofdishes--;
+                if (numberOfDishes > 1) {
+                    numberOfDishes--;
                 }
-                count.setText("" + numberofdishes);
-
+                updateCount();
             }
         });
 
-        addspicy = findViewById(R.id.spicy);
-        addextra = findViewById(R.id.add);
-
-
-        //add spicy
-        addspicy.setOnClickListener(new View.OnClickListener() {
+        // Add spicy
+        addSpicy = findViewById(R.id.spicy);
+        addSpicy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addspicy.setBackgroundColor(Color.RED);
+                addSpicy.setBackgroundColor(Color.RED);
+                int index = extras.getInt("index");
+                dishes.get(index).spicy = true;
             }
         });
 
-        //add extra
-        addextra.setOnClickListener(new View.OnClickListener() {
+        // Add extra
+        addExtra = findViewById(R.id.add);
+        addExtra.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addextra.setBackgroundColor(Color.RED);
+                addExtra.setBackgroundColor(Color.RED);
+                int index = extras.getInt("index");
+                dishes.get(index).setExtra(10f);
             }
         });
 
-        //move to cart
-        addtocart = findViewById(R.id.cart);
-        addtocart.setOnClickListener(new View.OnClickListener() {
+        // Move to cart
+        addToCart = findViewById(R.id.cart);
+        addToCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               Intent intent = new Intent(activity_customize.this,CartFragment.class);
-               startActivity(intent);
+                dishes.get(index).setNoOfDishes(numberOfDishes);
+                AddToCart(index);
             }
         });
     }
+
+    private void updateCount() {
+        count.setText(String.valueOf(numberOfDishes));
+    }
+
+    private void AddToCart(int index) {
+        Intent intent = new Intent(this, CartActivity.class);
+        intent.putExtra("index", index);
+        startActivity(intent);
+
+    }
+
+
 
 }

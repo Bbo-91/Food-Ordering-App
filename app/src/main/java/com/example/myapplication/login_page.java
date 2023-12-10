@@ -65,7 +65,6 @@ public class login_page extends AppCompatActivity implements View.OnClickListene
 
                 }else{
                     Snackbar.make(parentLayout, "invalid credintials", Snackbar.LENGTH_SHORT).show();
-
                 }
             }
         }

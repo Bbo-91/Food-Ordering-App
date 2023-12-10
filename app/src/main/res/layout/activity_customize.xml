@@ -141,7 +141,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="103dp"
         android:layout_marginBottom="365dp"
-        android:text="Extra pickle 10L.E"
+        android:text="Extra pickle 10 L.E"
         android:textColor="@color/white"
         android:textSize="25dp" />
 

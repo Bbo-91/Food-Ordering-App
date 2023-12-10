@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -37,21 +38,12 @@ public class UserActivity extends AppCompatActivity {
 
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
             int itemId = item.getItemId();
-//            if (true) {
-//                hideMenuItem(R.id.ResCart);
-//                hideMenuItem(R.id.ResTrack);
-//            }
+
             if (itemId == R.id.ResMenu) {
                 replaceFragment(new MenuFragment());
                 return true;
-            } else if (itemId == R.id.ResCart) {
-                replaceFragment(new CartFragment());
-                return true;
-            } else if (itemId == R.id.ResSearch) {
+            }  else if (itemId == R.id.ResSearch) {
                 replaceFragment(new SearchFragment());
-                return true;
-            } else if (itemId == R.id.ResTrack) {
-                replaceFragment(new TrackFragment());
                 return true;
             } else if (itemId == R.id.ResProfile) {
                 if(LoginHandler.isLoggedIn() ){
@@ -100,7 +92,5 @@ public class UserActivity extends AppCompatActivity {
         database.restaurants.add(new Restaurants("restone","El Rehab Food court",12345,R.drawable.arabiata,testMin));
 
     }
-    
-
 
 }

@@ -84,7 +84,7 @@ public class database {
     }
     public static Dishes searchDishes(String dishName){
         for(Dishes d:dishes){
-            if(d.name.equals(dishName)){
+            if(d.getName().equals(dishName)){
                 return d;
             }
 
