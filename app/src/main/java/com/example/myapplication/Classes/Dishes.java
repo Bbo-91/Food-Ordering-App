@@ -13,14 +13,14 @@ public class Dishes implements Serializable  {
     private String description;
     protected float initPrice;
     public enum cuisines{
-        ITALIC,
+        ITALIAN,
         MEXICAN,
         RUSSIAN
     }
     public enum categories{
         BREAKFAST,
         DINNER,
-        LAUNCH
+        LUNCH
     }
     public cuisines cuisineType;
     public categories category;

@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import com.example.myapplication.Classes.LoginHandler;
+//import com.example.myapplication.fileParsers.usersWrite;
+
 import androidx.fragment.app.Fragment;
 
 public class ProfileFragment extends Fragment {
@@ -32,7 +34,9 @@ public class ProfileFragment extends Fragment {
 
     private void logoutUser() {
         if(!LoginHandler.isAdmin()){
+//            usersWrite.addUserLogout(getContext(),LoginHandler.USER.email);
            LoginHandler.USER = null;
+
         }
         else{
             LoginHandler.ADMIN = null;

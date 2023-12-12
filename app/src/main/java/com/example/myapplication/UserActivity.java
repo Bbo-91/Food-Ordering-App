@@ -16,6 +16,8 @@ import com.example.myapplication.Classes.LoginHandler;
 import com.example.myapplication.Classes.Restaurants;
 import com.example.myapplication.Database.database;
 import com.example.myapplication.databinding.ActivityUserBinding;
+import com.example.myapplication.fileParsers.test;
+//import com.example.myapplication.fileParsers.usersRead;
 
 public class UserActivity extends AppCompatActivity {
 
@@ -33,6 +35,12 @@ public class UserActivity extends AppCompatActivity {
         binding = ActivityUserBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         setup();
+//        usersRead.parser(getApplicationContext());
+//        test t= new test(this);
+//        t.save("aaaaa");
+//        t.save("bbbb");
+//        t.save("zzzz");
+//       t.load();
         replaceFragment(new MenuFragment());
         binding.bottomNavigationView.setBackground(null);
 
@@ -77,7 +85,7 @@ public class UserActivity extends AppCompatActivity {
     }
     public void setup(){
         database.addDish(new Dishes("Foul Sandwich","balady Bread with foul medames Sandwich", 5, Dishes.cuisines.RUSSIAN, Dishes.categories.BREAKFAST ));
-        database.addDish(new Dishes("Foul Box","foul medames Box", 15, Dishes.cuisines.ITALIC, Dishes.categories.LAUNCH));
+        database.addDish(new Dishes("Foul Box","foul medames Box", 40, Dishes.cuisines.ITALIAN, Dishes.categories.LUNCH));
         database.addDish(new Dishes("Koshary Box","Large koshary Box", 25, Dishes.cuisines.MEXICAN, Dishes.categories.DINNER));
         database.addDish(new Dishes("test","balady Bread with foul medames Sandwich", 5, Dishes.cuisines.RUSSIAN, Dishes.categories.BREAKFAST ));
 
@@ -86,7 +94,7 @@ public class UserActivity extends AppCompatActivity {
         testMin.dishesList.add(new Dishes("test","balady Bread with foul medames Sandwich", 5, Dishes.cuisines.RUSSIAN, Dishes.categories.BREAKFAST ));
 
         newMin.dishesList.add(new Dishes("Foul Sandwich","balady Bread with foul medames Sandwich", 5, Dishes.cuisines.RUSSIAN, Dishes.categories.BREAKFAST ));
-        newMin.dishesList.add(new Dishes("Foul Box","foul medames Box", 15, Dishes.cuisines.ITALIC, Dishes.categories.LAUNCH));
+        newMin.dishesList.add(new Dishes("Foul Box","foul medames Box", 15, Dishes.cuisines.ITALIAN, Dishes.categories.LUNCH));
         newMin.dishesList.add(new Dishes("Koshary Box","Large koshary Box", 25, Dishes.cuisines.MEXICAN, Dishes.categories.DINNER));
         database.restaurants.add(new Restaurants("arabiata","El Rehab Food court",12345,R.drawable.arabiata,newMin));
         database.restaurants.add(new Restaurants("restone","El Rehab Food court",12345,R.drawable.arabiata,testMin));

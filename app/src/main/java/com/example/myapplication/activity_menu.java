@@ -26,7 +26,7 @@ public class activity_menu extends AppCompatActivity implements RecyclerViewInte
     ArrayList<Dishes> dishes = new ArrayList<Dishes>();
     Button btn;
 
-
+    MenuAdapter menuAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +43,7 @@ public class activity_menu extends AppCompatActivity implements RecyclerViewInte
         btn = findViewById(R.id.to_filter);
         btn.setOnClickListener(v -> openFilterDialog());
 
-        ArrayList<Dishes> filteredDishes = database.searchRestaurant(restaurantName).menu.dishesList;
+        dishes = database.searchRestaurant(restaurantName).menu.dishesList;
 
         TextView nameTextView = findViewById(R.id.textView3);
         nameTextView.setText(restaurantName);
@@ -52,7 +52,7 @@ public class activity_menu extends AppCompatActivity implements RecyclerViewInte
         restaurantImage.setImageResource(restaurantImageResourceId);
 
 
-        MenuAdapter menuAdapter = new MenuAdapter(this,filteredDishes,restaurantName,restaurantImageResourceId,this);
+         menuAdapter = new MenuAdapter(this,dishes,restaurantName,restaurantImageResourceId,this);
 
         recyclerView.setAdapter(menuAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -112,6 +112,19 @@ private void openFilterDialog() {
 
         // Find the SeekBar value
         int seekBarValue = seekBar.getProgress();
+        String selectedRadioButton1Name = getResources().getResourceEntryName(selectedRadioButtonId1);
+        String selectedRadioButton2Name = getResources().getResourceEntryName(selectedRadioButtonId2);
+        ArrayList<Dishes> filteredDishes = new ArrayList<>();
+        for (Dishes dish : dishes) {
+            if (selectedRadioButton1Name.equals(dish.category.name()) &&
+                    selectedRadioButton2Name.equals(dish.cuisineType.name()) &&
+                    dish.getInitPrice() <= seekBarValue) {
+                filteredDishes.add(dish);
+            }
+        }
+
+        menuAdapter.updateData(filteredDishes);
+
 
         // Convert radio button IDs to their respective values or perform actions based on selections
         // ...

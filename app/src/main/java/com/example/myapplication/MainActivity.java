@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.myapplication.Classes.Restaurants;
+//import com.example.myapplication.fileParsers.usersWrite;
 import com.google.android.material.snackbar.Snackbar;
 
 import  com.example.myapplication.Classes.user;
@@ -72,7 +73,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
            String res =  newUser.SignUP();
            if(res.equals("duplicate user")){            Snackbar.make(parentLayout, "there's a user with those credinatials", Snackbar.LENGTH_SHORT).show();
            }
+
            else{
+//               usersWrite.addUser(getApplicationContext(),emailString,name,pass);
                Intent intent = new Intent(MainActivity.this, login_page.class);
                startActivity(intent);
            }

@@ -12,6 +12,8 @@ import android.widget.TextView;
 import com.example.myapplication.Classes.LoginHandler;
 import com.example.myapplication.Classes.admin;
 import com.example.myapplication.Classes.user;
+//import com.example.myapplication.fileParsers.usersRead;
+//import com.example.myapplication.fileParsers.usersWrite;
 import com.google.android.material.snackbar.Snackbar;
 import com.example.myapplication.Database.database;
 
@@ -38,6 +40,8 @@ public class login_page extends AppCompatActivity implements View.OnClickListene
         signupLink = findViewById(R.id.signupLink);
         signupLink.setOnClickListener(this);
 
+
+
     }
     public void Login(){
         String email = emailEdit.getText().toString();
@@ -60,6 +64,7 @@ public class login_page extends AppCompatActivity implements View.OnClickListene
                 if(user.Login(email,password)){
                     user tmpUser = database.userSearch(email);
                     LoginHandler.LOGIN(tmpUser);
+//                    usersWrite.addLoggedInUser(this,email);
                     Intent intent = new Intent(login_page.this, UserActivity.class);
                     startActivity(intent);
 

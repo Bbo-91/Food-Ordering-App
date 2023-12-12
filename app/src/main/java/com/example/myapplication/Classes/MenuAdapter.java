@@ -20,7 +20,7 @@ import java.util.ArrayList;
 
 public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder> {
     Context context;
-    ArrayList<Dishes> dishes;
+   public ArrayList<Dishes> dishes;
     String restaurantName;
     int restaurantImageResourceId;
 
@@ -31,6 +31,11 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
         this.restaurantName = restaurantName;
         this.restaurantImageResourceId = restaurantImageResourceId;
         this.recyclerViewInterface = recyclerViewInterface;
+    }
+    public void updateData(ArrayList<Dishes> newDishes) {
+
+       this.dishes = newDishes;
+        notifyDataSetChanged(); // Notify dataset change
     }
     @NonNull
     @Override
