@@ -50,7 +50,10 @@ public class UserActivity extends AppCompatActivity {
             if (itemId == R.id.ResMenu) {
                 replaceFragment(new MenuFragment());
                 return true;
-            }  else if (itemId == R.id.ResSearch) {
+            }else if (itemId == R.id.ResCart) {
+                replaceFragment(new CartFragment());
+                return true;
+            }   else if (itemId == R.id.ResSearch) {
                 replaceFragment(new SearchFragment());
                 return true;
             } else if (itemId == R.id.ResProfile) {
