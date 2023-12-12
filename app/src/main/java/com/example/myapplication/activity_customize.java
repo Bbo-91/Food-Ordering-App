@@ -38,7 +38,6 @@ public class activity_customize extends AppCompatActivity {
         extras = getIntent().getExtras();
         int index = extras.getInt("index");
         if (extras != null) {
-
             name.setText(dishes.get(index).getName());
             description.setText(dishes.get(index).getDescription());
         }

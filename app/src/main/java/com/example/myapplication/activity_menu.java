@@ -42,8 +42,10 @@ public class activity_menu extends AppCompatActivity implements RecyclerViewInte
 
         btn = findViewById(R.id.to_filter);
         btn.setOnClickListener(v -> openFilterDialog());
+        Restaurants restaurant=database.searchRestaurant(restaurantName);
 
-        ArrayList<Dishes> filteredDishes = database.searchRestaurant(restaurantName).menu.dishesList;
+        ArrayList<Dishes> filteredDishes = restaurant == null ? new ArrayList<Dishes>() :restaurant.menu.dishesList;
+
 
         TextView nameTextView = findViewById(R.id.textView3);
         nameTextView.setText(restaurantName);
