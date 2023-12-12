@@ -7,40 +7,40 @@
     android:background="@color/black"
     tools:context=".MenuFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/MenuView"
-        android:layout_width="match_parent"
-        android:layout_height="579dp"
-
-        android:layout_marginTop="150dp" />
-
     <ImageView
         android:id="@+id/imageViewMenu"
         android:layout_width="150dp"
         android:layout_height="150dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
         tools:src="@tools:sample/avatars" />
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="213dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="23dp"
-        android:layout_marginTop="45dp"
-        android:layout_marginEnd="25dp"
-        android:layout_toEndOf="@+id/imageViewMenu"
+        android:layout_below="@id/imageViewMenu"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
         android:text="TextView"
         android:textColor="@color/white"
-        android:textSize="50dp" />
+        android:textSize="24sp" />
+
     <Button
         android:id="@+id/to_filter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Reset"
+        android:layout_below="@id/textView3"
         android:layout_centerHorizontal="true"
-
+        android:layout_marginTop="20dp"
+        android:text="Filter"
         android:padding="12dp" />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/MenuView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/to_filter"
+        android:layout_marginTop="20dp" />
 
 </RelativeLayout>
