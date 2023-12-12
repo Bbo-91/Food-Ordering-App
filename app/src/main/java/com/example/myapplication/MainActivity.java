@@ -22,7 +22,7 @@ import com.example.myapplication.Classes.*;
 
 // karen
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
-    EditText username,email,password;
+    EditText username,email,password,city,street;
     TextView loginLink;
     Button signUpBtn;
     @Override
@@ -44,6 +44,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         username = findViewById(R.id.editTextUsername);
         password = findViewById(R.id.editTextPassword);
         email = findViewById(R.id.editTextEmail);
+        city= findViewById(R.id.editCity);
+        street= findViewById(R.id.editStreet);
         loginLink = findViewById(R.id.loginLink);
         signUpBtn = findViewById(R.id.buttonSignUp);
         signUpBtn.setOnClickListener( this);
@@ -58,9 +60,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String name = username.getText().toString();
         String pass = password.getText().toString();
         String emailString  = email.getText().toString();
+        String City  = city.getText().toString();
+        String Street  = street.getText().toString();
         View parentLayout = findViewById(android.R.id.content);
 
-        if(name.isEmpty() || pass.isEmpty() || emailString.isEmpty()){
+        if(name.isEmpty() || pass.isEmpty() || emailString.isEmpty()||City.isEmpty()||Street.isEmpty()){
             Snackbar.make(parentLayout, "Please fill in all fields", Snackbar.LENGTH_SHORT).show();
         }
         else if(!isValidEmail(emailString)){
@@ -68,9 +72,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         }
         else{
-            user newUser = new user(emailString,name,pass);
+            user newUser = new user(emailString,name,pass,City,Street);
            String res =  newUser.SignUP();
-           if(res.equals("duplicate user")){            Snackbar.make(parentLayout, "there's a user with those credinatials", Snackbar.LENGTH_SHORT).show();
+           if(res.equals("duplicate user")){
+               Snackbar.make(parentLayout, "there's a user with those credinatials", Snackbar.LENGTH_SHORT).show();
            }
            else{
                Intent intent = new Intent(MainActivity.this, login_page.class);
@@ -84,8 +89,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private boolean isValidEmail(String target) {
         return (!target.isEmpty() && Patterns.EMAIL_ADDRESS.matcher(target).matches());
     }
-
-
 
 
     }

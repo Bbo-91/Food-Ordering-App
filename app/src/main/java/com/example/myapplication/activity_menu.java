@@ -149,20 +149,22 @@ private void openFilterDialog() {
 
     @Override
     public void onClick(int pos) {
-        Intent intent = new Intent(activity_menu.this, activity_customize.class);
-        ArrayList<Dishes> dishes = database.dishes;
 
-        // Pass data of the selected dish to the next activity
-        intent.putExtra("name", dishes.get(pos).getName());
-        intent.putExtra("description", dishes.get(pos).getDescription());
-        intent.putExtra("index", pos);
+        if(LoginHandler.isLoggedIn() ){
+            Intent intent = new Intent(activity_menu.this, activity_customize.class);
+            ArrayList<Dishes> dishes = database.dishes;
 
-        // Pass the entire Dishes object with a key ("dish")
-        //intent.putExtra("dish", dishes.get(pos));
+            // Pass data of the selected dish to the next activity
+            intent.putExtra("name", dishes.get(pos).getName());
+            intent.putExtra("description", dishes.get(pos).getDescription());
+            intent.putExtra("index", pos);
 
-        // Add any other data you want to pass
+            startActivity(intent);
 
-        startActivity(intent);
+        }else{
+            Intent intent = new Intent(activity_menu.this, login_page.class);
+            startActivity(intent);
+        }
     }
 
 }
