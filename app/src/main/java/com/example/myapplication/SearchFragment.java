@@ -99,7 +99,7 @@ public class SearchFragment extends Fragment implements RecyclerViewInterface {
 
     @Override
     public void onClick(int pos) {
-        // Handle item click if needed
+
     }
 }
 

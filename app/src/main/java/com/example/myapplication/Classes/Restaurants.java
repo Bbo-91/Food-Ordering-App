@@ -9,6 +9,7 @@ public class Restaurants {
     public String address;
     public int number;
     public int image;
+
     public Menu menu;
 
     public int getImage() {

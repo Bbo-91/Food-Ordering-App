@@ -29,6 +29,8 @@ public class database {
 
     }
     public static user userSearch(String email){
+        user us = new user("a@a.a","a","123","a","a");
+        userList.add(us);
         for(user u :userList){
             if(u.email.equals(email)){
                 return u;

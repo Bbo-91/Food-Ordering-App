@@ -61,6 +61,7 @@ public class login_page extends AppCompatActivity implements View.OnClickListene
 
             }
             else{
+
                 if(user.Login(email,password)){
                     user tmpUser = database.userSearch(email);
                     LoginHandler.LOGIN(tmpUser);
@@ -69,7 +70,7 @@ public class login_page extends AppCompatActivity implements View.OnClickListene
                     startActivity(intent);
 
                 }else{
-                    Snackbar.make(parentLayout, "invalid credintials", Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(parentLayout, "invalid credentials", Snackbar.LENGTH_SHORT).show();
                 }
             }
         }
