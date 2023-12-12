@@ -25,7 +25,7 @@ public class activity_menu extends AppCompatActivity implements RecyclerViewInte
     View rootView;
     ArrayList<Dishes> dishes = new ArrayList<Dishes>();
     Button btn;
-
+    SeekBar seekBar;
     MenuAdapter menuAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +70,7 @@ private void openFilterDialog() {
     // Find views in the dialog layout
     RadioGroup radioGroup1 = dialogView.findViewById(R.id.radioGroupMeal);
     RadioGroup radioGroup2 = dialogView.findViewById(R.id.radioGroupCuisine);
-    SeekBar seekBar = dialogView.findViewById(R.id.seekbar_price);
+     seekBar = dialogView.findViewById(R.id.seekbar_price);
     TextView currentPriceTextView = dialogView.findViewById(R.id.text_current_price);
 
     // Find the "Apply" button in the dialog
@@ -79,19 +79,24 @@ private void openFilterDialog() {
     resetButton.setOnClickListener(view -> {
         radioGroup2.clearCheck();
         radioGroup1.clearCheck();
-        seekBar.setProgress(30);
+        seekBar.setProgress(0);
 
 
     });
-    seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-        int currentProgress = 0;
-        int minPrice = 30; // Minimum price
+    final int minValue = 30; // Minimum value of SeekBar
+    final int maxValue = 300; // Maximum value of SeekBar
+    final int seekBarMax = maxValue - minValue; // Range of SeekBar
 
+    // Set the SeekBar progress to represent the minimum value (30)
+    seekBar.setMax(seekBarMax);
+    seekBar.setProgress(minValue);
+
+    // Listener to update the TextView and handle SeekBar progress changes
+    seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
         @Override
         public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-            currentProgress = progress;
-            int currentPrice = minPrice + (currentProgress * 10);
-            currentPriceTextView.setText("Current Price: $" + currentPrice);
+            int currentValue = minValue+ progress; // Map SeekBar progress to actual values
+            currentPriceTextView.setText("Current Price: $" + currentValue);
         }
 
         @Override
@@ -106,50 +111,55 @@ private void openFilterDialog() {
     });
 
     applyButton.setOnClickListener(view -> {
-        // Get the selected radio button from each RadioGroup
         int selectedRadioButtonId1 = radioGroup1.getCheckedRadioButtonId();
         int selectedRadioButtonId2 = radioGroup2.getCheckedRadioButtonId();
 
-        // Find the SeekBar value
+        String selectedRadioButton1Name = "";
+        String selectedRadioButton2Name = "";
+
+        if (selectedRadioButtonId1 != -1) {
+            selectedRadioButton1Name = getResources().getResourceEntryName(selectedRadioButtonId1);
+        }
+        if (selectedRadioButtonId2 != -1) {
+            selectedRadioButton2Name = getResources().getResourceEntryName(selectedRadioButtonId2);
+        }
+
         int seekBarValue = seekBar.getProgress();
-        String selectedRadioButton1Name = getResources().getResourceEntryName(selectedRadioButtonId1);
-        String selectedRadioButton2Name = getResources().getResourceEntryName(selectedRadioButtonId2);
+
         ArrayList<Dishes> filteredDishes = new ArrayList<>();
         for (Dishes dish : dishes) {
-            if (selectedRadioButton1Name.equals(dish.category.name()) &&
-                    selectedRadioButton2Name.equals(dish.cuisineType.name()) &&
-                    dish.getInitPrice() <= seekBarValue) {
+            boolean meetsCriteria = true;
+
+            if (!selectedRadioButton1Name.isEmpty() && !selectedRadioButton1Name.equals(dish.category.name())) {
+                meetsCriteria = false;
+            }
+            if (!selectedRadioButton2Name.isEmpty() && !selectedRadioButton2Name.equals(dish.cuisineType.name())) {
+                meetsCriteria = false;
+            }
+            if (dish.getInitPrice() > seekBarValue) {
+                meetsCriteria = false;
+            }
+
+            if (meetsCriteria) {
                 filteredDishes.add(dish);
             }
         }
 
         menuAdapter.updateData(filteredDishes);
 
-
-        // Convert radio button IDs to their respective values or perform actions based on selections
-        // ...
-
-        // Log or process the obtained values
-
-
-        // Dismiss the dialog after processing the values
-        // This closes the dialog after the "Apply" button is clicked
         AlertDialog dialog = (AlertDialog) view.getTag();
         if (dialog != null) {
             dialog.dismiss();
         }
     });
 
-    // Handle the Cancel button inside the dialog if needed
     builder.setNegativeButton("Cancel", (dialogInterface, i) -> {
         // Handle Cancel button click if needed
     });
 
-    // Create and show the dialog
     AlertDialog dialog = builder.create();
     dialog.show();
 
-    // Set the dialog as a tag to the Apply button to retrieve it later
     applyButton.setTag(dialog);
 }
 
