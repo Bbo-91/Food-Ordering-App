@@ -22,8 +22,17 @@
             android:name=".TrackActivity"
             android:exported="false" />
         <activity
-            android:name=".activity_customize$CartActivity"
-            android:exported="false" />
+            android:name=".AdminEditFragment"
+            android:exported="false"
+             />
+        <activity
+            android:name=".activity_add_dish"
+            android:exported="false"
+            />
+        <activity
+            android:name=".activity_remove_dish"
+            android:exported="false"
+            />
         <activity
             android:name=".activity_search_items"
             android:exported="false" />

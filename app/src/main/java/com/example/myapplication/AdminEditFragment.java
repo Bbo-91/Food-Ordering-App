@@ -15,6 +15,7 @@ import android.widget.Button;
 
 public class AdminEditFragment extends Fragment {
     public Button add;
+    public Button remove;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -27,7 +28,23 @@ public class AdminEditFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 try {
-                    Intent intent = new Intent(getActivity(), activity_add_dish.class);
+                    Intent intent = new Intent(AdminEditFragment.this.getActivity()
+                            , activity_add_dish.class);
+                    startActivity(intent);
+                    Log.d("YourTag", "fun is working");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Log.e("YourTag", "Error in onClick", e);
+                }
+            }
+        });
+        remove = (Button) view.findViewById(R.id.button_delete);
+        remove.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                try {
+                    Intent intent = new Intent(AdminEditFragment.this.getActivity()
+                            , activity_remove_dish.class);
                     startActivity(intent);
                     Log.d("YourTag", "fun is working");
                 } catch (Exception e) {

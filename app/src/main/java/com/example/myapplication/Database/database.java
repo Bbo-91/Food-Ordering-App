@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class database {
     private static ArrayList<user> userList = new ArrayList<>();
-    private static ArrayList<admin> adminList = new ArrayList<>();
+    public static ArrayList<admin> adminList = new ArrayList<>();
     public static ArrayList<Restaurants> restaurants = new ArrayList<>();
 
     public static ArrayList<Dishes> dishes = new ArrayList<>();
