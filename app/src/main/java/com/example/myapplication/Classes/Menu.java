@@ -6,6 +6,7 @@ public class Menu {
 //    customizes is a pair stores the customize name and corresponding price
    public ArrayList<Pair<String, Integer>> customizes= new ArrayList<>();
    public ArrayList<Dishes> dishesList = new ArrayList<>();
+   String restaurant;
    public Menu( ){
 
 
@@ -15,6 +16,7 @@ public class Menu {
        customizes.add(customize);
    }
    public void addDish(Dishes dish){
+
        dishesList.add(dish);
    }
 

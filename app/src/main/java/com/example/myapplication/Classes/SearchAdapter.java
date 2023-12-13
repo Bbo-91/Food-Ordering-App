@@ -66,7 +66,21 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
             super(itemView);
             SearchImage = itemView.findViewById(R.id.SearchImage);
             SearchItem = itemView.findViewById(R.id.SearchItem);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(recyclerViewInterface != null){
+                        int pos = getAdapterPosition();
+
+                        if(pos != RecyclerView.NO_POSITION){
+                            recyclerViewInterface.onClick(pos);
+                        }
+
+                    }
+                }
+            });
         }
+
     }
 }
 
