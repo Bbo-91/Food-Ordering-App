@@ -1,4 +1,3 @@
-/*
 package com.example.myapplication;
 
 import static android.app.PendingIntent.getActivity;
@@ -9,7 +8,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -50,4 +48,3 @@ public class activity_add_dish extends AppCompatActivity {
 
     }
 }
-*/

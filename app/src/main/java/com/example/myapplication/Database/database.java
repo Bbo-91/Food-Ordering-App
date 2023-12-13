@@ -1,17 +1,20 @@
 package com.example.myapplication.Database;
 
 import com.example.myapplication.Classes.Dishes;
+import com.example.myapplication.Classes.Payment;
 import com.example.myapplication.Classes.Restaurants;
 import  com.example.myapplication.Classes.user;
 import  com.example.myapplication.Classes.admin;
 import java.util.ArrayList;
 
 public class database {
-    private static ArrayList<user> userList = new ArrayList<>();
-    private static ArrayList<admin> adminList = new ArrayList<>();
+    public static ArrayList<user> userList = new ArrayList<>();
+    public static ArrayList<admin> adminList = new ArrayList<>();
     public static ArrayList<Restaurants> restaurants = new ArrayList<>();
 
     public static ArrayList<Dishes> dishes = new ArrayList<>();
+
+    public static ArrayList<Payment> Payments = new ArrayList<>();
 
 
     public database(){};
@@ -27,7 +30,7 @@ public class database {
 
     }
     public static user userSearch(String email){
-        user us = new user("a@a.a","a","123","a","a");
+        user us = new user(300,"a@a.a","a","123","a","a");
         userList.add(us);
         for(user u :userList){
             if(u.getEmail().equals(email)){
