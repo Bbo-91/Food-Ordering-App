@@ -4,14 +4,33 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black"
-    tools:context=".AdminEditFragment">
+    tools:context=".AdminEditFragment"
+    >
 
     <!-- TODO: Update blank fragment layout -->
+
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:text="Edit Dishes"
         android:textColor="@color/white"
-        android:textSize="70dp"/>
+        android:textSize="70dp"
+        />
+
+    <Button
+        android:id="@+id/button_add"
+        android:layout_width="189dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="100dp"
+        android:layout_marginTop="250dp"
+        android:text="add dish +"
+        />
+    <Button
+        android:id="@+id/button_delete"
+        android:layout_width="189dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="100dp"
+        android:layout_marginTop="400dp"
+        android:text="remove dish -" />
 
 </FrameLayout>

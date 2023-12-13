@@ -18,10 +18,9 @@ public class database {
     public static String addUser(user User){
 //        check if user already exist
         for(user u :userList){
-            if(u.email.equals(User.email)){
+            if(u.getEmail().equals(User.getEmail())){
                 return "duplicate user";
             }
-
         }
         userList.add(User);
         return "user added";
@@ -31,7 +30,7 @@ public class database {
         user us = new user("a@a.a","a","123","a","a");
         userList.add(us);
         for(user u :userList){
-            if(u.email.equals(email)){
+            if(u.getEmail().equals(email)){
                 return u;
 
             }
@@ -44,13 +43,13 @@ public class database {
 
 //        check if admin already exist
         for(admin a :adminList){
-            if(a.email.equals(Admin.email)){
+            if(a.getEmail().equals(Admin.getEmail())){
                 return "duplicate admin";
             }
 
         }
          for(user u :userList){
-            if(u.email.equals(Admin.email)){
+            if(u.getEmail().equals(Admin.getEmail())){
                 return "email isn't available choose another";
             }
 
@@ -63,7 +62,7 @@ public class database {
         admin new_admin =new admin("admin@gmail.com","admin","123","arabiata");
         adminList.add(new_admin);
         for(admin a :adminList){
-            if(a.email.equals(email) ){
+            if(a.getEmail().equals(email) ){
                 return a;
             }
 

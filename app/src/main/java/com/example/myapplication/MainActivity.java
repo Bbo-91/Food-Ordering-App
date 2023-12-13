@@ -3,6 +3,7 @@ package com.example.myapplication;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import java.util.Random;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -23,6 +24,7 @@ import com.example.myapplication.Classes.*;
 
 // karen
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+    Random random = new Random();
     EditText username,email,password,city,street;
     TextView loginLink;
     Button signUpBtn;
@@ -74,6 +76,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         else{
             user newUser = new user(emailString,name,pass,City,Street);
+            int randomNumber = random.nextInt(301) + 200;
            String res =  newUser.SignUP();
            if(res.equals("duplicate user")){
                Snackbar.make(parentLayout, "there's a user with those credinatials", Snackbar.LENGTH_SHORT).show();
