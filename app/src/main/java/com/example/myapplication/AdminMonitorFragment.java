@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -13,6 +14,8 @@ public class AdminMonitorFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        Intent intent = getActivity().getIntent();
+        int idx = intent.getIntExtra("index" , -1);
         return inflater.inflate(R.layout.fragment_admin_monitor, container, false);
     }
 }
