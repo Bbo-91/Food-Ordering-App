@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name"
+        tools:layout_editor_absoluteX="40dp"
+        tools:layout_editor_absoluteY="115dp" />
+
+    <EditText
+        android:id="@+id/editTextText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="name of dish"
+        android:inputType="text"
+        tools:layout_editor_absoluteX="46dp"
+        tools:layout_editor_absoluteY="142dp" />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Discription"
+        tools:layout_editor_absoluteX="40dp"
+        tools:layout_editor_absoluteY="197dp" />
+
+    <EditText
+        android:id="@+id/editTextTextMultiLine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:gravity="start|top"
+        android:hint="describe your dish"
+        android:inputType="textMultiLine"
+        tools:layout_editor_absoluteX="46dp"
+        tools:layout_editor_absoluteY="225dp" />
+
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="initPrice"
+        tools:layout_editor_absoluteX="40dp"
+        tools:layout_editor_absoluteY="291dp" />
+
+
+    <EditText
+        android:id="@+id/editTextNumberDecimal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="ex : 23"
+        android:inputType="numberDecimal"
+        tools:layout_editor_absoluteX="46dp"
+        tools:layout_editor_absoluteY="326dp" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add"
+        tools:layout_editor_absoluteX="161dp"
+        tools:layout_editor_absoluteY="586dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="51dp" />
+
+
+
+
+
+
+    <!--cuisine typy section-->
+
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="cuisineType"
+        tools:layout_editor_absoluteX="40dp"
+        tools:layout_editor_absoluteY="387dp" />
+
+    <RadioGroup
+        android:id="@+id/radioGroupCuisine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:orientation="horizontal"
+        tools:layout_editor_absoluteX="46dp"
+        tools:layout_editor_absoluteY="417dp">
+
+        <RadioButton
+            android:id="@+id/RUSSIAN"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text="RUSSIAN" />
+
+        <RadioButton
+            android:id="@+id/ITALIAN"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text="Italian" />
+
+        <RadioButton
+            android:id="@+id/MEXICAN"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text="MEXICAN" />
+    </RadioGroup>
+    <!--categories section-->
+
+    <TextView
+        android:id="@+id/textView18"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="category"
+        tools:layout_editor_absoluteX="40dp"
+        tools:layout_editor_absoluteY="480dp" />
+
+    <RadioGroup
+        android:id="@+id/radioGroupMeal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textView18"
+        android:orientation="horizontal"
+        tools:layout_editor_absoluteX="54dp"
+        tools:layout_editor_absoluteY="514dp">
+
+        <RadioButton
+            android:id="@+id/BREAKFAST"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text="Breakfast" />
+
+        <RadioButton
+            android:id="@+id/LUNCH"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text="Lunch" />
+
+        <RadioButton
+            android:id="@+id/DINNER"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text="Dinner" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/textView20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ADD NEW DISH"
+        android:textColor="#DC4C42"
+        android:textSize="24sp"
+        tools:layout_editor_absoluteX="91dp"
+        tools:layout_editor_absoluteY="34dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
