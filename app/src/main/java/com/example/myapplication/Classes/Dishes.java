@@ -12,6 +12,7 @@ public class Dishes implements Serializable  {
     private String name;
     private String description;
     protected float initPrice;
+    String RestaurantName;
     public enum cuisines{
         ITALIAN,
         MEXICAN,
@@ -26,15 +27,18 @@ public class Dishes implements Serializable  {
     public categories category;
 
 
-    public Dishes(String name, String description, float initPrice,cuisines cuisineType,categories category) {
+    public Dishes(String name, String description, float initPrice,cuisines cuisineType,categories category, String restaurant) {
         this.name = name;
         this.description = description;
         this.initPrice = initPrice;
         this.category = category;
         this.cuisineType = cuisineType;
-
+        this.RestaurantName = restaurant;
     }
 
+    public String getRestaurantName() {
+        return RestaurantName;
+    }
 
     public String getName() {
         return name;

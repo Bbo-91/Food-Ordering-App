@@ -87,20 +87,15 @@ public class UserActivity extends AppCompatActivity {
         }
     }
     public void setup(){
-        database.addDish(new Dishes("Foul Sandwich","balady Bread with foul medames Sandwich", 5, Dishes.cuisines.RUSSIAN, Dishes.categories.BREAKFAST ));
-        database.addDish(new Dishes("Foul Box","foul medames Box", 400, Dishes.cuisines.ITALIAN, Dishes.categories.LUNCH));
-        database.addDish(new Dishes("Koshary Box","Large koshary Box", 70, Dishes.cuisines.MEXICAN, Dishes.categories.DINNER));
-        database.addDish(new Dishes("test","balady Bread with foul medames Sandwich", 5, Dishes.cuisines.RUSSIAN, Dishes.categories.BREAKFAST ));
+        database.addDish(new Dishes("Foul Sandwich","balady Bread with foul medames Sandwich", 5, Dishes.cuisines.RUSSIAN, Dishes.categories.BREAKFAST,"arabiata" ));
+        database.addDish(new Dishes("Foul Box","foul medames Box", 400, Dishes.cuisines.ITALIAN, Dishes.categories.LUNCH, "arabiata"));
+        database.addDish(new Dishes("Koshary Box","Large koshary Box", 70, Dishes.cuisines.MEXICAN, Dishes.categories.DINNER, "arabiata"));
+        database.addDish(new Dishes("test","balady Bread with foul medames Sandwich", 5, Dishes.cuisines.RUSSIAN, Dishes.categories.BREAKFAST,"restone" ));
 
-        com.example.myapplication.Classes.Menu newMin = new com.example.myapplication.Classes.Menu();
-        com.example.myapplication.Classes.Menu testMin = new com.example.myapplication.Classes.Menu();
-        testMin.dishesList.add(new Dishes("test","balady Bread with foul medames Sandwich", 5, Dishes.cuisines.RUSSIAN, Dishes.categories.BREAKFAST ));
 
-        newMin.dishesList.add(new Dishes("Foul Sandwich","balady Bread with foul medames Sandwich", 5, Dishes.cuisines.RUSSIAN, Dishes.categories.BREAKFAST ));
-        newMin.dishesList.add(new Dishes("Foul Box","foul medames Box", 400, Dishes.cuisines.ITALIAN, Dishes.categories.LUNCH));
-        newMin.dishesList.add(new Dishes("Koshary Box","Large koshary Box", 70, Dishes.cuisines.MEXICAN, Dishes.categories.DINNER));
-        database.restaurants.add(new Restaurants("arabiata","El Rehab Food court",12345,R.drawable.arabiata,newMin));
-        database.restaurants.add(new Restaurants("restone","El Rehab Food court",12345,R.drawable.arabiata,testMin));
+
+        database.restaurants.add(new Restaurants("arabiata","El Rehab Food court",12345,R.drawable.arabiata));
+        database.restaurants.add(new Restaurants("restone","El Rehab Food court",12345,R.drawable.arabiata));
 
     }
 

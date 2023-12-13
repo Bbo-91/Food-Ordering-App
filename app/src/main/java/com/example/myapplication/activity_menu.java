@@ -43,7 +43,7 @@ public class activity_menu extends AppCompatActivity implements RecyclerViewInte
         btn = findViewById(R.id.to_filter);
         btn.setOnClickListener(v -> openFilterDialog());
 
-        dishes = database.searchRestaurant(restaurantName).menu.dishesList;
+        ArrayList<Dishes> filteredDishes = getDishesForRestaurant(restaurantName);
 
         TextView nameTextView = findViewById(R.id.textView3);
         nameTextView.setText(restaurantName);
@@ -52,11 +52,26 @@ public class activity_menu extends AppCompatActivity implements RecyclerViewInte
         restaurantImage.setImageResource(restaurantImageResourceId);
 
 
-         menuAdapter = new MenuAdapter(this,dishes,restaurantName,restaurantImageResourceId,this);
+        menuAdapter = new MenuAdapter(this,filteredDishes,restaurantName,restaurantImageResourceId,this);
 
         recyclerView.setAdapter(menuAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+    }
+
+    private ArrayList<Dishes> getDishesForRestaurant(String restaurantName) {
+
+
+        ArrayList<Dishes> filteredDishes = new ArrayList<>();
+
+        // Iterate through all dishes and add only those for the selected restaurant
+        for (Dishes dish : database.dishes) {
+            if (dish.getRestaurantName().equals(restaurantName)) {
+                filteredDishes.add(dish);
+            }
+        }
+
+        return filteredDishes;
     }
 
 private void openFilterDialog() {
