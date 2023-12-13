@@ -21,10 +21,10 @@
         android:fontFamily="@font/main_font" />
 
     <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="250dp">
+        android:layout_width="match_parent"
+        android:layout_height="496dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="146dp">
 
         <EditText
             android:id="@+id/editTextUsername"
@@ -36,6 +36,37 @@
             android:layout_marginBottom="16dp"
             android:background="@drawable/edittext_background"
             android:hint="Username"
+            android:inputType="text"
+            android:padding="12dp"
+            android:textColor="@color/dark_orange" />
+
+        <EditText
+            android:id="@+id/editCity"
+            android:layout_width="158dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/editTextPassword"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/edittext_background"
+            android:hint="City"
+            android:inputType="text"
+            android:padding="12dp"
+            android:textColor="@color/dark_orange" />
+
+        <EditText
+            android:id="@+id/editStreet"
+            android:layout_width="175dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/editTextPassword"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:layout_toEndOf="@+id/editCity"
+            android:background="@drawable/edittext_background"
+            android:hint="Street"
             android:inputType="text"
             android:padding="12dp"
             android:textColor="@color/dark_orange" />
@@ -67,28 +98,31 @@
 
 
         <!-- Add a Sign Up Button -->
+
+        <!-- Blue Login link (to be used as a navigation button) -->
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonSignUp"
             style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/editTextPassword"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="24dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="112dp"
+            android:layout_marginEnd="95dp"
             android:backgroundTint="@color/dark_orange"
             android:paddingLeft="80dp"
             android:paddingRight="80dp"
             android:text="Sign Up"
             android:textColor="@color/white" />
 
-        <!-- Blue Login link (to be used as a navigation button) -->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/buttonSignUp"
             android:layout_centerHorizontal="true"
-            android:orientation="horizontal"
-            android:layout_marginTop="20dp">
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
 
             <!-- "Already have an account? " text -->
             <TextView
@@ -96,22 +130,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Already have an account? "
-                android:textColor="@android:color/white"
-                />
+                android:textColor="@android:color/white" />
 
             <!-- "Login" text with blue color -->
             <TextView
                 android:id="@+id/loginLink"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Login"
-                android:textSize="20dp"
-                android:textColor="@color/blue"
                 android:clickable="true"
+                android:text="Login"
+                android:textColor="@color/blue"
+                android:textSize="20dp"
                 android:textStyle="bold" />
         </LinearLayout>
     </RelativeLayout>
-
 
 
 </RelativeLayout>

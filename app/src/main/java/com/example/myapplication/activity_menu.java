@@ -24,26 +24,27 @@ public class activity_menu extends AppCompatActivity implements RecyclerViewInte
     private RecyclerView recyclerView;
     View rootView;
     ArrayList<Dishes> dishes = new ArrayList<Dishes>();
+    ArrayList<Dishes> filteredDishes;  // Moved to class-level variable
     Button btn;
-
+    SeekBar seekBar;
+    MenuAdapter menuAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
-        RecyclerView recyclerView = findViewById(R.id.MenuView);
+        recyclerView = findViewById(R.id.MenuView);
 
         Intent intent = getIntent();
         String restaurantName = intent.getStringExtra("restaurantName");
         String restaurantLocation = intent.getStringExtra("restaurantLocation");
         int restaurantImageResourceId = intent.getIntExtra("restaurantImage", 0);
 
-
         btn = findViewById(R.id.to_filter);
         btn.setOnClickListener(v -> openFilterDialog());
 
-        ArrayList<Dishes> filteredDishes = database.searchRestaurant(restaurantName).menu.dishesList;
+        filteredDishes = getDishesForRestaurant(restaurantName);
 
         TextView nameTextView = findViewById(R.id.textView3);
         nameTextView.setText(restaurantName);
@@ -51,116 +52,132 @@ public class activity_menu extends AppCompatActivity implements RecyclerViewInte
         ImageView restaurantImage = findViewById(R.id.imageViewMenu);
         restaurantImage.setImageResource(restaurantImageResourceId);
 
-
-        MenuAdapter menuAdapter = new MenuAdapter(this,filteredDishes,restaurantName,restaurantImageResourceId,this);
+        menuAdapter = new MenuAdapter(this, filteredDishes, restaurantName, restaurantImageResourceId, this);
 
         recyclerView.setAdapter(menuAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
     }
 
-private void openFilterDialog() {
-    AlertDialog.Builder builder = new AlertDialog.Builder(this);
-    builder.setTitle("Custom Dialog");
-
-    // Inflate custom layout for the dialog
-    View dialogView = getLayoutInflater().inflate(R.layout.filter_dishes, null);
-    builder.setView(dialogView);
-
-    // Find views in the dialog layout
-    RadioGroup radioGroup1 = dialogView.findViewById(R.id.radioGroupMeal);
-    RadioGroup radioGroup2 = dialogView.findViewById(R.id.radioGroupCuisine);
-    SeekBar seekBar = dialogView.findViewById(R.id.seekbar_price);
-    TextView currentPriceTextView = dialogView.findViewById(R.id.text_current_price);
-
-    // Find the "Apply" button in the dialog
-    Button applyButton = dialogView.findViewById(R.id.button_apply);
-    Button resetButton = dialogView.findViewById(R.id.button_reset);
-    resetButton.setOnClickListener(view -> {
-        radioGroup2.clearCheck();
-        radioGroup1.clearCheck();
-        seekBar.setProgress(30);
-
-
-    });
-    seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-        int currentProgress = 0;
-        int minPrice = 30; // Minimum price
-
-        @Override
-        public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-            currentProgress = progress;
-            int currentPrice = minPrice + (currentProgress * 10);
-            currentPriceTextView.setText("Current Price: $" + currentPrice);
+    private ArrayList<Dishes> getDishesForRestaurant(String restaurantName) {
+        ArrayList<Dishes> filteredDishes = new ArrayList<>();
+        for (Dishes dish : database.dishes) {
+            if (dish.getRestaurantName().equals(restaurantName)) {
+                filteredDishes.add(dish);
+            }
         }
+        return filteredDishes;
+    }
 
-        @Override
-        public void onStartTrackingTouch(SeekBar seekBar) {
-            // Not needed, but required to implement
-        }
+    private void openFilterDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Custom Dialog");
 
-        @Override
-        public void onStopTrackingTouch(SeekBar seekBar) {
-            // Not needed, but required to implement
-        }
-    });
+        // Inflate custom layout for the dialog
+        View dialogView = getLayoutInflater().inflate(R.layout.filter_dishes, null);
+        builder.setView(dialogView);
 
-    applyButton.setOnClickListener(view -> {
-        // Get the selected radio button from each RadioGroup
-        int selectedRadioButtonId1 = radioGroup1.getCheckedRadioButtonId();
-        int selectedRadioButtonId2 = radioGroup2.getCheckedRadioButtonId();
+        RadioGroup radioGroup1 = dialogView.findViewById(R.id.radioGroupMeal);
+        RadioGroup radioGroup2 = dialogView.findViewById(R.id.radioGroupCuisine);
+        seekBar = dialogView.findViewById(R.id.seekbar_price);
+        TextView currentPriceTextView = dialogView.findViewById(R.id.text_current_price);
 
-        // Find the SeekBar value
-        int seekBarValue = seekBar.getProgress();
+        Button applyButton = dialogView.findViewById(R.id.button_apply);
+        Button resetButton = dialogView.findViewById(R.id.button_reset);
+        resetButton.setOnClickListener(view -> {
+            radioGroup2.clearCheck();
+            radioGroup1.clearCheck();
+            seekBar.setProgress(0);
+        });
 
-        // Convert radio button IDs to their respective values or perform actions based on selections
-        // ...
+        final int minValue = 30;
+        final int maxValue = 500;
+        final int seekBarMax = maxValue;
 
-        // Log or process the obtained values
+        seekBar.setMax(seekBarMax);
+        seekBar.setProgress(minValue);
 
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                int currentValue = progress;
+                currentPriceTextView.setText("Current Price: $" + currentValue);
+            }
 
-        // Dismiss the dialog after processing the values
-        // This closes the dialog after the "Apply" button is clicked
-        AlertDialog dialog = (AlertDialog) view.getTag();
-        if (dialog != null) {
-            dialog.dismiss();
-        }
-    });
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
 
-    // Handle the Cancel button inside the dialog if needed
-    builder.setNegativeButton("Cancel", (dialogInterface, i) -> {
-        // Handle Cancel button click if needed
-    });
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+            }
+        });
 
-    // Create and show the dialog
-    AlertDialog dialog = builder.create();
-    dialog.show();
+        applyButton.setOnClickListener(view -> {
+            int selectedRadioButtonId1 = radioGroup1.getCheckedRadioButtonId();
+            int selectedRadioButtonId2 = radioGroup2.getCheckedRadioButtonId();
 
-    // Set the dialog as a tag to the Apply button to retrieve it later
-    applyButton.setTag(dialog);
-}
+            String selectedRadioButton1Name = "";
+            String selectedRadioButton2Name = "";
 
+            if (selectedRadioButtonId1 != -1) {
+                selectedRadioButton1Name = getResources().getResourceEntryName(selectedRadioButtonId1);
+            }
+            if (selectedRadioButtonId2 != -1) {
+                selectedRadioButton2Name = getResources().getResourceEntryName(selectedRadioButtonId2);
+            }
 
+            int seekBarValue = seekBar.getProgress();
 
+            ArrayList<Dishes> updatedFilteredDishes = new ArrayList<>();
+            for (Dishes dish : filteredDishes) {
+                boolean meetsCriteria = true;
 
+                if (!selectedRadioButton1Name.isEmpty() && !selectedRadioButton1Name.equals(dish.category.name())) {
+                    meetsCriteria = false;
+                }
+                if (!selectedRadioButton2Name.isEmpty() && !selectedRadioButton2Name.equals(dish.cuisineType.name())) {
+                    meetsCriteria = false;
+                }
+                if (dish.getInitPrice() > seekBarValue) {
+                    meetsCriteria = false;
+                }
 
+                if (meetsCriteria) {
+                    updatedFilteredDishes.add(dish);
+                }
+            }
+
+            menuAdapter.updateData(updatedFilteredDishes);
+
+            AlertDialog dialog = (AlertDialog) view.getTag();
+            if (dialog != null) {
+                dialog.dismiss();
+            }
+        });
+
+        builder.setNegativeButton("Cancel", (dialogInterface, i) -> {
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+        applyButton.setTag(dialog);
+    }
 
     @Override
     public void onClick(int pos) {
-        Intent intent = new Intent(activity_menu.this, activity_customize.class);
-        ArrayList<Dishes> dishes = database.dishes;
+        if (LoginHandler.isLoggedIn()) {
+            Intent intent = new Intent(activity_menu.this, activity_customize.class);
+            ArrayList<Dishes> allDishes = database.dishes;
 
-        // Pass data of the selected dish to the next activity
-        intent.putExtra("name", dishes.get(pos).getName());
-        intent.putExtra("description", dishes.get(pos).getDescription());
-        intent.putExtra("index", pos);
+            intent.putExtra("name", allDishes.get(pos).getName());
+            intent.putExtra("description", allDishes.get(pos).getDescription());
+            intent.putExtra("index", pos);
 
-        // Pass the entire Dishes object with a key ("dish")
-        //intent.putExtra("dish", dishes.get(pos));
-
-        // Add any other data you want to pass
-
-        startActivity(intent);
+            startActivity(intent);
+        } else {
+            Intent intent = new Intent(activity_menu.this, login_page.class);
+            startActivity(intent);
+        }
     }
-
 }

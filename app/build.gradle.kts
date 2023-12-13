@@ -26,13 +26,14 @@ android {
         viewBinding=true
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
+    buildToolsVersion = "34.0.0"
 }
 
 dependencies {
-    implementation("com.stepstone.apprating:app-rating:2.3.1")
+    implementation ("com.google.code.gson:gson:2.8.7")
     implementation ("com.google.android.material:material:1.10.0")
     implementation("com.google.android.material:material:1.10.0")
     implementation("androidx.appcompat:appcompat:1.6.1")

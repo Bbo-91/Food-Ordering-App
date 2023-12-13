@@ -6,25 +6,107 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import com.example.myapplication.Classes.Dishes;
+import com.example.myapplication.Database.database;
+
+import java.util.ArrayList;
 
 public class PaymentActivity extends AppCompatActivity {
-
+    ArrayList<Dishes> dishes = database.dishes;
+    Bundle extras;
+    TextView dishName, price, separator, cardNameWarning, cardNumWarning, ExpiryWarning, cvcWarning;
+    EditText cardName, cardNum, MMcardExpirydate, YYcardExpirydate, cardCVC;
     Button buy;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment);
-
-        // Move the initialization of the buy button here
+        extras = getIntent().getExtras();
+        int index = extras.getInt("index");
+        assert index >= 0;
         buy = findViewById(R.id.buy);
+        dishName = findViewById(R.id.dishName);
+        price = findViewById(R.id.dishPrice);
+        cardName = findViewById(R.id.edCardName);
+        cardNum = findViewById(R.id.cardNum);
+        MMcardExpirydate = findViewById(R.id.MMExpiryDate);
+        YYcardExpirydate = findViewById(R.id.YYexpiryDate);
+        cardCVC = findViewById(R.id.CVC);
+        cardNameWarning = findViewById(R.id.cardNameWarning);
+        cvcWarning = findViewById(R.id.CVCWarning);
+        cardNumWarning = findViewById(R.id.cardNumWarning);
+        ExpiryWarning = findViewById(R.id.ExpiryWarning);
+        separator = findViewById(R.id.separator);
+
+        dishName.setText(dishes.get(index).getName());
+        price.setText(String.valueOf(dishes.get(index).getPrice()));
+        separator.setText("-----------------------------");
 
         buy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(PaymentActivity.this, TrackActivity.class);
-                startActivity(intent);
+                if (checkValidation()) {
+                    Intent intent = new Intent(PaymentActivity.this, TrackActivity.class);
+                    startActivity(intent);
+                }
             }
         });
+    }
+
+    public boolean checkValidation() {
+        clearWarnings(); // Clear previous warning messages
+
+        String cardNameText = cardName.getText().toString().trim();
+        String cardNumText = cardNum.getText().toString().trim();
+        String mmDateText = MMcardExpirydate.getText().toString().trim();
+        String yyDateText = YYcardExpirydate.getText().toString().trim();
+        String cvcText = cardCVC.getText().toString().trim();
+
+        // Name
+        if (cardNameText.isEmpty()) {
+            cardNameWarning.setText("Name is required");
+            return false;
+        } else if (!cardNameText.matches("[a-zA-Z ]+")) {
+            cardNameWarning.setText("Name must contain only letters");
+            return false;
+        }
+
+        // Card Number
+        if (cardNumText.isEmpty()) {
+            cardNumWarning.setText("Card Number is required");
+            return false;
+        } else if (cardNumText.length() != 16 || !cardNumText.matches("\\d+")) {
+            cardNumWarning.setText("Card Number must be a 16-digit number");
+            return false;
+        }
+
+        // Date
+        if (mmDateText.length() != 2 || yyDateText.length() != 2 ||
+                !mmDateText.matches("\\d{2}") || !yyDateText.matches("\\d{2}")) {
+            ExpiryWarning.setText("Expiry date must be in MM YY format");
+            return false;
+        }
+
+        // CVC
+        if (cvcText.isEmpty()) {
+            cvcWarning.setText("CVC is required");
+            return false;
+        } else if (cvcText.length() != 3 || !cvcText.matches("\\d+")) {
+            cvcWarning.setText("CVC must be a 3-digit number");
+            return false;
+        }
+
+        return true;
+    }
+
+    private void clearWarnings() {
+        cardNameWarning.setText("");
+        cardNumWarning.setText("");
+        ExpiryWarning.setText("");
+        cvcWarning.setText("");
     }
 }

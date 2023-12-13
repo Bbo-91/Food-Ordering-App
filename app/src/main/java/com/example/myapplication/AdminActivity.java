@@ -35,10 +35,7 @@ public class AdminActivity extends AppCompatActivity {
 
         binding.AdminBottomNavigationView.setOnItemSelectedListener(item -> {
             int itemId = item.getItemId();
-//            if (true) {
-//                hideMenuItem(R.id.ResCart);
-//                hideMenuItem(R.id.ResTrack);
-//            }
+
             if (itemId == R.id.AdminEditDishes) {
                 replaceFragment(new AdminEditFragment());
                 return true;

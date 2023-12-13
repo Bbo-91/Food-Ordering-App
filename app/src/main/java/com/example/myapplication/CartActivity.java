@@ -41,8 +41,9 @@ public class CartActivity extends AppCompatActivity {
             ConfirmOrderBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
                     Intent intent = new Intent(CartActivity.this, PaymentActivity.class);
+                    assert index >= 0;
+                    intent.putExtra("index",index);
                     startActivity(intent);
                 }
             });

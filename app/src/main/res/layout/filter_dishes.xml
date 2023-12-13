@@ -31,21 +31,21 @@
         android:orientation="vertical">
 
         <RadioButton
-            android:id="@+id/radio_breakfast"
+            android:id="@+id/BREAKFAST"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Breakfast"
             android:padding="8dp" />
 
         <RadioButton
-            android:id="@+id/radio_lunch"
+            android:id="@+id/LUNCH"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Lunch"
             android:padding="8dp" />
 
         <RadioButton
-            android:id="@+id/radio_dinner"
+            android:id="@+id/DINNER"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Dinner"
@@ -70,24 +70,24 @@
         android:orientation="vertical">
 
         <RadioButton
-            android:id="@+id/radio_local"
+            android:id="@+id/RUSSIAN"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Local"
+            android:text="RUSSIAN"
             android:padding="8dp" />
 
         <RadioButton
-            android:id="@+id/radio_italian"
+            android:id="@+id/ITALIAN"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Italian"
             android:padding="8dp" />
 
         <RadioButton
-            android:id="@+id/radio_chinese"
+            android:id="@+id/MEXICAN"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Chinese"
+            android:text="MEXICAN"
             android:padding="8dp" />
     </RadioGroup>
 
@@ -106,8 +106,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/text_price"
-        android:max="27"
-        android:min="0"
+        android:max="300"
+        android:min="30"
         android:padding="8dp"
         android:progress="0"
         android:thumb="@drawable/custom_thumb" />
@@ -118,29 +118,33 @@
         android:id="@+id/text_current_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Current Price: $30"
         android:layout_below="@id/seekbar_price"
         android:layout_centerHorizontal="true"
+        android:fontFamily="@font/main_font"
         android:paddingTop="8dp"
-        android:fontFamily="@font/main_font"/>
+        android:text="Current Price: $30" />
 
     <!-- Apply and Reset Buttons -->
+
     <Button
         android:id="@+id/button_apply"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Apply"
         android:layout_below="@id/text_current_price"
-        android:layout_centerHorizontal="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="21dp"
+        android:layout_marginEnd="193dp"
         android:padding="12dp"
-        android:layout_marginTop="50dp"/>
+        android:text="Apply" />
 
     <Button
         android:id="@+id/button_reset"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Reset"
         android:layout_below="@id/button_apply"
-        android:layout_centerHorizontal="true"
-        android:padding="12dp" />
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="-52dp"
+        android:layout_marginEnd="75dp"
+        android:padding="12dp"
+        android:text="Reset" />
 </RelativeLayout>
