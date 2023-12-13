@@ -22,9 +22,6 @@
             android:name=".TrackActivity"
             android:exported="false" />
         <activity
-            android:name=".activity_customize$CartActivity"
-            android:exported="false" />
-        <activity
             android:name=".activity_search_items"
             android:exported="false" />
         <activity

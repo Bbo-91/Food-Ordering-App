@@ -3,7 +3,7 @@ import com.example.myapplication.Classes.Dishes;
 import com.example.myapplication.Classes.ResAdapter;
 import com.example.myapplication.Classes.Restaurants;
 import com.example.myapplication.Classes.SearchAdapter;
-import com.example.myapplication.utils.trie;
+//import com.example.myapplication.utils.trie;
 
 import android.content.Intent;
 import android.os.Bundle;

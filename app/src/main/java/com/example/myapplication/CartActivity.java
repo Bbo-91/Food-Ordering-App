@@ -41,10 +41,13 @@ public class CartActivity extends AppCompatActivity {
             ConfirmOrderBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    Intent updateData = new Intent(CartActivity.this, AdminMonitorFragment.class);
                     Intent intent = new Intent(CartActivity.this, PaymentActivity.class);
                     assert index >= 0;
+                    updateData.putExtra("index", index);
                     intent.putExtra("index",index);
                     startActivity(intent);
+
                 }
             });
 
@@ -58,8 +61,8 @@ public class CartActivity extends AppCompatActivity {
 
             separator.setText("----------------------------");
             totalPrice.setText(String.valueOf(dishes.get(index).getPrice()) + " L.E");
-
         }
+
 
 
     }

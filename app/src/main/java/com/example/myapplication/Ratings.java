@@ -10,7 +10,7 @@ import android.widget.RatingBar;
 
 import java.util.Arrays;
 
-public class Ratings extends AppCompatActivity implements RatingDialogListener{
+public class Ratings extends AppCompatActivity{
 
     private Button submitBtn;
     private EditText userComment;
@@ -34,17 +34,5 @@ public class Ratings extends AppCompatActivity implements RatingDialogListener{
 
         });
     }
-//        private void showRatingDialog(){
-//            new appRatingDialog.Builder()
-//                    .setPositiveButtonText("Submit")
-//                    .setNegativeButtonText("Cancel")
-//                    .setNoteDescriptions(Arrays.asList("Very Bad", "Not good", "Quite Ok", "Very Good", "Excellent"))
-//                    .setDefaultRating(0)
-//                    .setTitle("Rate this Restaurant")
-//                    .setDescription("Please select some stars and give your feedback")
-//                    .setHint("Please write your feedback here ...")
-//                    .create(Ratings.this)
-//                    .show();
-//        }
     }
 

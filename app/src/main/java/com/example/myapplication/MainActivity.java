@@ -53,12 +53,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         signUpBtn = findViewById(R.id.buttonSignUp);
         signUpBtn.setOnClickListener( this);
         loginLink.setOnClickListener(this);
-
-
-
-
-
     }
+
     public void signUp(){
         String name = username.getText().toString();
         String pass = password.getText().toString();
@@ -79,7 +75,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             int randomNumber = random.nextInt(301) + 200;
            String res =  newUser.SignUP();
            if(res.equals("duplicate user")){
-               Snackbar.make(parentLayout, "there's a user with those credinatials", Snackbar.LENGTH_SHORT).show();
+               Snackbar.make(parentLayout, "there's a user with those credentials", Snackbar.LENGTH_SHORT).show();
            }
 
            else{
@@ -95,6 +91,4 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private boolean isValidEmail(String target) {
         return (!target.isEmpty() && Patterns.EMAIL_ADDRESS.matcher(target).matches());
     }
-
-
     }

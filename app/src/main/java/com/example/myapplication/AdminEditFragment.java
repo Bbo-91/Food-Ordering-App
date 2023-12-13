@@ -27,7 +27,7 @@ public class AdminEditFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 try {
-                    Intent intent = new Intent(getActivity(), activity_add_dish.class);
+                    Intent intent = new Intent(AdminEditFragment.this.getActivity(), activity_add_dish.class);
                     startActivity(intent);
                     Log.d("YourTag", "fun is working");
                 } catch (Exception e) {
