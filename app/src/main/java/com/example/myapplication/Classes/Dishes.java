@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 public class Dishes implements Serializable  {
     private String name;
+    private int id;
     private String description;
     protected float initPrice;
     String RestaurantName;
@@ -50,6 +51,14 @@ public class Dishes implements Serializable  {
 
     public float getInitPrice() {
         return initPrice;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     private float noOfDishes=1;

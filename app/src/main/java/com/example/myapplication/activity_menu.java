@@ -24,26 +24,27 @@ public class activity_menu extends AppCompatActivity implements RecyclerViewInte
     private RecyclerView recyclerView;
     View rootView;
     ArrayList<Dishes> dishes = new ArrayList<Dishes>();
+    ArrayList<Dishes> filteredDishes;  // Moved to class-level variable
     Button btn;
     SeekBar seekBar;
     MenuAdapter menuAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
-        RecyclerView recyclerView = findViewById(R.id.MenuView);
+        recyclerView = findViewById(R.id.MenuView);
 
         Intent intent = getIntent();
         String restaurantName = intent.getStringExtra("restaurantName");
         String restaurantLocation = intent.getStringExtra("restaurantLocation");
         int restaurantImageResourceId = intent.getIntExtra("restaurantImage", 0);
 
-
         btn = findViewById(R.id.to_filter);
         btn.setOnClickListener(v -> openFilterDialog());
 
-        ArrayList<Dishes> filteredDishes = getDishesForRestaurant(restaurantName);
+        filteredDishes = getDishesForRestaurant(restaurantName);
 
         TextView nameTextView = findViewById(R.id.textView3);
         nameTextView.setText(restaurantName);
@@ -51,159 +52,132 @@ public class activity_menu extends AppCompatActivity implements RecyclerViewInte
         ImageView restaurantImage = findViewById(R.id.imageViewMenu);
         restaurantImage.setImageResource(restaurantImageResourceId);
 
-
-        menuAdapter = new MenuAdapter(this,filteredDishes,restaurantName,restaurantImageResourceId,this);
+        menuAdapter = new MenuAdapter(this, filteredDishes, restaurantName, restaurantImageResourceId, this);
 
         recyclerView.setAdapter(menuAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
     }
 
     private ArrayList<Dishes> getDishesForRestaurant(String restaurantName) {
-
-
         ArrayList<Dishes> filteredDishes = new ArrayList<>();
-
-        // Iterate through all dishes and add only those for the selected restaurant
         for (Dishes dish : database.dishes) {
             if (dish.getRestaurantName().equals(restaurantName)) {
                 filteredDishes.add(dish);
             }
         }
-
         return filteredDishes;
     }
 
-private void openFilterDialog() {
-    AlertDialog.Builder builder = new AlertDialog.Builder(this);
-    builder.setTitle("Custom Dialog");
+    private void openFilterDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Custom Dialog");
 
-    // Inflate custom layout for the dialog
-    View dialogView = getLayoutInflater().inflate(R.layout.filter_dishes, null);
-    builder.setView(dialogView);
+        // Inflate custom layout for the dialog
+        View dialogView = getLayoutInflater().inflate(R.layout.filter_dishes, null);
+        builder.setView(dialogView);
 
-    // Find views in the dialog layout
-    RadioGroup radioGroup1 = dialogView.findViewById(R.id.radioGroupMeal);
-    RadioGroup radioGroup2 = dialogView.findViewById(R.id.radioGroupCuisine);
-     seekBar = dialogView.findViewById(R.id.seekbar_price);
-    TextView currentPriceTextView = dialogView.findViewById(R.id.text_current_price);
+        RadioGroup radioGroup1 = dialogView.findViewById(R.id.radioGroupMeal);
+        RadioGroup radioGroup2 = dialogView.findViewById(R.id.radioGroupCuisine);
+        seekBar = dialogView.findViewById(R.id.seekbar_price);
+        TextView currentPriceTextView = dialogView.findViewById(R.id.text_current_price);
 
-    // Find the "Apply" button in the dialog
-    Button applyButton = dialogView.findViewById(R.id.button_apply);
-    Button resetButton = dialogView.findViewById(R.id.button_reset);
-    resetButton.setOnClickListener(view -> {
-        radioGroup2.clearCheck();
-        radioGroup1.clearCheck();
-        seekBar.setProgress(0);
+        Button applyButton = dialogView.findViewById(R.id.button_apply);
+        Button resetButton = dialogView.findViewById(R.id.button_reset);
+        resetButton.setOnClickListener(view -> {
+            radioGroup2.clearCheck();
+            radioGroup1.clearCheck();
+            seekBar.setProgress(0);
+        });
 
+        final int minValue = 30;
+        final int maxValue = 500;
+        final int seekBarMax = maxValue;
 
-    });
-    final int minValue = 30; // Minimum value of SeekBar
-    final int maxValue = 500; // Maximum value of SeekBar
-    final int seekBarMax = maxValue - minValue; // Range of SeekBar
+        seekBar.setMax(seekBarMax);
+        seekBar.setProgress(minValue);
 
-    // Set the SeekBar progress to represent the minimum value (30)
-    seekBar.setMax(seekBarMax);
-    seekBar.setProgress(minValue);
-
-    // Listener to update the TextView and handle SeekBar progress changes
-    seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-        @Override
-        public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-            int currentValue = progress; // Map SeekBar progress to actual values
-            currentPriceTextView.setText("Current Price: $" + currentValue);
-        }
-
-        @Override
-        public void onStartTrackingTouch(SeekBar seekBar) {
-            // Not needed, but required to implement
-        }
-
-        @Override
-        public void onStopTrackingTouch(SeekBar seekBar) {
-            // Not needed, but required to implement
-        }
-    });
-
-    applyButton.setOnClickListener(view -> {
-        int selectedRadioButtonId1 = radioGroup1.getCheckedRadioButtonId();
-        int selectedRadioButtonId2 = radioGroup2.getCheckedRadioButtonId();
-
-        String selectedRadioButton1Name = "";
-        String selectedRadioButton2Name = "";
-
-        if (selectedRadioButtonId1 != -1) {
-            selectedRadioButton1Name = getResources().getResourceEntryName(selectedRadioButtonId1);
-        }
-        if (selectedRadioButtonId2 != -1) {
-            selectedRadioButton2Name = getResources().getResourceEntryName(selectedRadioButtonId2);
-        }
-
-        int seekBarValue = seekBar.getProgress();
-
-        ArrayList<Dishes> filteredDishes = new ArrayList<>();
-        for (Dishes dish : dishes) {
-            boolean meetsCriteria = true;
-
-            if (!selectedRadioButton1Name.isEmpty() && !selectedRadioButton1Name.equals(dish.category.name())) {
-                meetsCriteria = false;
-            }
-            if (!selectedRadioButton2Name.isEmpty() && !selectedRadioButton2Name.equals(dish.cuisineType.name())) {
-                meetsCriteria = false;
-            }
-            if (dish.getInitPrice() > seekBarValue) {
-                meetsCriteria = false;
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                int currentValue = progress;
+                currentPriceTextView.setText("Current Price: $" + currentValue);
             }
 
-            if (meetsCriteria) {
-                filteredDishes.add(dish);
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
             }
-        }
 
-        menuAdapter.updateData(filteredDishes);
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+            }
+        });
 
-        AlertDialog dialog = (AlertDialog) view.getTag();
-        if (dialog != null) {
-            dialog.dismiss();
-        }
-    });
+        applyButton.setOnClickListener(view -> {
+            int selectedRadioButtonId1 = radioGroup1.getCheckedRadioButtonId();
+            int selectedRadioButtonId2 = radioGroup2.getCheckedRadioButtonId();
 
-    builder.setNegativeButton("Cancel", (dialogInterface, i) -> {
-        // Handle Cancel button click if needed
-    });
+            String selectedRadioButton1Name = "";
+            String selectedRadioButton2Name = "";
 
-    AlertDialog dialog = builder.create();
-    dialog.show();
+            if (selectedRadioButtonId1 != -1) {
+                selectedRadioButton1Name = getResources().getResourceEntryName(selectedRadioButtonId1);
+            }
+            if (selectedRadioButtonId2 != -1) {
+                selectedRadioButton2Name = getResources().getResourceEntryName(selectedRadioButtonId2);
+            }
 
-    applyButton.setTag(dialog);
-}
+            int seekBarValue = seekBar.getProgress();
 
+            ArrayList<Dishes> updatedFilteredDishes = new ArrayList<>();
+            for (Dishes dish : filteredDishes) {
+                boolean meetsCriteria = true;
 
+                if (!selectedRadioButton1Name.isEmpty() && !selectedRadioButton1Name.equals(dish.category.name())) {
+                    meetsCriteria = false;
+                }
+                if (!selectedRadioButton2Name.isEmpty() && !selectedRadioButton2Name.equals(dish.cuisineType.name())) {
+                    meetsCriteria = false;
+                }
+                if (dish.getInitPrice() > seekBarValue) {
+                    meetsCriteria = false;
+                }
 
+                if (meetsCriteria) {
+                    updatedFilteredDishes.add(dish);
+                }
+            }
 
+            menuAdapter.updateData(updatedFilteredDishes);
 
+            AlertDialog dialog = (AlertDialog) view.getTag();
+            if (dialog != null) {
+                dialog.dismiss();
+            }
+        });
+
+        builder.setNegativeButton("Cancel", (dialogInterface, i) -> {
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+        applyButton.setTag(dialog);
+    }
 
     @Override
     public void onClick(int pos) {
-        if(LoginHandler.isLoggedIn() ){
+        if (LoginHandler.isLoggedIn()) {
             Intent intent = new Intent(activity_menu.this, activity_customize.class);
-            ArrayList<Dishes> dishes = database.dishes;
+            ArrayList<Dishes> allDishes = database.dishes;
 
-            // Pass data of the selected dish to the next activity
-            intent.putExtra("name", dishes.get(pos).getName());
-            intent.putExtra("description", dishes.get(pos).getDescription());
+            intent.putExtra("name", allDishes.get(pos).getName());
+            intent.putExtra("description", allDishes.get(pos).getDescription());
             intent.putExtra("index", pos);
 
-
-
             startActivity(intent);
-
-        }else{
+        } else {
             Intent intent = new Intent(activity_menu.this, login_page.class);
             startActivity(intent);
-
         }
-
     }
-
 }

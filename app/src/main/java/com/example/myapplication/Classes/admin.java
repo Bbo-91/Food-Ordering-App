@@ -13,7 +13,7 @@ public class admin extends person {
 
     public static boolean Login(String email,String password){
        admin res =  database.adminSearch(email);
-       if(res == null || !res.password.equals(password)) return false;
+       if(res == null || !res.getPassword().equals(password)) return false;
        return true;
 
     }
