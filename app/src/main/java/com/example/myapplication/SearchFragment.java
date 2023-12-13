@@ -99,6 +99,29 @@ public class SearchFragment extends Fragment implements RecyclerViewInterface {
 
     @Override
     public void onClick(int pos) {
+        Object selected = itemList.get(pos);
+        if (selected instanceof Restaurants){
+            Intent intent =new Intent (getActivity(),activity_menu.class);
+            intent.putExtra("restaurantName", ((Restaurants) selected).getName());
+            intent.putExtra("restaurantLocation",((Restaurants)selected).getAddress() );
+            intent.putExtra("restaurantImage", ((Restaurants)selected).getImage());
+
+            startActivity(intent);
+
+        }
+        else{
+            Intent intent =new Intent (getActivity(),activity_menu.class);
+
+            for(Restaurants res :database.restaurants){
+                if (((Dishes) selected).getRestaurantName().equals(res.getName()) ){
+                    intent.putExtra("restaurantName", res.getName());
+                    intent.putExtra("restaurantLocation",res.getAddress() );
+                    intent.putExtra("restaurantImage", res.getImage());
+                    startActivity(intent);
+                }
+            }
+
+        }
 
     }
 }

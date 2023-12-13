@@ -14,7 +14,6 @@ public class database {
     public static ArrayList<Dishes> dishes = new ArrayList<>();
 
 
-
     public database(){};
     public static String addUser(user User){
 //        check if user already exist
@@ -40,7 +39,9 @@ public class database {
         }
         return null;
     }
+
     public static String addAdmin(admin Admin){
+
 //        check if admin already exist
         for(admin a :adminList){
             if(a.email.equals(Admin.email)){
@@ -59,6 +60,8 @@ public class database {
 
     }
     public static admin adminSearch(String email){
+        admin new_admin =new admin("admin@gmail.com","admin","123","arabiata");
+        adminList.add(new_admin);
         for(admin a :adminList){
             if(a.email.equals(email) ){
                 return a;
