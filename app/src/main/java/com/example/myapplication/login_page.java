@@ -67,6 +67,7 @@ public class login_page extends AppCompatActivity implements View.OnClickListene
                     LoginHandler.LOGIN(tmpUser);
 //                    usersWrite.addLoggedInUser(this,email);
                     Intent intent = new Intent(login_page.this, UserActivity.class);
+                    intent.putExtra("UserId",tmpUser.getId());
                     startActivity(intent);
 
                 }else{

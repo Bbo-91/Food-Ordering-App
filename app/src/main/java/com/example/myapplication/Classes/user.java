@@ -8,6 +8,15 @@ import java.util.Map;
 public class user extends person{
     private String city;
     private String street;
+    private int id;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getCity() {
         return city;
@@ -27,8 +36,9 @@ public class user extends person{
 
 
 
-    public user(String email,String username,String password,String city,String street){
+    public user(int id,String email,String username,String password,String city,String street){
         super(username,password,email);
+        this.id=id;
         this.city=city;
         this.street=street;
     }

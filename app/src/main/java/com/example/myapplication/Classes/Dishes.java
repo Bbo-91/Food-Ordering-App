@@ -28,7 +28,8 @@ public class Dishes implements Serializable  {
     public categories category;
 
 
-    public Dishes(String name, String description, float initPrice,cuisines cuisineType,categories category, String restaurant) {
+    public Dishes(int id,String name, String description, float initPrice,cuisines cuisineType,categories category, String restaurant) {
+        this.id=id;
         this.name = name;
         this.description = description;
         this.initPrice = initPrice;

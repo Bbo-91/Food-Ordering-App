@@ -28,6 +28,7 @@ public class activity_menu extends AppCompatActivity implements RecyclerViewInte
     Button btn;
     SeekBar seekBar;
     MenuAdapter menuAdapter;
+    int userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +38,7 @@ public class activity_menu extends AppCompatActivity implements RecyclerViewInte
         recyclerView = findViewById(R.id.MenuView);
 
         Intent intent = getIntent();
+        userId= intent.getIntExtra("UserId",-1);
         String restaurantName = intent.getStringExtra("restaurantName");
         String restaurantLocation = intent.getStringExtra("restaurantLocation");
         int restaurantImageResourceId = intent.getIntExtra("restaurantImage", 0);
@@ -173,6 +175,7 @@ public class activity_menu extends AppCompatActivity implements RecyclerViewInte
             intent.putExtra("name", allDishes.get(pos).getName());
             intent.putExtra("description", allDishes.get(pos).getDescription());
             intent.putExtra("index", pos);
+            intent.putExtra("UserId", userId);
 
             startActivity(intent);
         } else {

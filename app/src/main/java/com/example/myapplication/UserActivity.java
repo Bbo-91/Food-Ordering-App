@@ -1,32 +1,37 @@
 package com.example.myapplication;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-
-import android.app.Activity;
 import android.content.Intent;
-import android.os.Bundle;
 import com.example.myapplication.Classes.Dishes;
 import com.example.myapplication.Classes.LoginHandler;
 import com.example.myapplication.Classes.Restaurants;
 import com.example.myapplication.Database.database;
 import com.example.myapplication.databinding.ActivityUserBinding;
-import com.example.myapplication.fileParsers.test;
-//import com.example.myapplication.fileParsers.usersRead;
+
+import java.util.ArrayList;
+import java.util.Random;
 
 public class UserActivity extends AppCompatActivity {
+
+    ArrayList<Integer> dishesId = new ArrayList<>();
+    Random random = new Random();
+
+    Bundle extras;
+
+    int userId;
 
     private ActivityUserBinding binding;
 
     @Override
     protected void onResume() {
         super.onResume();
-        replaceFragment(new MenuFragment());
+        replaceFragment(new MenuFragment(), userId);
     }
 
     @Override
@@ -34,51 +39,56 @@ public class UserActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityUserBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        extras = getIntent().getExtras();
+        if (extras != null) {
+            userId = extras.getInt("UserId", -1);
+        }
+
         setup();
-//        usersRead.parser(getApplicationContext());
-//        test t= new test(this);
-//        t.save("aaaaa");
-//        t.save("bbbb");
-//        t.save("zzzz");
-//       t.load();
-        replaceFragment(new MenuFragment());
+
+        replaceFragment(new MenuFragment(), userId);
         binding.bottomNavigationView.setBackground(null);
 
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
             int itemId = item.getItemId();
 
             if (itemId == R.id.ResMenu) {
-                replaceFragment(new MenuFragment());
+                replaceFragment(new MenuFragment(), userId);
                 return true;
-            }else if (itemId == R.id.ResCart) {
-                replaceFragment(new CartFragment());
+            } else if (itemId == R.id.ResCart) {
+                replaceFragment(new CartFragment(), userId);
                 return true;
-            }   else if (itemId == R.id.ResSearch) {
-                replaceFragment(new SearchFragment());
+            } else if (itemId == R.id.ResSearch) {
+                replaceFragment(new SearchFragment(), userId);
                 return true;
             } else if (itemId == R.id.ResProfile) {
-                if(LoginHandler.isLoggedIn() ){
-
-                    replaceFragment(new ProfileFragment());
+                if (LoginHandler.isLoggedIn()) {
+                    replaceFragment(new ProfileFragment(), userId);
                     return true;
-                }else{
+                } else {
                     Intent intent = new Intent(UserActivity.this, login_page.class);
                     startActivity(intent);
                     return true;
                 }
-
             } else {
                 return false;
             }
         });
     }
 
-    private void replaceFragment(Fragment fragment) {
+    private void replaceFragment(Fragment fragment, int id) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+        Bundle bundle = new Bundle();
+        bundle.putInt("UserId", id);
+        fragment.setArguments(bundle);
+
         fragmentTransaction.replace(R.id.fragment_container, fragment);
         fragmentTransaction.commit();
     }
+
     private void hideMenuItem(int itemId) {
         Menu menu = binding.bottomNavigationView.getMenu();
         MenuItem item = menu.findItem(itemId);
@@ -86,17 +96,32 @@ public class UserActivity extends AppCompatActivity {
             item.setVisible(false);
         }
     }
-    public void setup(){
-        database.addDish(new Dishes("Foul Sandwich","balady Bread with foul medames Sandwich", 5, Dishes.cuisines.RUSSIAN, Dishes.categories.BREAKFAST,"arabiata" ));
-        database.addDish(new Dishes("Foul Box","foul medames Box", 400, Dishes.cuisines.ITALIAN, Dishes.categories.LUNCH, "arabiata"));
-        database.addDish(new Dishes("Koshary Box","Large koshary Box", 70, Dishes.cuisines.MEXICAN, Dishes.categories.DINNER, "arabiata"));
-        database.addDish(new Dishes("test","balady Bread with foul medames Sandwich", 5, Dishes.cuisines.RUSSIAN, Dishes.categories.BREAKFAST,"restone" ));
 
+    public void setup() {
+        database.addDish(new Dishes(dishGeneratedId(), "Foul Sandwich", "balady Bread with foul medames Sandwich", 5, Dishes.cuisines.RUSSIAN, Dishes.categories.BREAKFAST, "arabiata"));
+        database.addDish(new Dishes(dishGeneratedId(), "Foul Box", "foul medames Box", 400, Dishes.cuisines.ITALIAN, Dishes.categories.LUNCH, "arabiata"));
+        database.addDish(new Dishes(dishGeneratedId(), "Koshary Box", "Large koshary Box", 70, Dishes.cuisines.MEXICAN, Dishes.categories.DINNER, "arabiata"));
+        database.addDish(new Dishes(dishGeneratedId(), "test", "balady Bread with foul medames Sandwich", 5, Dishes.cuisines.RUSSIAN, Dishes.categories.BREAKFAST, "restone"));
 
-
-        database.restaurants.add(new Restaurants("arabiata","El Rehab Food court",12345,R.drawable.arabiata));
-        database.restaurants.add(new Restaurants("restone","El Rehab Food court",12345,R.drawable.arabiata));
-
+        database.restaurants.add(new Restaurants("arabiata", "El Rehab Food court", 12345, R.drawable.arabiata));
+        database.restaurants.add(new Restaurants("restone", "El Rehab Food court", 12345, R.drawable.arabiata));
     }
 
+    public int dishGeneratedId() {
+        // Random Id for every dish with range (100 to 250)
+        int id = random.nextInt(101) + 150;
+
+        if (dishesId == null) {
+            dishesId.add(id);
+            return id;
+        } else {
+            for (int i = 0; i < dishesId.size(); i++) {
+                if (id == dishesId.get(i)) {
+                    return dishGeneratedId(); // Return the result of the recursive call
+                }
+            }
+            dishesId.add(id);
+            return id;
+        }
+    }
 }

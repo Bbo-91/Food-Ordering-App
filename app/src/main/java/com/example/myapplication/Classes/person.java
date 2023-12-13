@@ -4,7 +4,7 @@ public abstract class person {
     private String userName;
     private String password;
     private String email;
-    private int id;
+
     public String getUserName() {
         return userName;
     }
@@ -29,16 +29,8 @@ public abstract class person {
         this.email = email;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public person(String userName, String password, String email){
-
         this.email = email;
         this.password = password;
         this.userName = userName;

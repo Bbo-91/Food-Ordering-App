@@ -10,12 +10,17 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.myapplication.Classes.Dishes;
+import com.example.myapplication.Classes.Payment;
 import com.example.myapplication.Database.database;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class PaymentActivity extends AppCompatActivity {
+    Random random=new Random();
     ArrayList<Dishes> dishes = database.dishes;
+    ArrayList<Integer> uniqueIds = new ArrayList<>();
+    ArrayList<Payment> payments=database.Payment;
     Bundle extras;
     TextView dishName, price, separator, cardNameWarning, cardNumWarning, ExpiryWarning, cvcWarning;
     EditText cardName, cardNum, MMcardExpirydate, YYcardExpirydate, cardCVC;
@@ -27,6 +32,7 @@ public class PaymentActivity extends AppCompatActivity {
         setContentView(R.layout.activity_payment);
         extras = getIntent().getExtras();
         int index = extras.getInt("index");
+        int userId = extras.getInt("UserId");
         assert index >= 0;
         buy = findViewById(R.id.buy);
         dishName = findViewById(R.id.dishName);
@@ -50,6 +56,8 @@ public class PaymentActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (checkValidation()) {
+                    Payment payment=new Payment(userId,dishes.get(index).getId(),GeneratedUniqueId());
+                    payments.add(payment);
                     Intent intent = new Intent(PaymentActivity.this, TrackActivity.class);
                     startActivity(intent);
                 }
@@ -108,5 +116,22 @@ public class PaymentActivity extends AppCompatActivity {
         cardNumWarning.setText("");
         ExpiryWarning.setText("");
         cvcWarning.setText("");
+    }
+    public int GeneratedUniqueId() {
+        // Random Id for every Payment process with range (600 to 800)
+        int id = random.nextInt(601) + 200;
+
+        if (uniqueIds == null) {
+            uniqueIds.add(id);
+            return id;
+        } else {
+            for (int i = 0; i < uniqueIds.size(); i++) {
+                if (id == uniqueIds.get(i)) {
+                    return GeneratedUniqueId(); // Return the result of the recursive call
+                }
+            }
+            uniqueIds.add(id);
+            return id;
+        }
     }
 }

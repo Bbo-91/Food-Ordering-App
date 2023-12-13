@@ -28,9 +28,12 @@ public class MenuFragment extends Fragment implements RecyclerViewInterface {
     private View rootView;
     private List<Restaurants> restaurants;
 
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
+            //int userId = getArguments().getInt("UserId");
             @Override
             public void uncaughtException(Thread paramThread, Throwable paramThrowable) {
                 //Catch your exception
@@ -71,6 +74,7 @@ public class MenuFragment extends Fragment implements RecyclerViewInterface {
         Intent intent = new Intent(getActivity(), activity_menu.class);
 
         intent.putExtra("restaurantName", selectedRestaurant.getName());
+        intent.putExtra("UserId", getArguments().getInt("UserId"));
         intent.putExtra("restaurantLocation", selectedRestaurant.getAddress());
         intent.putExtra("restaurantImage", selectedRestaurant.getImage());
 

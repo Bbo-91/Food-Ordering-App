@@ -37,6 +37,7 @@ public class activity_customize extends AppCompatActivity {
 
         extras = getIntent().getExtras();
         int index = extras.getInt("index");
+        int userId = extras.getInt("UserId");
         if (extras != null) {
             name.setText(dishes.get(index).getName());
             description.setText(dishes.get(index).getDescription());
@@ -95,7 +96,7 @@ public class activity_customize extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 dishes.get(index).setNoOfDishes(numberOfDishes);
-                AddToCart(index);
+                AddToCart(index,userId);
             }
         });
     }
@@ -104,13 +105,12 @@ public class activity_customize extends AppCompatActivity {
         count.setText(String.valueOf(numberOfDishes));
     }
 
-    private void AddToCart(int index) {
+    private void AddToCart(int index,int uId) {
         Intent intent = new Intent(this, CartActivity.class);
         intent.putExtra("index", index);
+        intent.putExtra("UserId", uId);
         startActivity(intent);
-
     }
-
 
 
 }
