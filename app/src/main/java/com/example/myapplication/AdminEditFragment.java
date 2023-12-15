@@ -30,6 +30,8 @@ public class AdminEditFragment extends Fragment {
                 try {
                     Intent intent = new Intent(AdminEditFragment.this.getActivity()
                             , activity_add_dish.class);
+                    int index = getArguments() != null ? getArguments().getInt("index", -1) : -1;
+                    intent.putExtra("index",index);
                     startActivity(intent);
                     Log.d("YourTag", "fun is working");
                 } catch (Exception e) {

@@ -77,7 +77,6 @@ public class activity_menu extends AppCompatActivity implements RecyclerViewInte
         // Inflate custom layout for the dialog
         View dialogView = getLayoutInflater().inflate(R.layout.filter_dishes, null);
         builder.setView(dialogView);
-
         RadioGroup radioGroup1 = dialogView.findViewById(R.id.radioGroupMeal);
         RadioGroup radioGroup2 = dialogView.findViewById(R.id.radioGroupCuisine);
         seekBar = dialogView.findViewById(R.id.seekbar_price);
