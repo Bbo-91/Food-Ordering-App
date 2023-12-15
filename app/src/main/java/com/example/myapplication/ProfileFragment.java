@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import com.example.myapplication.Classes.LoginHandler;
-//import com.example.myapplication.fileParsers.usersWrite;
+import com.example.myapplication.fileParsers.usersWrite;
 
 import androidx.fragment.app.Fragment;
 
@@ -25,17 +25,18 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                logoutUser();
+                logoutUser(container);
             }
         });
 
         return view;
     }
 
-    private void logoutUser() {
+    private void logoutUser(ViewGroup container) {
         if(!LoginHandler.isAdmin()){
-//            usersWrite.addUserLogout(getContext(),LoginHandler.USER.email);
-           LoginHandler.USER = null;
+            usersWrite.addUserLogout(LoginHandler.USER.email,container.getContext());
+            LoginHandler.USER = null;
+
 
         }
         else{

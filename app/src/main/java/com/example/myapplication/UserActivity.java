@@ -13,7 +13,9 @@ import com.example.myapplication.Classes.LoginHandler;
 import com.example.myapplication.Classes.Restaurants;
 import com.example.myapplication.Database.database;
 import com.example.myapplication.databinding.ActivityUserBinding;
+import com.example.myapplication.fileParsers.adminRead;
 import com.example.myapplication.fileParsers.usersWrite;
+import com.example.myapplication.fileParsers.usersRead;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -32,6 +34,7 @@ public class UserActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        usersRead.parser(this);
         replaceFragment(new MenuFragment(), userId);
     }
 
@@ -40,6 +43,13 @@ public class UserActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityUserBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        adminRead.parser(this);
+
+        if (LoginHandler.isAdmin()) {
+            Intent adminDashboardIntent = new Intent(UserActivity.this, AdminActivity.class);
+            startActivity(adminDashboardIntent);
+            finish();
+        }
 
         extras = getIntent().getExtras();
         if (extras != null) {
@@ -47,7 +57,7 @@ public class UserActivity extends AppCompatActivity {
         }
 
         setup();
-        usersWrite.saveData("data.txt");
+
         replaceFragment(new MenuFragment(), userId);
         binding.bottomNavigationView.setBackground(null);
 
@@ -77,6 +87,7 @@ public class UserActivity extends AppCompatActivity {
             }
         });
     }
+
 
     private void replaceFragment(Fragment fragment, int id) {
         FragmentManager fragmentManager = getSupportFragmentManager();
