@@ -76,7 +76,7 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
             nameView = itemView.findViewById(R.id.itemName);
             DescriptionView =itemView.findViewById(R.id.itemDescreption);
             PriceView =itemView.findViewById(R.id.itemPrice);
-            CounterView =itemView.findViewById(R.id.Counter);
+
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

@@ -40,16 +40,5 @@
         android:textSize="15dp"
         tools:layout_editor_absoluteX="363dp" />
 
-    <TextView
-        android:id="@+id/Counter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="232dp"
-        android:text="Counter"
-        android:textColor="@color/white"
-        android:textSize="15dp" />
-
-
 
 </RelativeLayout>

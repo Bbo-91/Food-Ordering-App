@@ -20,7 +20,7 @@ public class PaymentActivity extends AppCompatActivity {
     Random random=new Random();
     ArrayList<Dishes> dishes = database.dishes;
     ArrayList<Integer> uniqueIds = new ArrayList<>();
-    ArrayList<Payment> payments=database.Payments;
+    ArrayList<Payment> payments=database.payments;
     Bundle extras;
     TextView dishName, price, separator, cardNameWarning, cardNumWarning, ExpiryWarning, cvcWarning;
     EditText cardName, cardNum, MMcardExpirydate, YYcardExpirydate, cardCVC;

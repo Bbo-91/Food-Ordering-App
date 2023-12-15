@@ -1,35 +1,32 @@
 package com.example.myapplication.Classes;
 
-import android.health.connect.datatypes.StepsCadenceRecord;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import java.io.Serializable;
-
 import java.util.ArrayList;
+import java.util.Random;
 
-public class Dishes implements Serializable  {
+public class Dishes {
     private String name;
     private int id;
     private String description;
     protected float initPrice;
     String RestaurantName;
-    public enum cuisines{
+
+    public enum cuisines {
         ITALIAN,
         MEXICAN,
         RUSSIAN
     }
-    public enum categories{
+
+    public enum categories {
         BREAKFAST,
         DINNER,
         LUNCH
     }
+
     public cuisines cuisineType;
     public categories category;
 
-
-    public Dishes(int id,String name, String description, float initPrice,cuisines cuisineType,categories category, String restaurant) {
-        this.id=id;
+    public Dishes(String name, String description, float initPrice, cuisines cuisineType, categories category, String restaurant) {
+        this.id = dishGeneratedId(new ArrayList<>(), new Random());
         this.name = name;
         this.description = description;
         this.initPrice = initPrice;
@@ -62,9 +59,9 @@ public class Dishes implements Serializable  {
         this.id = id;
     }
 
-    private float noOfDishes=1;
-    private float extra=0;
-    public boolean spicy=false;
+    private float noOfDishes = 1;
+    private float extra = 0;
+    public boolean spicy = false;
 
     public float getNoOfDishes() {
         return noOfDishes;
@@ -82,13 +79,27 @@ public class Dishes implements Serializable  {
         this.extra = extra;
     }
 
-    public float getPrice()
-    {
-        return noOfDishes*initPrice+extra;
+    public float getPrice() {
+        return noOfDishes * initPrice + extra;
     }
 
     public void setInitPrice(float initPrice) {
         this.initPrice = initPrice;
     }
 
+    public static int dishGeneratedId(ArrayList<Integer> dishesId, Random random) {
+        // Random Id for every dish with range (100 to 250)
+        int id = random.nextInt(101) + 150;
+
+        if (dishesId == null) {
+            dishesId = new ArrayList<>();
+        }
+
+        if (dishesId.contains(id)) {
+            return dishGeneratedId(dishesId, random); // Return the result of the recursive call
+        }
+
+        dishesId.add(id);
+        return id;
+    }
 }

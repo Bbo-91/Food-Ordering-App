@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -25,14 +26,8 @@ public class Ratings extends AppCompatActivity{
         userComment = findViewById(R.id.userComment);
         ratingBar = findViewById(R.id.ratingBar);
 
-        submitBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-
-
-        });
     }
-    }
+
+
+}
 

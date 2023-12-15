@@ -16,11 +16,12 @@ import com.example.myapplication.databinding.ActivityUserBinding;
 public class AdminActivity extends AppCompatActivity {
 
     private ActivityAdminBinding binding;
+    int index;
 
     @Override
     protected void onResume() {
         super.onResume();
-        replaceFragment(new AdminEditFragment());
+        replaceFragment(new AdminEditFragment(), index);
     }
 
     @Override
@@ -29,26 +30,27 @@ public class AdminActivity extends AppCompatActivity {
         binding = ActivityAdminBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         //setContentView(R.layout.activity_admin);
+        int index = getIntent().getIntExtra("index", -1);
 
-        replaceFragment(new MenuFragment());
+        replaceFragment(new MenuFragment(), index);
         binding.AdminBottomNavigationView.setBackground(null);
 
         binding.AdminBottomNavigationView.setOnItemSelectedListener(item -> {
             int itemId = item.getItemId();
 
             if (itemId == R.id.AdminEditDishes) {
-                replaceFragment(new AdminEditFragment());
+                replaceFragment(new AdminEditFragment(), index);
                 return true;
             } else if (itemId == R.id.AdminMonitorOrder) {
-                replaceFragment(new AdminMonitorFragment());
+                replaceFragment(new AdminMonitorFragment(), index);
                 return true;
             } else if (itemId == R.id.AdminStatistics) {
-                replaceFragment(new AdminStatFragment());
+                replaceFragment(new AdminStatFragment(), index);
                 return true;
             }else if (itemId == R.id.AdminProfile) {
                 if(LoginHandler.isLoggedIn() ){
 
-                    replaceFragment(new AdminProfileFragment());
+                    replaceFragment(new AdminProfileFragment(), index);
                     return true;
                 }else{
                     Intent intent = new Intent(AdminActivity.this, login_page.class);
@@ -62,9 +64,15 @@ public class AdminActivity extends AppCompatActivity {
         });
 
     }
-    private void replaceFragment(Fragment fragment) {
+    private void replaceFragment(Fragment fragment, int index) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+        Bundle bundle = new Bundle();
+        bundle.putInt("index", index);
+        fragment.setArguments(bundle);
+
+
         fragmentTransaction.replace(R.id.Admin_fragment_container, fragment);
         fragmentTransaction.commit();
     }

@@ -22,29 +22,19 @@ public class AdminEditFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_admin_edit, container, false);
 
-        add = (Button) view.findViewById(R.id.button_add);
+        add = view.findViewById(R.id.button_add);
+        remove = view.findViewById(R.id.button_delete);
 
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 try {
-                    Intent intent = new Intent(AdminEditFragment.this.getActivity()
-                            , activity_add_dish.class);
-                    startActivity(intent);
-                    Log.d("YourTag", "fun is working");
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    Log.e("YourTag", "Error in onClick", e);
-                }
-            }
-        });
-        remove = (Button) view.findViewById(R.id.button_delete);
-        remove.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                try {
-                    Intent intent = new Intent(AdminEditFragment.this.getActivity()
-                            , activity_remove_dish.class);
+                    Intent intent = new Intent(getActivity(), activity_add_dish.class);
+
+                    // Pass the index to the next activity
+                    int index = getArguments() != null ? getArguments().getInt("index", -1) : -1;
+                    intent.putExtra("index", index);
+
                     startActivity(intent);
                     Log.d("YourTag", "fun is working");
                 } catch (Exception e) {
@@ -54,6 +44,35 @@ public class AdminEditFragment extends Fragment {
             }
         });
 
+        remove.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    Intent intent = new Intent(getActivity(), activity_remove_dish.class);
+
+                    // Pass the index to the next activity
+                    int index = getArguments() != null ? getArguments().getInt("index", -1) : -1;
+                    intent.putExtra("index", index);
+
+                    startActivity(intent);
+                    Log.d("YourTag", "fun is working");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Log.e("YourTag", "Error in onClick", e);
+                }
+            }
+        });
+
+
+
         return view;
     }
+    public static AdminEditFragment newInstance(int index) {
+        AdminEditFragment fragment = new AdminEditFragment();
+        Bundle args = new Bundle();
+        args.putInt("index", index);
+        fragment.setArguments(args);
+        return fragment;
+    }
 }
+

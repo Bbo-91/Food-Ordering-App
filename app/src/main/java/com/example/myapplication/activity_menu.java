@@ -40,7 +40,6 @@ public class activity_menu extends AppCompatActivity implements RecyclerViewInte
         Intent intent = getIntent();
         userId= intent.getIntExtra("UserId",-1);
         String restaurantName = intent.getStringExtra("restaurantName");
-        String restaurantLocation = intent.getStringExtra("restaurantLocation");
         int restaurantImageResourceId = intent.getIntExtra("restaurantImage", 0);
 
         btn = findViewById(R.id.to_filter);

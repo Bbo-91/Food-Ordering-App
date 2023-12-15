@@ -10,7 +10,6 @@ public class Restaurants {
     public int number;
     public int image;
 
-    //public Menu menu;
 
     public int getImage() {
         return image;
@@ -20,7 +19,6 @@ public class Restaurants {
         this.address = address;
         this.number = number;
         this.image = image;
-        //this.menu = menu;
     }
 
     public String getName() {
@@ -46,6 +44,12 @@ public class Restaurants {
     public void setNumber(int number) {
         this.number = number;
    }
+
+    @Override
+    public String toString() {
+        return name + "," + address + "," + number + "," + image;
+    }
+
 
 
 }

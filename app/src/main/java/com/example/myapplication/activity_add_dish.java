@@ -1,50 +1,88 @@
 package com.example.myapplication;
 
-import static android.app.PendingIntent.getActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioGroup;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
+
+import com.example.myapplication.Classes.Dishes;
+import com.example.myapplication.Classes.admin;
+import com.example.myapplication.Database.database;
+
+import java.util.ArrayList;
+import java.util.Random;
 
 public class activity_add_dish extends AppCompatActivity {
-    public Button add=findViewById(R.id.button_add_dish);
-   public EditText nameofdish =findViewById(R.id.editTextText);
-    public EditText description =findViewById(R.id.editTextTextMultiLine);
-    public EditText initprice =findViewById(R.id.editTextNumberDecimal);
+    public Button add;
+    public EditText nameOfDish;
+    public EditText description;
+    public EditText initPrice;
+    Random random = new Random();
+    ArrayList<Integer> dishesId = new ArrayList<>();
+    ArrayList<admin> admins = database.adminList;
+    
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       setContentView(R.layout.add_new_dish);
-       add.setOnClickListener(new View.OnClickListener(){
+        setContentView(R.layout.add_new_dish);
 
-           @Override
-           public void onClick(View v) {
-               try {
-                   Intent intent = new Intent(activity_add_dish.this, AdminEditFragment.class);
-                 Toast.makeText(activity_add_dish.this, "Dish is added", Toast.LENGTH_SHORT).show();
+        // Retrieve the index from the intent
+        int index = getIntent().getIntExtra("index", -1);
+
+        add = findViewById(R.id.button_add_dish);
+        nameOfDish = findViewById(R.id.editTextText);
+        description = findViewById(R.id.editTextTextMultiLine);
+        initPrice = findViewById(R.id.editTextNumberDecimal);
+        RadioGroup cuisineGroup = findViewById(R.id.radioGroupCuisine);
+        RadioGroup mealGroup = findViewById(R.id.radioGroupMeal);
+
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                    String stringValue = initPrice.getText().toString();
+                    float floatValue = Float.parseFloat(stringValue);
+
+                    Dishes.cuisines selectedCuisine = getCuisineEnum(cuisineGroup);
+                    Dishes.categories selectedMeal = getMealEnum(mealGroup);
+
+                    if (index >= 0 && index < admins.size()) {
+                        admin currentAdmin = admins.get(index);
+
+                        Dishes newDish = new Dishes(nameOfDish.getText().toString(), description.getText().toString(), floatValue, selectedCuisine, selectedMeal, currentAdmin.getResturant());
+
+                        database.addDish(newDish);
+
+                        Toast.makeText(activity_add_dish.this, "Dish is added", Toast.LENGTH_SHORT).show();
 
 
+                    } else {
+                        Toast.makeText(activity_add_dish.this, "Invalid admin index", Toast.LENGTH_SHORT).show();
+                    }
+
+            }
+        });
+    }
 
 
-
-
-
-                  startActivity(intent);
-                   Log.d("YourTag", "fun is working");
-               } catch (Exception e) {
-                   e.printStackTrace();
-                   Log.e("YourTag", "Error in onClick", e);
-                   Toast.makeText(activity_add_dish.this, "Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
-               }
-           }
-       });
-
+    private Dishes.cuisines getCuisineEnum(RadioGroup radioGroup) {
+        int selectedId = radioGroup.getCheckedRadioButtonId();
+        RadioButton radioButton = findViewById(selectedId);
+        return Dishes.cuisines.valueOf(radioButton.getTag().toString());
+    }
+    private Dishes.categories getMealEnum(RadioGroup radioGroup) {
+        int selectedId = radioGroup.getCheckedRadioButtonId();
+        RadioButton radioButton = findViewById(selectedId);
+        return Dishes.categories.valueOf(radioButton.getTag().toString());
     }
 }

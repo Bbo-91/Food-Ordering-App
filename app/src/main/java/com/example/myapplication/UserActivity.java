@@ -13,6 +13,7 @@ import com.example.myapplication.Classes.LoginHandler;
 import com.example.myapplication.Classes.Restaurants;
 import com.example.myapplication.Database.database;
 import com.example.myapplication.databinding.ActivityUserBinding;
+import com.example.myapplication.fileParsers.usersWrite;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -46,7 +47,7 @@ public class UserActivity extends AppCompatActivity {
         }
 
         setup();
-
+        usersWrite.saveData("data.txt");
         replaceFragment(new MenuFragment(), userId);
         binding.bottomNavigationView.setBackground(null);
 
@@ -98,10 +99,6 @@ public class UserActivity extends AppCompatActivity {
     }
 
     public void setup() {
-        database.addDish(new Dishes(dishGeneratedId(), "Foul Sandwich", "balady Bread with foul medames Sandwich", 5, Dishes.cuisines.RUSSIAN, Dishes.categories.BREAKFAST, "arabiata"));
-        database.addDish(new Dishes(dishGeneratedId(), "Foul Box", "foul medames Box", 400, Dishes.cuisines.ITALIAN, Dishes.categories.LUNCH, "arabiata"));
-        database.addDish(new Dishes(dishGeneratedId(), "Koshary Box", "Large koshary Box", 70, Dishes.cuisines.MEXICAN, Dishes.categories.DINNER, "arabiata"));
-        database.addDish(new Dishes(dishGeneratedId(), "test", "balady Bread with foul medames Sandwich", 5, Dishes.cuisines.RUSSIAN, Dishes.categories.BREAKFAST, "restone"));
 
         database.restaurants.add(new Restaurants("arabiata", "El Rehab Food court", 12345, R.drawable.arabiata));
         database.restaurants.add(new Restaurants("restone", "El Rehab Food court", 12345, R.drawable.arabiata));
