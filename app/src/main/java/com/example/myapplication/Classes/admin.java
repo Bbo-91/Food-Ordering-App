@@ -15,9 +15,7 @@ public class admin extends person {
 
     }
 
-    public String getResturant() {
-        return resturant;
-    }
+
 
     public static boolean Login(String email, String password){
        admin res =  database.adminSearch(email);
