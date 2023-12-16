@@ -3,7 +3,7 @@ package com.example.myapplication.Classes;
 public abstract class person {
     private String userName;
     private String password;
-    private String email;
+    public String email;
 
     public String getUserName() {
         return userName;

@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.myapplication.Classes.LoginHandler;
+import com.example.myapplication.fileParsers.*;
 
 public class AdminProfileFragment extends Fragment {
 
@@ -26,19 +27,16 @@ public class AdminProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                logout();
+                logout(container);
             }
         });
 
         return view;
     }
-    private void logout() {
-        if(!LoginHandler.isAdmin()){
-            LoginHandler.USER = null;
-        }
-        else{
-            LoginHandler.ADMIN = null;
-        }
+    private void logout(ViewGroup container) {
+        adminWrite.addAdminLogout(LoginHandler.ADMIN.email,container.getContext());
+        LoginHandler.ADMIN = null;
+
         startActivity(new Intent(getActivity(),UserActivity.class));
     }
 }

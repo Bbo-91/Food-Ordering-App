@@ -12,7 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.myapplication.Classes.Restaurants;
-//import com.example.myapplication.fileParsers.usersWrite;
+import com.example.myapplication.fileParsers.usersWrite;
 import com.google.android.material.snackbar.Snackbar;
 
 import  com.example.myapplication.Classes.user;
@@ -24,7 +24,7 @@ import com.example.myapplication.Classes.*;
 
 // karen
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-    Random random = new Random();
+
     ArrayList<Integer> usersId = new ArrayList<>();
     EditText username, email, password, city, street;
     TextView loginLink;
@@ -68,8 +68,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         //Random Id for every user with range (300 to 500)
 
-        int userId = random.nextInt(301) + 200;
-        isUnique(userId);
 
         if (name.isEmpty() || pass.isEmpty() || emailString.isEmpty() || City.isEmpty() || Street.isEmpty()) {
             Snackbar.make(parentLayout, "Please fill in all fields", Snackbar.LENGTH_SHORT).show();
@@ -77,14 +75,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Snackbar.make(parentLayout, "Enter a valid email", Snackbar.LENGTH_SHORT).show();
 
         } else {
-            user newUser = new user(userId,emailString, name, pass, City, Street);
+            int id = user.GeneratedId();
+            user newUser = new user(id,emailString, name, pass, City, Street);
 
 
             String res = newUser.SignUP();
             if (res.equals("duplicate user")) {
                 Snackbar.make(parentLayout, "there's a user with those credentials", Snackbar.LENGTH_SHORT).show();
             } else {
-//               usersWrite.addUser(getApplicationContext(),emailString,name,pass);
+               usersWrite.addUser(getApplicationContext(),emailString,name,pass,id,City,Street);
                 Intent intent = new Intent(MainActivity.this, login_page.class);
                 startActivity(intent);
             }
@@ -95,21 +94,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return (!target.isEmpty() && Patterns.EMAIL_ADDRESS.matcher(target).matches());
     }
 
-    public void isUnique(int id) {
-        if (usersId == null) {
-            usersId.add(id);
-        }else{
-            for(int i=0;i<usersId.size();i++){
-                if(id==usersId.get(i)){
-                    id = random.nextInt(301) + 200;
-                    isUnique(id);
-                }else{
-                    usersId.add(id);
-                }
-            }
-        }
 
-    }
 }
 
 
