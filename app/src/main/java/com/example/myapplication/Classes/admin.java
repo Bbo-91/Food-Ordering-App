@@ -3,7 +3,7 @@ import  com.example.myapplication.Database.database;
 
 public class admin extends person {
     String resturant;
-
+//  Menu menu;
 
     public admin(String email, String username, String password, String resturant){
         super(username,password,email);
@@ -11,11 +11,10 @@ public class admin extends person {
 
 
     }
+
     public String getResturant() {
         return resturant;
     }
-
-
 
     public static boolean Login(String email, String password){
        admin res =  database.adminSearch(email);

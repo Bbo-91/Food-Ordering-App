@@ -16,17 +16,15 @@ import java.util.ArrayList;
 
 public class RemoveAdapter  extends RecyclerView.Adapter< RemoveAdapter .MenuViewHolder>{
     Context context;
+
     public ArrayList<Dishes> dishes;
     String restaurantName;
-   // int restaurantImageResourceId;
-
     private final RecyclerViewInterface recyclerViewInterface;
 
     public RemoveAdapter(Context context, ArrayList<Dishes> dishes, String restaurantName, RecyclerViewInterface recyclerViewInterface) {
         this.context = context;
         this.dishes = dishes;
         this.restaurantName = restaurantName;
-       // this.restaurantImageResourceId = restaurantImageResourceId;
         this.recyclerViewInterface = recyclerViewInterface;
     }
 
@@ -35,14 +33,16 @@ public class RemoveAdapter  extends RecyclerView.Adapter< RemoveAdapter .MenuVie
         this.dishes = newDishes;
         notifyDataSetChanged(); // Notify dataset change
     }
+    // Inside RemoveAdapter class
     @NonNull
     @Override
     public RemoveAdapter.MenuViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LayoutInflater inflater=LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.remove_dish,parent,false);
+        LayoutInflater inflater = LayoutInflater.from(context);
+        View view = inflater.inflate(R.layout.menu_items_activity, parent, false);
 
-        return new RemoveAdapter.MenuViewHolder(view,recyclerViewInterface);
+        return new RemoveAdapter.MenuViewHolder(view, recyclerViewInterface);
     }
+
 
     @Override
     public void onBindViewHolder(@NonNull MenuViewHolder holder, int position) {
@@ -63,7 +63,7 @@ public class RemoveAdapter  extends RecyclerView.Adapter< RemoveAdapter .MenuVie
         TextView nameView;
         TextView DescriptionView;
         TextView PriceView;
-        TextView CounterView;
+
 
 
 

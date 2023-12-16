@@ -6,6 +6,7 @@ import android.widget.Button;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.Classes.Dishes;
@@ -18,7 +19,7 @@ import java.util.ArrayList;
 public class activity_remove_dish extends AppCompatActivity implements RecyclerViewInterface {
     ArrayList<admin> admins = database.adminList;
     ArrayList<Dishes> dishes = database.dishes;
-    ArrayList <Dishes>resdishes = null;
+    ArrayList <Dishes> resdishes = null;
     RemoveAdapter adapter;
 
 
@@ -26,25 +27,28 @@ public class activity_remove_dish extends AppCompatActivity implements RecyclerV
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.remove_dish);
+
         // Retrieve the index from the intent
         int index = getIntent().getIntExtra("index", -1);
 
         RecyclerView recyclerView= findViewById(R.id.removeRyclerview);
-       admin ad= admins.get(index);
-       String resname=ad.getResturant();
+        admin ad = admins.get(index);
+        String resname = ad.getResturant();
 
+        // Initialize resdishes
+        resdishes = new ArrayList<>();
 
-       for(Dishes d :dishes){
-           if(d.getRestaurantName().equals(resname)){
-               resdishes.add(d);
-           }
-       }
-         adapter=new RemoveAdapter(this,resdishes,resname,this);
+        for (Dishes d : dishes) {
+            if (d.getRestaurantName().equals(resname)) {
+                resdishes.add(d);
+            }
+        }
 
-
-
-
+        adapter = new RemoveAdapter(this, resdishes, resname, this);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
+
 
     @Override
     public void onClick(int pos) {
@@ -54,7 +58,16 @@ public class activity_remove_dish extends AppCompatActivity implements RecyclerV
 
     @Override
     public void onlongclick(int pos) {
+        int databasePos = -1;
+        for (Dishes d:database.dishes) {
+            if (resdishes.get(pos).getName().equals(d.getName()) && resdishes.get(pos).getRestaurantName().equals(d.getRestaurantName())){
+                databasePos = pos;
+                break;
+            }
+
+        }
         resdishes.remove(pos);
+        database.dishes.remove(databasePos);
         adapter.notifyItemRemoved(pos);
 
     }

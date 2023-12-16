@@ -20,7 +20,7 @@ public class database {
     static {
         dishes.add(new Dishes("Foul Sandwich", "balady Bread with foul medames Sandwich", 5, Dishes.cuisines.RUSSIAN, Dishes.categories.BREAKFAST, "arabiata"));
         dishes.add(new Dishes("Foul Box", "foul medames Box", 400, Dishes.cuisines.ITALIAN, Dishes.categories.LUNCH, "arabiata"));
-        dishes.add(new Dishes("test", "balady Bread with foul medames Sandwich", 5, Dishes.cuisines.RUSSIAN, Dishes.categories.BREAKFAST, "restone"));
+        dishes.add(new Dishes("Koshary Box", "rice with pasta and our special salsa with extra garlic water and spicy sauce", 25, Dishes.cuisines.RUSSIAN, Dishes.categories.BREAKFAST, "EL Tahrir"));
     }
 
     public static ArrayList<Payment> payments = new ArrayList<>();
