@@ -181,4 +181,9 @@ public class activity_menu extends AppCompatActivity implements RecyclerViewInte
             startActivity(intent);
         }
     }
+
+    @Override
+    public void onlongclick(int pos) {
+
+    }
 }

@@ -124,6 +124,11 @@ public class SearchFragment extends Fragment implements RecyclerViewInterface {
         }
 
     }
+
+    @Override
+    public void onlongclick(int pos) {
+
+    }
 }
 
 
