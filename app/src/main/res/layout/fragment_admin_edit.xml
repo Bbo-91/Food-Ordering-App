@@ -40,4 +40,12 @@
         android:text="remove dish" />
 
 
+    <Button
+        android:id="@+id/button_edit"
+        android:layout_width="189dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="100dp"
+        android:layout_marginTop="550dp"
+        android:text="edit dish" />
+
 </FrameLayout>
