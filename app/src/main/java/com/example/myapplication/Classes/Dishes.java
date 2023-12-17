@@ -24,7 +24,7 @@ public class Dishes {
 
     public cuisines cuisineType;
     public categories category;
-
+    public int rating = 0;
     public Dishes(String name, String description, float initPrice, cuisines cuisineType, categories category, String restaurant) {
         this.id = dishGeneratedId(new ArrayList<>(), new Random());
         this.name = name;

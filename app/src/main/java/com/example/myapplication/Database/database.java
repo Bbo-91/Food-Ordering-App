@@ -1,7 +1,10 @@
 package com.example.myapplication.Database;
 
+import android.media.Rating;
+
 import com.example.myapplication.Classes.Dishes;
 import com.example.myapplication.Classes.Payment;
+import com.example.myapplication.Classes.Ratings;
 import com.example.myapplication.Classes.Restaurants;
 import com.example.myapplication.Classes.user;
 import com.example.myapplication.Classes.admin;
@@ -14,6 +17,7 @@ public class database {
     public static ArrayList<Restaurants> restaurants = new ArrayList<>();
 
     public static ArrayList<Dishes> dishes = new ArrayList<>();
+    public static ArrayList<Ratings> ratings = new ArrayList<>();
 
 
 
@@ -104,5 +108,41 @@ public class database {
         }
         dishes.add(dish);
         return dish;
+    }
+    public static int assignRatingDish(int dishID){
+        int numberOfDishes = 0;
+        int totalRating = 0;
+        for(Ratings r:ratings){
+            if(r.getFoodID() == dishID){
+                totalRating+=r.getRatingValue();
+                numberOfDishes++;
+            }
+        }
+        int rate = totalRating==0?0:totalRating/numberOfDishes;
+        for(Dishes d:dishes){
+            if(d.getId()==dishID){
+                d.rating = rate;
+            }
+        }
+        return rate;
+    }
+    public static int AssignResturantRate(String restName){
+        int totalNumber = 0;
+        int totalRate = 0;
+        for(Dishes d:dishes){
+            if(d.getRestaurantName().equals(restName)){
+                totalNumber++;
+                totalRate += d.rating;
+            }
+        }
+        int rate = totalRate==0?0:totalRate/totalNumber;
+        for(Restaurants r:restaurants){
+            if(r.name.equals(restName)){
+                r.rate = rate;
+            }
+        }
+
+        return rate;
+
     }
 }

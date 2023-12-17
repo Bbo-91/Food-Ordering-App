@@ -1,34 +1,34 @@
 package com.example.myapplication.Classes;
 
 public class Ratings {
-    private String userPhone; //key for data
-    private String foodID;
+    private int userID; //key for data
+    private int foodID;
     private int ratingValue;
     private String comment;
 
     public Ratings() {
     }
 
-    public Ratings(String userPhone, String foodID, int ratingValue, String comment) {
-        this.userPhone = userPhone;
+    public Ratings(int userPhone, int foodID, int ratingValue, String comment) {
+        this.userID = userPhone;
         this.foodID = foodID;
         this.ratingValue = ratingValue;
         this.comment = comment;
     }
 
-    public String getUserPhone() {
-        return userPhone;
+    public int getUserPhone() {
+        return userID;
     }
 
-    public void setUserPhone(String userPhone) {
-        this.userPhone = userPhone;
+    public void setUserPhone(int userID) {
+        this.userID = userID;
     }
 
-    public String getFoodID() {
+    public int getFoodID() {
         return foodID;
     }
 
-    public void setFoodID(String foodID) {
+    public void setFoodID(int foodID) {
         this.foodID = foodID;
     }
 
