@@ -121,15 +121,15 @@
         android:textSize="25dp" />
 
     <Button
-        android:id="@+id/cart"
-        android:layout_width="335dp"
-        android:layout_height="wrap_content"
+        android:id="@+id/BUY"
+        android:layout_width="142dp"
+        android:layout_height="82dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="42dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="9dp"
+        android:layout_marginBottom="29dp"
         android:backgroundTint="@color/dark_orange"
-        android:text="Add to Cart"
+        android:text="BUY"
         android:textColor="@color/white"
         android:textSize="30dp" />
 
@@ -158,6 +158,17 @@
         android:textColor="@color/white"
         android:text="ADD"
         android:textSize="30dp" />
+
+    <Button
+        android:id="@+id/add_to_cart"
+        android:layout_width="254dp"
+        android:layout_height="83dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="17dp"
+        android:textColor="@color/white"
+        android:textSize="30dp"
+        android:backgroundTint="@color/dark_orange"
+        android:text="Add to Cart" />
 
 
 </RelativeLayout>

@@ -21,7 +21,7 @@ public class activity_customize extends AppCompatActivity {
     ArrayList<Dishes> dishes = database.dishes;
 
     TextView name, description, count;
-    Button increment, decrement, addSpicy, addExtra, addToCart;
+    Button increment, decrement, addSpicy, addExtra, addToCart,Buy;
     int numberOfDishes = 0;
     Bundle extras;
 
@@ -91,12 +91,20 @@ public class activity_customize extends AppCompatActivity {
         });
 
         // Move to cart
-        addToCart = findViewById(R.id.cart);
-        addToCart.setOnClickListener(new View.OnClickListener() {
+        Buy = findViewById(R.id.BUY);
+        Buy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dishes.get(index).setNoOfDishes(numberOfDishes);
                 AddToCart(index,userId);
+            }
+        });
+        addToCart = findViewById(R.id.add_to_cart);
+        addToCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addToCart.setBackgroundColor(Color.RED);
+
             }
         });
     }
