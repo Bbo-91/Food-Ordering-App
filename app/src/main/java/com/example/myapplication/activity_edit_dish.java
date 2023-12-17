@@ -7,6 +7,7 @@ import com.example.myapplication.Database.database;
 
 import java.util.ArrayList;
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
@@ -66,6 +67,8 @@ public class activity_edit_dish extends AppCompatActivity implements RecyclerVie
 
         }
 
+
+        getIntent().putExtra("indexofdish",databasePos);
 
     }
 

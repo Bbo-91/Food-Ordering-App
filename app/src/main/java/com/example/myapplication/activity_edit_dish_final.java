@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.myapplication.Classes.Dishes;
 import com.example.myapplication.Classes.admin;
 import com.example.myapplication.Database.database;
 
@@ -25,7 +26,8 @@ public class activity_edit_dish_final extends AppCompatActivity {
     public TextView category;
     public TextView cuisineType;
     Random random = new Random();
-    ArrayList<Integer> dishesId = new ArrayList<>();
+
+    ArrayList<Dishes> dishes = database.dishes;
     ArrayList<admin> admins = database.adminList;
 
 
@@ -36,6 +38,7 @@ public class activity_edit_dish_final extends AppCompatActivity {
 
         // Retrieve the index from the intent
         int index = getIntent().getIntExtra("index", -1);
+        int dish_index=getIntent().getIntExtra("indexofdish",-1);
 
         edit = findViewById(R.id.button_add_dish);
         nameOfDish = findViewById(R.id.editTextText);
@@ -43,6 +46,7 @@ public class activity_edit_dish_final extends AppCompatActivity {
         initPrice = findViewById(R.id.editTextNumberDecimal);
         cuisineType = findViewById(R.id.radioGroupCuisine);
         category = findViewById(R.id.radioGroupMeal);
+        nameOfDish.setText(dishes.get(dish_index).getName());
 
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
