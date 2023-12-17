@@ -24,7 +24,7 @@ public class Dishes {
 
     public cuisines cuisineType;
     public categories category;
-
+    public int rating = 0;
     public Dishes(String name, String description, float initPrice, cuisines cuisineType, categories category, String restaurant) {
         this.id = dishGeneratedId(new ArrayList<>(), new Random());
         this.name = name;
@@ -62,6 +62,14 @@ public class Dishes {
     private float noOfDishes = 1;
     private float extra = 0;
     public boolean spicy = false;
+
+    public boolean isSpicy() {
+        return spicy;
+    }
+
+    public void setSpicy(boolean spicy) {
+        this.spicy = spicy;
+    }
 
     public float getNoOfDishes() {
         return noOfDishes;

@@ -6,24 +6,26 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="10dp"
-    android:background="@color/white"
+    android:background="@color/black"
     tools:context=".SearchFragment">
+
 
     <androidx.appcompat.widget.SearchView
         android:id="@+id/SearchBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="393dp"
+        android:layout_height="56dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
+        android:background="@color/white"
         app:queryHint="Search" />
-
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/SearchView"
         android:layout_width="match_parent"
         android:layout_height="641dp"
         android:layout_below="@+id/SearchBar"
-        />
+        android:layout_marginTop="20dp"
+        android:background="@color/black" />
 </RelativeLayout>

@@ -1,7 +1,10 @@
 package com.example.myapplication.Database;
 
+import android.media.Rating;
+
 import com.example.myapplication.Classes.Dishes;
 import com.example.myapplication.Classes.Payment;
+import com.example.myapplication.Classes.Ratings;
 import com.example.myapplication.Classes.Restaurants;
 import com.example.myapplication.Classes.user;
 import com.example.myapplication.Classes.admin;
@@ -15,6 +18,7 @@ public class database {
     public static ArrayList<Restaurants> restaurants = new ArrayList<>();
 
     public static ArrayList<Dishes> dishes = new ArrayList<>();
+    public static ArrayList<Ratings> ratings = new ArrayList<>();
 
 
 
@@ -22,8 +26,10 @@ public class database {
         dishes.add(new Dishes("Foul Sandwich", "balady Bread with foul medames Sandwich", 5, Dishes.cuisines.RUSSIAN, Dishes.categories.BREAKFAST, "arabiata"));
         dishes.add(new Dishes("Foul Box", "foul medames Box", 400, Dishes.cuisines.ITALIAN, Dishes.categories.LUNCH, "arabiata"));
         dishes.add(new Dishes("Koshary Box", "rice with pasta and our special salsa with extra garlic water and spicy sauce", 25, Dishes.cuisines.RUSSIAN, Dishes.categories.BREAKFAST, "EL Tahrir"));
-        database.restaurants.add(new Restaurants("arabiata", "El Rehab Food court", 12345, R.drawable.arabiata));
-        database.restaurants.add(new Restaurants("EL Tahrir", "Nasr City", 12345, R.drawable.koshary_el_tahrir));
+
+        restaurants.add(new Restaurants("arabiata", "El Rehab Food court", 12345, R.drawable.arabiata));
+        restaurants.add(new Restaurants("EL Tahrir", "Nasr City", 12345, R.drawable.koshary_el_tahrir));
+
     }
 
     public static ArrayList<Payment> payments = new ArrayList<>();
@@ -107,5 +113,41 @@ public class database {
         }
         dishes.add(dish);
         return dish;
+    }
+    public static int assignRatingDish(int dishID){
+        int numberOfDishes = 0;
+        int totalRating = 0;
+        for(Ratings r:ratings){
+            if(r.getFoodID() == dishID){
+                totalRating+=r.getRatingValue();
+                numberOfDishes++;
+            }
+        }
+        int rate = totalRating==0?0:totalRating/numberOfDishes;
+        for(Dishes d:dishes){
+            if(d.getId()==dishID){
+                d.rating = rate;
+            }
+        }
+        return rate;
+    }
+    public static int AssignResturantRate(String restName){
+        int totalNumber = 0;
+        int totalRate = 0;
+        for(Dishes d:dishes){
+            if(d.getRestaurantName().equals(restName)){
+                totalNumber++;
+                totalRate += d.rating;
+            }
+        }
+        int rate = totalRate==0?0:totalRate/totalNumber;
+        for(Restaurants r:restaurants){
+            if(r.name.equals(restName)){
+                r.rate = rate;
+            }
+        }
+
+        return rate;
+
     }
 }

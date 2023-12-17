@@ -56,8 +56,6 @@ public class UserActivity extends AppCompatActivity {
             userId = extras.getInt("UserId");
         }
 
-        setup();
-
         replaceFragment(new MenuFragment(), userId);
         binding.bottomNavigationView.setBackground(null);
 
@@ -109,11 +107,7 @@ public class UserActivity extends AppCompatActivity {
         }
     }
 
-    public void setup() {
 
-        /*database.restaurants.add(new Restaurants("arabiata", "El Rehab Food court", 12345, R.drawable.arabiata));
-        database.restaurants.add(new Restaurants("EL Tahrir", "Nasr City", 12345, R.drawable.koshary_el_tahrir));*/
-    }
 
     public int dishGeneratedId() {
         // Random Id for every dish with range (100 to 250)

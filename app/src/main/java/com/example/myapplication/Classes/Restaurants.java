@@ -9,7 +9,7 @@ public class Restaurants {
     public String address;
     public int number;
     public int image;
-
+    public int rate = 0;
 
     public int getImage() {
         return image;

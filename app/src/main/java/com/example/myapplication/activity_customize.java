@@ -20,8 +20,9 @@ public class activity_customize extends AppCompatActivity {
 
     ArrayList<Dishes> dishes = database.dishes;
 
+
     TextView name, description, count;
-    Button increment, decrement, addSpicy, addExtra, addToCart;
+    Button increment, decrement, addSpicy, addExtra, addToCart,Buy;
     int numberOfDishes = 0;
     Bundle extras;
 
@@ -38,13 +39,14 @@ public class activity_customize extends AppCompatActivity {
         extras = getIntent().getExtras();
         int index = extras.getInt("index");
         int userId = extras.getInt("UserId");
+        Dishes currentDish=dishes.get(index);
         if (extras != null) {
             name.setText(dishes.get(index).getName());
             description.setText(dishes.get(index).getDescription());
         }
 
         // Number of dishes
-        increment = findViewById(R.id.incrememnt);
+        increment = findViewById(R.id.increment);
         decrement = findViewById(R.id.decrement);
         count = findViewById(R.id.count);
 
@@ -73,9 +75,8 @@ public class activity_customize extends AppCompatActivity {
         addSpicy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addSpicy.setBackgroundColor(Color.RED);
-                int index = extras.getInt("index");
-                dishes.get(index).spicy = true;
+                toggleButtonColor(addSpicy);
+                currentDish.setSpicy(!currentDish.isSpicy());
             }
         });
 
@@ -84,19 +85,30 @@ public class activity_customize extends AppCompatActivity {
         addExtra.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addExtra.setBackgroundColor(Color.RED);
-                int index = extras.getInt("index");
-                dishes.get(index).setExtra(10f);
+                toggleButtonColor(addExtra);
+                if (addExtra.getTag() != null && (int) addExtra.getTag() == Color.RED) {
+                    currentDish.setExtra(10f);
+                } else {
+                    currentDish.setExtra(0f);
+                }
             }
         });
 
         // Move to cart
-        addToCart = findViewById(R.id.cart);
-        addToCart.setOnClickListener(new View.OnClickListener() {
+        Buy = findViewById(R.id.BUY);
+        Buy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dishes.get(index).setNoOfDishes(numberOfDishes);
                 AddToCart(index,userId);
+            }
+        });
+        addToCart = findViewById(R.id.add_to_cart);
+        addToCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addToCart.setBackgroundColor(Color.RED);
+
             }
         });
     }
@@ -112,5 +124,12 @@ public class activity_customize extends AppCompatActivity {
         startActivity(intent);
     }
 
+    private void toggleButtonColor(Button button) {
+        int currentColor = button.getTag() != null ? (int) button.getTag() : Color.parseColor("#FC6B03");
+        int newColor = (currentColor == Color.RED) ? Color.parseColor("#FC6B03") : Color.RED;
+
+        button.setBackgroundColor(newColor);
+        button.setTag(newColor);
+    }
 
 }

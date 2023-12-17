@@ -1,6 +1,13 @@
 package com.example.myapplication;
 
+import com.example.myapplication.Classes.Dishes;
+import com.example.myapplication.Classes.RemoveAdapter;
+import com.example.myapplication.Classes.admin;
+import com.example.myapplication.Database.database;
+
+import java.util.ArrayList;
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
@@ -16,22 +23,22 @@ import com.example.myapplication.Database.database;
 
 import java.util.ArrayList;
 
-public class activity_remove_dish extends AppCompatActivity implements RecyclerViewInterface {
+
+public class activity_edit_dish extends AppCompatActivity implements RecyclerViewInterface {
     ArrayList<admin> admins = database.adminList;
     ArrayList<Dishes> dishes = database.dishes;
     ArrayList <Dishes> resdishes = null;
     RemoveAdapter adapter;
 
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.remove_dish);
+        setContentView(R.layout.activity_edit_dish);
 
         // Retrieve the index from the intent
         int index = getIntent().getIntExtra("index", -1);
 
-        RecyclerView recyclerView= findViewById(R.id.removeRyclerview);
+        RecyclerView recyclerView= findViewById(R.id.recyclerViewedit);
         admin ad = admins.get(index);
         String resname = ad.getResturant();
 
@@ -48,16 +55,9 @@ public class activity_remove_dish extends AppCompatActivity implements RecyclerV
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
-
-
     @Override
     public void onClick(int pos) {
 
-
-    }
-
-    @Override
-    public void onlongclick(int pos) {
         int databasePos = -1;
         for (Dishes d:database.dishes) {
             if (resdishes.get(pos).getName().equals(d.getName()) && resdishes.get(pos).getRestaurantName().equals(d.getRestaurantName())){
@@ -66,9 +66,15 @@ public class activity_remove_dish extends AppCompatActivity implements RecyclerV
             }
 
         }
-        resdishes.remove(pos);
-        database.dishes.remove(databasePos);
-        adapter.notifyItemRemoved(pos);
+
+
+        getIntent().putExtra("indexofdish",databasePos);
+
+    }
+
+    @Override
+    public void onlongclick(int pos) {
+
 
     }
 
