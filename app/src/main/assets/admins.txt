@@ -1,0 +1,6 @@
+username:admin1
+email:admin1@gmail.com
+password:123
+restaurant:arabiata
+isLoggedin:false
+---

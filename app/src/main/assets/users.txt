@@ -1,0 +1,7 @@
+username:michael
+email:michael@gmail.com
+city:aaaa
+street:asas
+password:123
+isLoggedin:false
+---
