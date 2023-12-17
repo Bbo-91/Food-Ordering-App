@@ -6,10 +6,11 @@
     android:layout_height="match_parent"
     android:background="@color/black"
     tools:context=".MenuFragment">
-<androidx.recyclerview.widget.RecyclerView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:id="@+id/ResView"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/ResView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 
 </RelativeLayout>

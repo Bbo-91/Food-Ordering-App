@@ -12,6 +12,18 @@ public class Payment {
         this.uniqueId = uniqueId;
     }
 
+    public int getUserId() {
+        return userId;
+    }
+
+    public int getDishId() {
+        return dishId;
+    }
+
+    public int getUniqueId() {
+        return uniqueId;
+    }
+
     public float getRating() {
         return Rating;
     }

@@ -5,6 +5,7 @@ import com.example.myapplication.Classes.Payment;
 import com.example.myapplication.Classes.Restaurants;
 import com.example.myapplication.Classes.user;
 import com.example.myapplication.Classes.admin;
+import com.example.myapplication.R;
 
 import java.util.ArrayList;
 
@@ -21,6 +22,8 @@ public class database {
         dishes.add(new Dishes("Foul Sandwich", "balady Bread with foul medames Sandwich", 5, Dishes.cuisines.RUSSIAN, Dishes.categories.BREAKFAST, "arabiata"));
         dishes.add(new Dishes("Foul Box", "foul medames Box", 400, Dishes.cuisines.ITALIAN, Dishes.categories.LUNCH, "arabiata"));
         dishes.add(new Dishes("Koshary Box", "rice with pasta and our special salsa with extra garlic water and spicy sauce", 25, Dishes.cuisines.RUSSIAN, Dishes.categories.BREAKFAST, "EL Tahrir"));
+        database.restaurants.add(new Restaurants("arabiata", "El Rehab Food court", 12345, R.drawable.arabiata));
+        database.restaurants.add(new Restaurants("EL Tahrir", "Nasr City", 12345, R.drawable.koshary_el_tahrir));
     }
 
     public static ArrayList<Payment> payments = new ArrayList<>();

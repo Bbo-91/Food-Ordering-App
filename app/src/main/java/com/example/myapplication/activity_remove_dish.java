@@ -35,7 +35,7 @@ public class activity_remove_dish extends AppCompatActivity implements RecyclerV
         admin ad = admins.get(index);
         String resname = ad.getResturant();
 
-        // Initialize resdishes
+
         resdishes = new ArrayList<>();
 
         for (Dishes d : dishes) {
