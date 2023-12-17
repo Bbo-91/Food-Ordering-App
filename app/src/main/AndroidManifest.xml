@@ -49,6 +49,9 @@
             android:name=".AdminActivity"
             android:exported="false" />
         <activity
+            android:name=".Ratings"
+            android:exported="false" />
+        <activity
             android:name=".UserActivity"
             android:exported="true">
             <intent-filter>

@@ -53,7 +53,7 @@ public class UserActivity extends AppCompatActivity {
 
         extras = getIntent().getExtras();
         if (extras != null) {
-            userId = extras.getInt("UserId", -1);
+            userId = extras.getInt("UserId");
         }
 
         setup();

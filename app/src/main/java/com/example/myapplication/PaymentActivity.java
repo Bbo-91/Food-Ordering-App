@@ -59,6 +59,8 @@ public class PaymentActivity extends AppCompatActivity {
                     Payment payment=new Payment(userId,dishes.get(index).getId(),GeneratedUniqueId());
                     payments.add(payment);
                     Intent intent = new Intent(PaymentActivity.this, TrackActivity.class);
+                    intent.putExtra("UserId",userId);
+                    intent.putExtra("PaymentIndex",payments.size()-1);
                     startActivity(intent);
                 }
             }

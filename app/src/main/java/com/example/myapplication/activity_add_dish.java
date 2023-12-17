@@ -74,7 +74,6 @@ public class activity_add_dish extends AppCompatActivity {
         });
     }
 
-
     private Dishes.cuisines getCuisineEnum(RadioGroup radioGroup) {
         int selectedId = radioGroup.getCheckedRadioButtonId();
         RadioButton radioButton = findViewById(selectedId);

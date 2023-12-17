@@ -19,26 +19,10 @@
         android:text="Submit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ratingTxt"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <EditText
-        android:id="@+id/userComment"
-        android:layout_width="308dp"
-        android:layout_height="135dp"
-        android:ems="10"
-        android:gravity="start|top"
-        android:hint="Write your feedback here..."
-        android:inputType="textMultiLine"
-        android:textColorHint="@color/light_grey"
-        app:layout_constraintBottom_toTopOf="@+id/submitBtn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ratingTxt"
-        app:layout_constraintVertical_bias="0.731" />
+        app:layout_constraintVertical_bias="0.874" />
 
     <TextView
         android:id="@+id/ratingTxt"
@@ -59,14 +43,14 @@
         android:id="@+id/ratingBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
         android:max="5"
-        android:numStars="5"
 
+        android:numStars="5"
         android:rating="0"
-        app:layout_constraintBottom_toTopOf="@+id/userComment"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ratingTxt"
-        app:layout_constraintVertical_bias="0.596" />
+        app:layout_constraintTop_toBottomOf="@+id/ratingTxt" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
