@@ -34,6 +34,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:text="Filter"
+        android:backgroundTint="@color/dark_orange"
         android:padding="12dp" />
 
     <RatingBar
