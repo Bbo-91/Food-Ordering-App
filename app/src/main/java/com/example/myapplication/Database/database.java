@@ -83,7 +83,7 @@ public class database {
 
     public static Restaurants searchRestaurant(String restName) {
         for (Restaurants rest : restaurants) {
-            if (rest.name.equals(restName)) {
+            if (rest.getName().equals(restName)) {
                 return rest;
             }
         }
@@ -142,8 +142,8 @@ public class database {
         }
         int rate = totalRate==0?0:totalRate/totalNumber;
         for(Restaurants r:restaurants){
-            if(r.name.equals(restName)){
-                r.rate = rate;
+            if(r.getName().equals(restName)){
+                r.setRate(rate);
             }
         }
 

@@ -5,11 +5,11 @@ import com.example.myapplication.R;
 import java.util.ArrayList;
 
 public class Restaurants {
-    public String name;
-    public String address;
-    public int number;
-    public int image;
-    public int rate = 0;
+    private String name;
+    private String address;
+    private int number;
+    private int image;
+    private int rate = 0;
 
     public int getImage() {
         return image;
@@ -19,6 +19,14 @@ public class Restaurants {
         this.address = address;
         this.number = number;
         this.image = image;
+    }
+
+    public int getRate() {
+        return rate;
+    }
+
+    public void setRate(int rate) {
+        this.rate = rate;
     }
 
     public String getName() {
@@ -50,6 +58,5 @@ public class Restaurants {
         return name + "," + address + "," + number + "," + image;
     }
 
-
-
+    
 }

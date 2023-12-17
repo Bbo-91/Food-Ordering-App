@@ -1,35 +1,25 @@
 package com.example.myapplication;
 import com.example.myapplication.Classes.Dishes;
-import com.example.myapplication.Classes.ResAdapter;
 import com.example.myapplication.Classes.Restaurants;
-import com.example.myapplication.Classes.SearchAdapter;
+import com.example.myapplication.Adapters.SearchAdapter;
 //import com.example.myapplication.utils.trie;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
 
 import com.example.myapplication.Database.database;
-import com.example.myapplication.Classes.Restaurants;
+
 public class SearchFragment extends Fragment implements RecyclerViewInterface {
     private RecyclerView recyclerView;
     private View rootView;

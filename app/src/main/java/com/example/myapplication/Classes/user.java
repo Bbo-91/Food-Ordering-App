@@ -39,8 +39,6 @@ public class user extends person{
         this.street = street;
     }
 
-
-
     public user(int id,String email,String username,String password,String city,String street){
         super(username,password,email);
         this.id=id;

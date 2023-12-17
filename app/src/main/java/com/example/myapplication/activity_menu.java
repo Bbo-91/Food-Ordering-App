@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -13,8 +12,9 @@ import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.TextView;
+
+import com.example.myapplication.Adapters.MenuAdapter;
 import com.example.myapplication.Database.database;
-import com.example.myapplication.MenuFragment;
 import com.example.myapplication.Classes.*;
 import androidx.appcompat.app.AlertDialog;
 
