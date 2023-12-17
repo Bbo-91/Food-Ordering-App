@@ -34,6 +34,14 @@
             android:exported="false"
             />
         <activity
+            android:name=".activity_edit_dish"
+            android:exported="false"
+            />
+        <activity
+            android:name=".activity_edit_dish_final"
+            android:exported="false"
+            />
+        <activity
             android:name=".activity_search_items"
             android:exported="false" />
         <activity

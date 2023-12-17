@@ -27,7 +27,7 @@ public class AdminEditFragment extends Fragment {
 
         add = view.findViewById(R.id.button_add);
         remove = view.findViewById(R.id.button_delete);
-
+        edit = view.findViewById(R.id.button_edit);
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,7 +65,7 @@ public class AdminEditFragment extends Fragment {
                 }
             }
         });
-        remove.setOnClickListener(new View.OnClickListener(){
+        edit.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View v) {
