@@ -11,14 +11,17 @@ import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.example.myapplication.Classes.Payment;
+import com.example.myapplication.Database.database;
+
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Ratings extends AppCompatActivity{
 
-    private Button submitBtn;
-    TextView test;
-    private RatingBar ratingBar;
-
+    ArrayList<Payment> payments= database.payments;
+    Button submitBtn;
+    RatingBar ratingBar;
     Bundle extras;
 
     @Override
@@ -33,7 +36,8 @@ public class Ratings extends AppCompatActivity{
         submitBtn = findViewById(R.id.submitBtn);
         ratingBar = findViewById(R.id.ratingBar);
 
-        //test.setText(String.valueOf(userId));
+
+        payments.get(Payment_index).setRating(ratingBar.getRating());
 
         submitBtn.setOnClickListener(new View.OnClickListener(){
             @Override
