@@ -108,41 +108,19 @@
         app:layout_constraintHorizontal_bias="0.16"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <RadioGroup
+    <TextView
         android:id="@+id/radioGroupCuisine"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="19dp"
         android:layout_marginBottom="16dp"
-        android:orientation="horizontal"
+
         app:layout_constraintBottom_toTopOf="@+id/textView18"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.45"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"/>
 
-        <RadioButton
-            android:id="@+id/RUSSIAN"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:text="RUSSIAN"
-            android:tag="RUSSIAN" />
 
-        <RadioButton
-            android:id="@+id/ITALIAN"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:text="Italian"
-            android:tag="ITALIAN" />
 
-        <RadioButton
-            android:id="@+id/MEXICAN"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:text="MEXICAN"
-            android:tag="MEXICAN" />
-    </RadioGroup>
     <!--categories section-->
 
     <TextView
@@ -156,7 +134,7 @@
         app:layout_constraintHorizontal_bias="0.151"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <RadioGroup
+    <TextView
         android:id="@+id/radioGroupMeal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -165,32 +143,9 @@
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/button_add_dish"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"/>
 
-        <RadioButton
-            android:id="@+id/BREAKFAST"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:text="Breakfast"
-            android:tag="BREAKFAST" />
 
-        <RadioButton
-            android:id="@+id/LUNCH"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:text="Lunch"
-            android:tag="LUNCH" />
-
-        <RadioButton
-            android:id="@+id/DINNER"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:text="Dinner"
-            android:tag="DINNER" />
-    </RadioGroup>
 
     <TextView
         android:id="@+id/textView20"
@@ -206,3 +161,5 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+
