@@ -1,20 +1,19 @@
 package com.example.myapplication;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class TrackActivity extends AppCompatActivity {
-    private TextView Confirmed, preparing, OnTheWay, arrived;
+    private TextView confirmed, preparing, onTheWay, arrived;
     private ImageView view1, view2, view3, view4;
 
-    Bundle extras;
-    int Payment_index,userId;
+    private Bundle extras;
+    private int paymentIndex, userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,85 +21,64 @@ public class TrackActivity extends AppCompatActivity {
         setContentView(R.layout.activity_track);
 
         extras = getIntent().getExtras();
-        Payment_index = extras.getInt("PaymentIndex");
-        userId = extras.getInt("UserId");
+        if (extras != null) {
+            paymentIndex = extras.getInt("PaymentIndex", 0);
+            userId = extras.getInt("UserId", 0);
+        }
 
-        Confirmed = findViewById(R.id.textView6);
+        confirmed = findViewById(R.id.textView6);
         preparing = findViewById(R.id.textView7);
-        OnTheWay = findViewById(R.id.textView8);
+        onTheWay = findViewById(R.id.textView8);
         arrived = findViewById(R.id.textView9);
         view1 = findViewById(R.id.imageView1);
         view2 = findViewById(R.id.imageView2);
         view3 = findViewById(R.id.imageView3);
         view4 = findViewById(R.id.imageView4);
 
-        ShowConfirmed();
+        showConfirmed();
     }
 
-    private void ShowConfirmed() {
-        Confirmed.setText("Order Confirmed");
-        view1.setVisibility(View.INVISIBLE);
-        view2.setVisibility(View.INVISIBLE);
-        view3.setVisibility(View.INVISIBLE);
-        view4.setVisibility(View.INVISIBLE);
+    private void showConfirmed() {
+        confirmed.setText("Order Confirmed");
+        setViewsInvisible(view1, view2, view3, view4);
 
-        Handler h = new Handler();
-        h.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                ShowPreparing();
-            }
-        }, 3000);
+        new Handler().postDelayed(this::showPreparing, 2000);
     }
 
-    private void ShowPreparing() {
+    private void showPreparing() {
         preparing.setText("Order Is Getting Prepared");
-        Confirmed.setTextColor(getResources().getColor(R.color.light_grey));
+        confirmed.setTextColor(getResources().getColor(R.color.light_grey));
         view1.setVisibility(View.VISIBLE);
 
-        Handler h = new Handler();
-        h.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                ShowOnTheWay();
-            }
-        }, 5000);
+        new Handler().postDelayed(this::showOnTheWay, 2000);
     }
 
-    private void ShowOnTheWay() {
-        OnTheWay.setText("Order Is On The Way");
+    private void showOnTheWay() {
+        onTheWay.setText("Order Is On The Way");
         preparing.setTextColor(getResources().getColor(R.color.light_grey));
         view2.setVisibility(View.VISIBLE);
 
-        Handler h = new Handler();
-        h.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                ShowArrived();
-            }
-        }, 5000);
+        new Handler().postDelayed(this::showArrived, 2000);
     }
 
-    private void ShowArrived() {
+    private void showArrived() {
         arrived.setText("Order Has Arrived");
-        OnTheWay.setTextColor(getResources().getColor(R.color.light_grey));
+        onTheWay.setTextColor(getResources().getColor(R.color.light_grey));
         view3.setVisibility(View.VISIBLE);
         view4.setVisibility(View.VISIBLE);
 
-        Handler h = new Handler();
-        h.postDelayed(new Runnable() {
-            @Override
-            public void run() {
+        new Handler().postDelayed(() -> {
+            Intent intent = new Intent(TrackActivity.this, Ratings.class);
+            intent.putExtra("UserId", userId);
+            intent.putExtra("PaymentIndex", paymentIndex);
+            startActivity(intent);
+            finish();
+        }, 2000);
+    }
 
-                Intent intent = new Intent(TrackActivity.this, Ratings.class);
-
-                intent.putExtra("UserId",userId);
-                intent.putExtra("PaymentIndex",Payment_index);
-
-                startActivity(intent);
-
-                finish();
-            }
-        }, 1000);
+    private void setViewsInvisible(View... views) {
+        for (View view : views) {
+            view.setVisibility(View.INVISIBLE);
+        }
     }
 }
