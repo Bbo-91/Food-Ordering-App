@@ -1,5 +1,7 @@
 package com.example.myapplication;
 
+import static android.os.Build.VERSION_CODES.R;
+
 import com.example.myapplication.Classes.Dishes;
 import com.example.myapplication.Classes.RemoveAdapter;
 import com.example.myapplication.Classes.admin;
@@ -33,7 +35,7 @@ public class activity_edit_dish extends AppCompatActivity implements RecyclerVie
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_dish);
+        setContentView(R.layout);
 
         // Retrieve the index from the intent
         int index = getIntent().getIntExtra("index", -1);
