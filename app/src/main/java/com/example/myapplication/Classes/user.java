@@ -15,6 +15,13 @@ public class user extends person{
      static Random random = new Random();
    static Set<Integer> ids = new HashSet<>();
 
+    public user(int id,String email,String username,String password,String city,String street){
+        super(username,password,email);
+        this.id=id;
+        this.city=city;
+        this.street=street;
+    }
+
     public int getId() {
         return id;
     }
@@ -37,13 +44,6 @@ public class user extends person{
 
     public void setStreet(String street) {
         this.street = street;
-    }
-
-    public user(int id,String email,String username,String password,String city,String street){
-        super(username,password,email);
-        this.id=id;
-        this.city=city;
-        this.street=street;
     }
 
     public static boolean Login(String email,String password){
