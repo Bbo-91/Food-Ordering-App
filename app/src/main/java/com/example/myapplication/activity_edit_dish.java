@@ -73,10 +73,10 @@ public class activity_edit_dish extends AppCompatActivity implements RecyclerVie
     }
 
     @Override
-    public void onlongclick(int pos) {
+    public void onlongclick(int pos){
 
 
-    }
+}
 
 
 }
