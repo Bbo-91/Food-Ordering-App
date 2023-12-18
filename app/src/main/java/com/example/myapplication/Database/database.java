@@ -159,6 +159,7 @@ public class database {
             }
         }
         cart newCart = new cart(LoginHandler.USER.getId());
+        newCart.dishes.add(dish);
         carts.add(newCart);
         return newCart;
 
