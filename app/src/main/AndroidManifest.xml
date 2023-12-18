@@ -59,11 +59,11 @@
         <activity
             android:name=".Ratings"
             android:exported="false" />
-        <!--<activity
-            android:name=".UserActivity"
-            android:exported="false" />-->
         <activity
             android:name=".UserActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity_home"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

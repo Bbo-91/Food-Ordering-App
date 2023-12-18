@@ -16,7 +16,7 @@ import android.view.ViewGroup;
 
 import com.example.myapplication.Classes.Dishes;
 import com.example.myapplication.Classes.Payment;
-import com.example.myapplication.Classes.ResAdapter;
+import com.example.myapplication.Adapters.ResAdapter;
 import com.example.myapplication.Classes.Restaurants;
 import com.example.myapplication.Classes.user;
 import com.example.myapplication.Database.database;
