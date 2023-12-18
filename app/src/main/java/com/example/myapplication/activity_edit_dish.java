@@ -63,7 +63,7 @@ public class activity_edit_dish extends AppCompatActivity implements RecyclerVie
         int databasePos = -1;
         for (Dishes d:database.dishes) {
             if (resdishes.get(pos).getName().equals(d.getName()) && resdishes.get(pos).getRestaurantName().equals(d.getRestaurantName())){
-                databasePos = pos;
+                databasePos = dishes.indexOf(d);
                 break;
             }
         }
