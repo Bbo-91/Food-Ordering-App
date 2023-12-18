@@ -11,9 +11,6 @@ public class Restaurants {
     private int image;
     private int rate = 0;
 
-    public int getImage() {
-        return image;
-    }
     public Restaurants(String name, String address, int number, int image) {
         this.name = name;
         this.address = address;
@@ -52,6 +49,10 @@ public class Restaurants {
     public void setNumber(int number) {
         this.number = number;
    }
+
+    public int getImage() {
+        return image;
+    }
 
     @Override
     public String toString() {
