@@ -41,14 +41,9 @@
             android:name=".activity_remove_dish"
             android:exported="false"
             />
-        <activity
-            android:name=".activity_edit_dish"
-            android:exported="false"
-            />
-        <activity
-            android:name=".activity_edit_dish_final"
-            android:exported="false"
-            />
+
+
+
         <activity
             android:name=".activity_search_items"
             android:exported="false" />
@@ -67,11 +62,11 @@
         <activity
             android:name=".Ratings"
             android:exported="false" />
-        <!--<activity
-            android:name=".UserActivity"
-            android:exported="false" />-->
         <activity
             android:name=".UserActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity_home"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
