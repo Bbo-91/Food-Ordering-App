@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/black"
     android:layout_height="match_parent">
 
     <androidx.recyclerview.widget.RecyclerView
@@ -29,6 +30,7 @@
         android:text="long press to delete an item "
         android:textAllCaps="true"
         android:textColor="#C82C20"
+        android:textSize="25dp"
         app:layout_constraintBottom_toTopOf="@+id/removeRyclerview"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

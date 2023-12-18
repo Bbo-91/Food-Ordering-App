@@ -56,11 +56,16 @@ public class PaymentActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (checkValidation()) {
-                    Payment payment=new Payment(userId,dishes.get(index).getId(),GeneratedUniqueId());
+                    int UniqueId = GeneratedUniqueId();
+                    Payment payment=new Payment(userId,dishes.get(index).getId(),UniqueId);
                     payments.add(payment);
                     Intent intent = new Intent(PaymentActivity.this, TrackActivity.class);
                     intent.putExtra("UserId",userId);
                     intent.putExtra("PaymentIndex",payments.size()-1);
+
+                    Intent AdminMonitor = new Intent(PaymentActivity.this, AdminMonitorFragment.class);
+                    AdminMonitor.putExtra("paymentId",UniqueId);
+
                     startActivity(intent);
                 }
             }

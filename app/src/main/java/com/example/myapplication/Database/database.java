@@ -8,6 +8,7 @@ import com.example.myapplication.Classes.Ratings;
 import com.example.myapplication.Classes.Restaurants;
 import com.example.myapplication.Classes.user;
 import com.example.myapplication.Classes.admin;
+import com.example.myapplication.R;
 
 import java.util.ArrayList;
 
@@ -25,6 +26,10 @@ public class database {
         dishes.add(new Dishes("Foul Sandwich", "balady Bread with foul medames Sandwich", 5, Dishes.cuisines.RUSSIAN, Dishes.categories.BREAKFAST, "arabiata"));
         dishes.add(new Dishes("Foul Box", "foul medames Box", 400, Dishes.cuisines.ITALIAN, Dishes.categories.LUNCH, "arabiata"));
         dishes.add(new Dishes("Koshary Box", "rice with pasta and our special salsa with extra garlic water and spicy sauce", 25, Dishes.cuisines.RUSSIAN, Dishes.categories.BREAKFAST, "EL Tahrir"));
+
+        restaurants.add(new Restaurants("arabiata", "El Rehab Food court", 12345, R.drawable.arabiata));
+        restaurants.add(new Restaurants("EL Tahrir", "Nasr City", 12345, R.drawable.koshary_el_tahrir));
+
     }
 
     public static ArrayList<Payment> payments = new ArrayList<>();
@@ -78,7 +83,7 @@ public class database {
 
     public static Restaurants searchRestaurant(String restName) {
         for (Restaurants rest : restaurants) {
-            if (rest.name.equals(restName)) {
+            if (rest.getName().equals(restName)) {
                 return rest;
             }
         }
@@ -137,8 +142,8 @@ public class database {
         }
         int rate = totalRate==0?0:totalRate/totalNumber;
         for(Restaurants r:restaurants){
-            if(r.name.equals(restName)){
-                r.rate = rate;
+            if(r.getName().equals(restName)){
+                r.setRate(rate);
             }
         }
 

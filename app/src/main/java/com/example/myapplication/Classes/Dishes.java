@@ -63,6 +63,14 @@ public class Dishes {
     private float extra = 0;
     public boolean spicy = false;
 
+    public boolean isSpicy() {
+        return spicy;
+    }
+
+    public void setSpicy(boolean spicy) {
+        this.spicy = spicy;
+    }
+
     public float getNoOfDishes() {
         return noOfDishes;
     }

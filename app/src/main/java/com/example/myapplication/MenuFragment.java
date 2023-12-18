@@ -1,13 +1,11 @@
 package com.example.myapplication;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,12 +13,11 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.myapplication.Adapters.ResAdapter;
 import com.example.myapplication.Classes.*;
 import com.example.myapplication.Database.database;
 
-import java.util.ArrayList;
 import java.util.List;
-import com.example.myapplication.Classes.Dishes.*;
 //import com.example.myapplication.fileParsers.usersRead;
 
 public class MenuFragment extends Fragment implements RecyclerViewInterface {
