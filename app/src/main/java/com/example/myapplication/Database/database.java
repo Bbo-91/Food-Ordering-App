@@ -114,19 +114,19 @@ public class database {
         dishes.add(dish);
         return dish;
     }
-    public static int assignRatingDish(int dishID){
-        int numberOfDishes = 0;
-        int totalRating = 0;
+    public static float assignRatingDish(int dishID){
+        float numberOfDishes = 0f;
+        float totalRating = 0f;
         for(Ratings r:ratings){
             if(r.getFoodID() == dishID){
                 totalRating+=r.getRatingValue();
                 numberOfDishes++;
             }
         }
-        int rate = totalRating==0?0:totalRating/numberOfDishes;
+        float rate = totalRating==0?0:totalRating/numberOfDishes;
         for(Dishes d:dishes){
             if(d.getId()==dishID){
-                d.rating = rate;
+                d.setRating(rate);
             }
         }
         return rate;
@@ -137,7 +137,7 @@ public class database {
         for(Dishes d:dishes){
             if(d.getRestaurantName().equals(restName)){
                 totalNumber++;
-                totalRate += d.rating;
+                totalRate += d.getRating();
             }
         }
         int rate = totalRate==0?0:totalRate/totalNumber;
@@ -146,8 +146,6 @@ public class database {
                 r.setRate(rate);
             }
         }
-
         return rate;
-
     }
 }

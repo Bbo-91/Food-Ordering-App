@@ -100,7 +100,7 @@ public class activity_customize extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 dishes.get(index).setNoOfDishes(numberOfDishes);
-                AddToCart(index,userId);
+                BuyButton(index,userId);
             }
         });
         addToCart = findViewById(R.id.add_to_cart);
@@ -117,8 +117,8 @@ public class activity_customize extends AppCompatActivity {
         count.setText(String.valueOf(numberOfDishes));
     }
 
-    private void AddToCart(int index,int uId) {
-        Intent intent = new Intent(this, CartActivity.class);
+    private void BuyButton(int index,int uId) {
+        Intent intent = new Intent(this, BuyActivity.class);
         intent.putExtra("index", index);
         intent.putExtra("UserId", uId);
         startActivity(intent);
@@ -131,5 +131,4 @@ public class activity_customize extends AppCompatActivity {
         button.setBackgroundColor(newColor);
         button.setTag(newColor);
     }
-
 }

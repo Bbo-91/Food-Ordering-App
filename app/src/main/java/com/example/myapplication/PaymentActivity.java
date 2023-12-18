@@ -61,6 +61,7 @@ public class PaymentActivity extends AppCompatActivity {
                     payments.add(payment);
                     Intent intent = new Intent(PaymentActivity.this, TrackActivity.class);
                     intent.putExtra("UserId",userId);
+                    intent.putExtra("index",index);
                     intent.putExtra("PaymentIndex",payments.size()-1);
 
                     Intent AdminMonitor = new Intent(PaymentActivity.this, AdminMonitorFragment.class);

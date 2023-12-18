@@ -3,7 +3,6 @@ package com.example.myapplication;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import java.util.Random;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -11,23 +10,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.myapplication.Classes.Restaurants;
 import com.example.myapplication.fileParsers.usersWrite;
 import com.google.android.material.snackbar.Snackbar;
 
 import  com.example.myapplication.Classes.user;
-import  com.example.myapplication.Database.database;
-
-import java.util.ArrayList;
-import java.util.List;
-import com.example.myapplication.Classes.*;
 
 // karen
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class UserSignUpActivity extends AppCompatActivity implements View.OnClickListener {
 
-    ArrayList<Integer> usersId = new ArrayList<>();
     EditText username, email, password, city, street;
-    TextView loginLink;
+    TextView loginLink,adminLink;
     Button signUpBtn;
 
     @Override
@@ -35,7 +27,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (v.getId() == R.id.buttonSignUp) {
             signUp();
         } else if (v.getId() == R.id.loginLink) {
-            Intent intent = new Intent(MainActivity.this, login_page.class);
+            Intent intent = new Intent(UserSignUpActivity.this, login_page.class);
             startActivity(intent);
         }
     }
@@ -44,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_usersignup);
         username = findViewById(R.id.editTextUsername);
         password = findViewById(R.id.editTextPassword);
         email = findViewById(R.id.editTextEmail);
@@ -84,7 +76,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Snackbar.make(parentLayout, "there's a user with those credentials", Snackbar.LENGTH_SHORT).show();
             } else {
                usersWrite.addUser(getApplicationContext(),emailString,name,pass,id,City,Street);
-                Intent intent = new Intent(MainActivity.this, login_page.class);
+                Intent intent = new Intent(UserSignUpActivity.this, login_page.class);
                 startActivity(intent);
             }
         }

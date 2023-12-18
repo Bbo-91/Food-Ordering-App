@@ -3,17 +3,12 @@ package com.example.myapplication.Classes;
 public class Ratings {
     private int userID; //key for data
     private int foodID;
-    private int ratingValue;
-    private String comment;
+    private float ratingValue;
 
-    public Ratings() {
-    }
-
-    public Ratings(int userPhone, int foodID, int ratingValue, String comment) {
-        this.userID = userPhone;
+    public Ratings(int userID, int foodID, float ratingValue) {
+        this.userID = userID;
         this.foodID = foodID;
         this.ratingValue = ratingValue;
-        this.comment = comment;
     }
 
     public int getUserPhone() {
@@ -32,19 +27,12 @@ public class Ratings {
         this.foodID = foodID;
     }
 
-    public int getRatingValue() {
+    public float getRatingValue() {
         return ratingValue;
     }
 
-    public void setRatingValue(int ratingValue) {
+    public void setRatingValue(float ratingValue) {
         this.ratingValue = ratingValue;
     }
 
-    public String getComment() {
-        return comment;
-    }
-
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
 }

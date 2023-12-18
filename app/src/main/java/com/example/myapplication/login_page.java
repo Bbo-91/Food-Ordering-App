@@ -27,7 +27,7 @@ public class login_page extends AppCompatActivity implements View.OnClickListene
         if(v.getId()== R.id.buttonLogIn){
             Login();
         } else if(v.getId()==R.id.signupLink){
-            Intent intent = new Intent(login_page.this, MainActivity.class);
+            Intent intent = new Intent(login_page.this, UserSignUpActivity.class);
             startActivity(intent);
         }
     }
