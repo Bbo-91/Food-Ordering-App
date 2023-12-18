@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -16,7 +17,9 @@ import android.widget.Button;
 public class AdminEditFragment extends Fragment {
     public Button add;
     public Button remove;
+    public Button edit;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
@@ -24,6 +27,7 @@ public class AdminEditFragment extends Fragment {
 
         add = view.findViewById(R.id.button_add);
         remove = view.findViewById(R.id.button_delete);
+        edit =view.findViewById(R.id.button_edit);
 
         add.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,6 +66,27 @@ public class AdminEditFragment extends Fragment {
                 }
             }
         });
+        edit.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                try {
+                    Intent intent = new Intent(getActivity(), activity_edit_dish.class);
+
+                    // Pass the index to the next activity
+                    int index = getArguments() != null ? getArguments().getInt("index", -1) : -1;
+                    intent.putExtra("index", index);
+
+                    startActivity(intent);
+                    Log.d("YourTag", "fun is working");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Log.e("YourTag", "Error in onClick", e);
+                }
+            }
+
+
+        });
 
 
 
@@ -75,4 +100,3 @@ public class AdminEditFragment extends Fragment {
         return fragment;
     }
 }
-

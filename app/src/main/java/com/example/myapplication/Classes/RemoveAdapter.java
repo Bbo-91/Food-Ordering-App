@@ -83,6 +83,7 @@ public class RemoveAdapter  extends RecyclerView.Adapter< RemoveAdapter .MenuVie
                         int pos = getAdapterPosition();
                         if(pos != RecyclerView.NO_POSITION){
                             recyclerViewInterface.onClick(pos);
+
                         }
                     }
                 }
