@@ -1,9 +1,7 @@
 package com.example.myapplication;
 
-import static android.os.Build.VERSION_CODES.R;
-
 import com.example.myapplication.Classes.Dishes;
-import com.example.myapplication.Classes.RemoveAdapter;
+import com.example.myapplication.Adapters.RemoveAdapter;
 import com.example.myapplication.Classes.admin;
 import com.example.myapplication.Database.database;
 
@@ -19,7 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.Classes.Dishes;
-import com.example.myapplication.Classes.RemoveAdapter;
+
 import com.example.myapplication.Classes.admin;
 import com.example.myapplication.Database.database;
 
@@ -35,7 +33,7 @@ public class activity_edit_dish extends AppCompatActivity implements RecyclerVie
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout);
+        setContentView(R.layout.activity_edit_dish);
 
         // Retrieve the index from the intent
         int index = getIntent().getIntExtra("index", -1);

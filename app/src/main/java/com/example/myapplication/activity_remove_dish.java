@@ -63,6 +63,7 @@ public class activity_remove_dish extends AppCompatActivity implements RecyclerV
                 break;
             }
 
+
         }
         resdishes.remove(pos);
         database.dishes.remove(databasePos);
