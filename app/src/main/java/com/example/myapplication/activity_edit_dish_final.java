@@ -46,17 +46,24 @@ public class activity_edit_dish_final extends AppCompatActivity {
         initPrice = findViewById(R.id.editTextNumberDecimal);
         cuisineType = findViewById(R.id.radioGroupCuisine);
         category = findViewById(R.id.radioGroupMeal);
+
         nameOfDish.setText(dishes.get(dish_index).getName());
+        description.setText(dishes.get(dish_index).getDescription());
+
+        String price=Float.toString(dishes.get(dish_index).getInitPrice());
+        initPrice.setText(price);
 
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                String stringValue = initPrice.getText().toString();
-                float floatValue = Float.parseFloat(stringValue);
+//                String stringValue = initPrice.getText().toString();
+//                float floatValue = Float.parseFloat(stringValue);
 
-                if (index >= 0 && index < admins.size()) {
-                    admin currentAdmin = admins.get(index);
+                if (dish_index >= 0 && dish_index < dishes.size()) {
+                    dishes.get(dish_index).setInitPrice(Float.parseFloat(initPrice.toString()));
+
+//                    initPrice.setText(String.valueOf(dishes.get(dish_index).getInitPrice()));
                 }
             }
 

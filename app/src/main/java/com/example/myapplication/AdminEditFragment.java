@@ -100,4 +100,3 @@ public class AdminEditFragment extends Fragment {
         return fragment;
     }
 }
-
