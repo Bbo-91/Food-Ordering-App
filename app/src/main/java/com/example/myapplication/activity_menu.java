@@ -25,7 +25,7 @@ public class activity_menu extends AppCompatActivity implements RecyclerViewInte
     private RecyclerView recyclerView;
     View rootView;
     ArrayList<Dishes> dishes = new ArrayList<Dishes>();
-    ArrayList<Dishes> filteredDishes;  // Moved to class-level variable
+    ArrayList<Dishes> filteredDishes;
     Button btn;
     SeekBar seekBar;
     MenuAdapter menuAdapter;
