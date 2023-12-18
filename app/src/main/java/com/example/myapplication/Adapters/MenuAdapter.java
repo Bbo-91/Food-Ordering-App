@@ -62,7 +62,7 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
         TextView nameView;
         TextView DescriptionView;
         TextView PriceView;
-        TextView CounterView;
+
 
 
 

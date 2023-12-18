@@ -25,7 +25,7 @@ public class activity_menu extends AppCompatActivity implements RecyclerViewInte
     private RecyclerView recyclerView;
     View rootView;
     ArrayList<Dishes> dishes = new ArrayList<Dishes>();
-    ArrayList<Dishes> filteredDishes;  // Moved to class-level variable
+    ArrayList<Dishes> filteredDishes;
     Button btn;
     SeekBar seekBar;
     MenuAdapter menuAdapter;
@@ -174,7 +174,13 @@ public class activity_menu extends AppCompatActivity implements RecyclerViewInte
         if (LoginHandler.isLoggedIn()) {
             Intent intent = new Intent(activity_menu.this, activity_customize.class);
             ArrayList<Dishes> allDishes = database.dishes;
-
+            for (Dishes dish: allDishes){
+                for (Dishes fdish: filteredDishes){
+                    if (fdish.getName().equals(dish.getName()) && fdish.getRestaurantName().equals(dish.getRestaurantName())){
+                        pos = allDishes.indexOf(dish);
+                    }
+                }
+            }
             intent.putExtra("name", allDishes.get(pos).getName());
             intent.putExtra("description", allDishes.get(pos).getDescription());
             intent.putExtra("index", pos);
