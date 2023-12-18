@@ -1,18 +1,29 @@
 package com.example.myapplication;
 
+
+
 import com.example.myapplication.Classes.Dishes;
 import com.example.myapplication.Adapters.RemoveAdapter;
 import com.example.myapplication.Classes.admin;
 import com.example.myapplication.Database.database;
 
 import java.util.ArrayList;
-
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.myapplication.Classes.Dishes;
+
+import com.example.myapplication.Classes.admin;
+import com.example.myapplication.Database.database;
+
+import java.util.ArrayList;
 
 
 public class activity_edit_dish extends AppCompatActivity implements RecyclerViewInterface {
@@ -55,12 +66,12 @@ public class activity_edit_dish extends AppCompatActivity implements RecyclerVie
                 databasePos = pos;
                 break;
             }
-
         }
+        Intent intent = new Intent(activity_edit_dish.this, activity_edit_dish_final.class);
 
+       intent.putExtra("indexofdish",databasePos);
 
-        getIntent().putExtra("indexofdish",databasePos);
-
+        startActivity(intent);
     }
 
     @Override

@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/black"
     tools:context=".AdminEditFragment"
+    android:id="@+id/admineditfragment"
     >
 
     <!-- TODO: Update blank fragment layout -->
@@ -42,13 +43,13 @@
 
     <Button
         android:id="@+id/button_edit"
-        android:layout_width="229dp"
+        android:layout_width="247dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="100dp"
         android:layout_marginTop="550dp"
-        android:textColor="@color/white"
         android:backgroundTint="@color/dark_orange"
-        android:text="edit dish "
+        android:text="edit dish"
+        android:textColor="@color/white"
         android:textSize="35dp" />
 
 </FrameLayout>
