@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/imageViewMenu"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="20dp"
         android:text="TextView"
         android:textColor="@color/white"
         android:textSize="24sp" />
@@ -32,7 +32,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/textView3"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="20dp"
         android:text="Filter"
         android:backgroundTint="@color/dark_orange"
         android:padding="12dp" />
@@ -42,20 +42,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/to_filter"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="330dp"
         android:isIndicator="true"
         android:numStars="5"
-        android:progressBackgroundTint="@color/white"
+        android:rating="0"
         android:progressTint="@color/white"
-        android:rating="0" />
+        />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/MenuView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/ratingBar"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp" />
+        android:layout_height="295dp"
+        android:layout_below="@id/to_filter"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="108dp"
+        android:layout_marginBottom="4dp" />
 
 </RelativeLayout>

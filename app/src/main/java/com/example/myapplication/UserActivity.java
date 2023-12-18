@@ -55,7 +55,6 @@ public class UserActivity extends AppCompatActivity {
         if (extras != null) {
             userId = extras.getInt("UserId");
         }
-
         replaceFragment(new MenuFragment(), userId);
         binding.bottomNavigationView.setBackground(null);
 
@@ -109,21 +108,5 @@ public class UserActivity extends AppCompatActivity {
 
 
 
-    public int dishGeneratedId() {
-        // Random Id for every dish with range (100 to 250)
-        int id = random.nextInt(101) + 150;
 
-        if (dishesId == null) {
-            dishesId.add(id);
-            return id;
-        } else {
-            for (int i = 0; i < dishesId.size(); i++) {
-                if (id == dishesId.get(i)) {
-                    return dishGeneratedId(); // Return the result of the recursive call
-                }
-            }
-            dishesId.add(id);
-            return id;
-        }
-    }
 }

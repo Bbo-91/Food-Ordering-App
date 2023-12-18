@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
+import android.widget.RatingBar;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -28,6 +29,7 @@ public class activity_menu extends AppCompatActivity implements RecyclerViewInte
     Button btn;
     SeekBar seekBar;
     MenuAdapter menuAdapter;
+    RatingBar ratingBar;
     int userId;
 
     @Override
@@ -36,12 +38,15 @@ public class activity_menu extends AppCompatActivity implements RecyclerViewInte
         setContentView(R.layout.activity_menu);
 
         recyclerView = findViewById(R.id.MenuView);
+        ratingBar=findViewById(R.id.ratingBar);
+
 
         Intent intent = getIntent();
         userId= intent.getIntExtra("UserId",-1);
         String restaurantName = intent.getStringExtra("restaurantName");
         int restaurantImageResourceId = intent.getIntExtra("restaurantImage", 0);
-
+        Restaurants restaurant = database.searchRestaurant(restaurantName);
+        ratingBar.setRating(restaurant.getRate());
         btn = findViewById(R.id.to_filter);
         btn.setOnClickListener(v -> openFilterDialog());
 

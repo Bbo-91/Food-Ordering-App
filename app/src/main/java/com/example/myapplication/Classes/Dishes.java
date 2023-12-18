@@ -7,8 +7,8 @@ public class Dishes {
     private String name;
     private int id;
     private String description;
-    protected float initPrice;
-    String RestaurantName;
+    private float initPrice;
+    private String RestaurantName;
 
     public enum cuisines {
         ITALIAN,
@@ -24,7 +24,7 @@ public class Dishes {
 
     public cuisines cuisineType;
     public categories category;
-    public int rating = 0;
+    private float rating = 0;
     public Dishes(String name, String description, float initPrice, cuisines cuisineType, categories category, String restaurant) {
         this.id = dishGeneratedId(new ArrayList<>(), new Random());
         this.name = name;
@@ -33,6 +33,13 @@ public class Dishes {
         this.category = category;
         this.cuisineType = cuisineType;
         this.RestaurantName = restaurant;
+    }
+
+    public float getRating() {
+        return rating;
+    }
+    public void setRating(float rating) {
+        this.rating = rating;
     }
 
     public String getRestaurantName() {

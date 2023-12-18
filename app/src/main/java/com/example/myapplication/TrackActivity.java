@@ -13,7 +13,7 @@ public class TrackActivity extends AppCompatActivity {
     private ImageView view1, view2, view3, view4;
 
     private Bundle extras;
-    private int paymentIndex, userId;
+    private int paymentIndex, userId,dishIndex;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,8 +22,9 @@ public class TrackActivity extends AppCompatActivity {
 
         extras = getIntent().getExtras();
         if (extras != null) {
-            paymentIndex = extras.getInt("PaymentIndex", 0);
-            userId = extras.getInt("UserId", 0);
+            paymentIndex = extras.getInt("PaymentIndex");
+            dishIndex = extras.getInt("index");
+            userId = extras.getInt("UserId");
         }
 
         confirmed = findViewById(R.id.textView6);
@@ -68,8 +69,9 @@ public class TrackActivity extends AppCompatActivity {
         view4.setVisibility(View.VISIBLE);
 
         new Handler().postDelayed(() -> {
-            Intent intent = new Intent(TrackActivity.this, Ratings.class);
+            Intent intent = new Intent(TrackActivity.this, RatingActivity.class);
             intent.putExtra("UserId", userId);
+            intent.putExtra("index", dishIndex);
             intent.putExtra("PaymentIndex", paymentIndex);
             startActivity(intent);
             finish();

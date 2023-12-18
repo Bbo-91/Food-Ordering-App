@@ -14,7 +14,7 @@ import com.example.myapplication.Database.database;
 
 import java.util.ArrayList;
 
-public class CartActivity extends AppCompatActivity {
+public class BuyActivity extends AppCompatActivity {
 
     ArrayList<Dishes> dishes = database.dishes;
     ArrayList<user> users= database.userList;
@@ -46,10 +46,11 @@ public class CartActivity extends AppCompatActivity {
             ConfirmOrderBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent updateData = new Intent(CartActivity.this, AdminMonitorFragment.class);
-                    Intent intent = new Intent(CartActivity.this, PaymentActivity.class);
+                    Intent updateData = new Intent(BuyActivity.this, AdminMonitorFragment.class);
+                    Intent intent = new Intent(BuyActivity.this, PaymentActivity.class);
                     assert index >= 0;
                     updateData.putExtra("index", index);
+
                     intent.putExtra("index",index);
                     intent.putExtra("UserId",userId);
                     startActivity(intent);
