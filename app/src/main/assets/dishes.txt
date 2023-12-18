@@ -1,0 +1,8 @@
+id:102
+name:foul
+desc:foul
+price:12
+restName:arabiata
+cuisine:MEXICAN
+category:LUNCH
+---
