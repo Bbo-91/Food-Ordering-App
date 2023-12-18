@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -50,6 +51,7 @@ public class activity_remove_dish extends AppCompatActivity implements RecyclerV
 
     @Override
     public void onClick(int pos) {
+
 
 
     }

@@ -64,6 +64,10 @@ public class activity_add_dish extends AppCompatActivity {
                         database.addDish(newDish);
 
                         Toast.makeText(activity_add_dish.this, "Dish is added", Toast.LENGTH_SHORT).show();
+                        Intent intent =new Intent(activity_add_dish.this,AdminActivity.class);
+                        intent.putExtra("index",index);
+                        startActivity(intent);
+
 
 
                     } else {
