@@ -1,4 +1,4 @@
-package com.example.myapplication.Classes;
+package com.example.myapplication.Adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,49 +9,48 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.myapplication.Classes.Dishes;
 import com.example.myapplication.R;
 import com.example.myapplication.RecyclerViewInterface;
 
 import java.util.ArrayList;
 
-public class RemoveAdapter  extends RecyclerView.Adapter< RemoveAdapter .MenuViewHolder>{
+public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder> {
     Context context;
-
-    public ArrayList<Dishes> dishes;
+   public ArrayList<Dishes> dishes;
     String restaurantName;
-    private final RecyclerViewInterface recyclerViewInterface;
+    int restaurantImageResourceId;
 
-    public RemoveAdapter(Context context, ArrayList<Dishes> dishes, String restaurantName, RecyclerViewInterface recyclerViewInterface) {
+    private final RecyclerViewInterface recyclerViewInterface;
+    public MenuAdapter(Context context, ArrayList<Dishes> dishes, String restaurantName, int restaurantImageResourceId, RecyclerViewInterface recyclerViewInterface) {
         this.context = context;
         this.dishes = dishes;
         this.restaurantName = restaurantName;
+        this.restaurantImageResourceId = restaurantImageResourceId;
         this.recyclerViewInterface = recyclerViewInterface;
     }
-
     public void updateData(ArrayList<Dishes> newDishes) {
 
-        this.dishes = newDishes;
+       this.dishes = newDishes;
         notifyDataSetChanged(); // Notify dataset change
     }
-    // Inside RemoveAdapter class
     @NonNull
     @Override
-    public RemoveAdapter.MenuViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.menu_items_activity, parent, false);
+    public MenuAdapter.MenuViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        LayoutInflater inflater=LayoutInflater.from(context);
+        View view = inflater.inflate(R.layout.menu_items_activity,parent,false);
 
-        return new RemoveAdapter.MenuViewHolder(view, recyclerViewInterface);
+        return new MenuAdapter.MenuViewHolder(view,recyclerViewInterface);
     }
 
-
     @Override
-    public void onBindViewHolder(@NonNull MenuViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MenuAdapter.MenuViewHolder holder, int position) {
+
         holder.nameView.setText(dishes.get(position).getName());
         holder.DescriptionView.setText(dishes.get(position).getDescription());
         holder.PriceView.setText(String.valueOf(dishes.get(position).getInitPrice()));
+
     }
-
-
 
     @Override
     public int getItemCount() {
@@ -63,7 +62,7 @@ public class RemoveAdapter  extends RecyclerView.Adapter< RemoveAdapter .MenuVie
         TextView nameView;
         TextView DescriptionView;
         TextView PriceView;
-
+        TextView CounterView;
 
 
 
@@ -87,21 +86,10 @@ public class RemoveAdapter  extends RecyclerView.Adapter< RemoveAdapter .MenuVie
                     }
                 }
             });
-            itemView.setOnLongClickListener(new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View v) {
-                    if (recyclerViewInterface != null) {
-                        int pos = getAdapterPosition();
-                        if(pos != RecyclerView.NO_POSITION){
-                            recyclerViewInterface.onlongclick(pos);
-                        }
-                    }
-                    return true;
-                }
-            });
 
         }
 
     }
 
 }
+
