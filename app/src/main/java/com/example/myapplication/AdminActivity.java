@@ -11,6 +11,7 @@ import android.os.Bundle;
 import com.example.myapplication.Classes.LoginHandler;
 import com.example.myapplication.databinding.ActivityAdminBinding;
 import com.example.myapplication.databinding.ActivityUserBinding;
+import com.example.myapplication.fileParsers.dishesRead;
 
 
 public class AdminActivity extends AppCompatActivity {
@@ -29,6 +30,8 @@ public class AdminActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityAdminBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+//        dishesRead.parser(this);
+
         //setContentView(R.layout.activity_admin);
         int index = getIntent().getIntExtra("index", -1);
 

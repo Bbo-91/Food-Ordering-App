@@ -109,7 +109,7 @@ public class database {
 
     public static Dishes addDish(Dishes dish) {
         for (Dishes d : dishes) {
-            if (d == dish) return null;
+            if (d.getName().equals(dish.getName()) ) return null;
         }
         dishes.add(dish);
         return dish;

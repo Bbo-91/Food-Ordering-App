@@ -3,7 +3,6 @@ package com.example.myapplication;
 
 
 import com.example.myapplication.Classes.Dishes;
-import com.example.myapplication.Adapters.RemoveAdapter;
 import com.example.myapplication.Classes.admin;
 import com.example.myapplication.Database.database;
 
@@ -19,7 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.Classes.Dishes;
-
+import com.example.myapplication.Adapters.RemoveAdapter;
 import com.example.myapplication.Classes.admin;
 import com.example.myapplication.Database.database;
 
@@ -63,7 +62,7 @@ public class activity_edit_dish extends AppCompatActivity implements RecyclerVie
         int databasePos = -1;
         for (Dishes d:database.dishes) {
             if (resdishes.get(pos).getName().equals(d.getName()) && resdishes.get(pos).getRestaurantName().equals(d.getRestaurantName())){
-                databasePos = dishes.indexOf(d);
+                databasePos = pos;
                 break;
             }
         }

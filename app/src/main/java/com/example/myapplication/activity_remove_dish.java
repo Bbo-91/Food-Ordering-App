@@ -12,6 +12,7 @@ import com.example.myapplication.Classes.Dishes;
 import com.example.myapplication.Adapters.RemoveAdapter;
 import com.example.myapplication.Classes.admin;
 import com.example.myapplication.Database.database;
+import com.example.myapplication.fileParsers.dishesWrite;
 
 import java.util.ArrayList;
 
@@ -68,6 +69,7 @@ public class activity_remove_dish extends AppCompatActivity implements RecyclerV
 
         }
         resdishes.remove(pos);
+        dishesWrite.removeDish(Integer.toString(database.dishes.get(databasePos).getId()),this);
         database.dishes.remove(databasePos);
         adapter.notifyItemRemoved(pos);
 

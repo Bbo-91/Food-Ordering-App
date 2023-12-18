@@ -19,6 +19,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.myapplication.Classes.Dishes;
 import com.example.myapplication.Classes.admin;
 import com.example.myapplication.Database.database;
+import com.example.myapplication.fileParsers.dishesWrite;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -74,7 +75,8 @@ public class activity_edit_dish_final extends AppCompatActivity {
 
                     if (dish_index >= 0 && dish_index < database.dishes.size() ) {
 
-                        database.dishes.get(dish_index).setInitPrice(floatValue);;
+                        database.dishes.get(dish_index).setInitPrice(floatValue);
+                        dishesWrite.editDishPrice(getApplicationContext(),Integer.toString(database.dishes.get(dish_index).getId()),stringValue);
 
                         Toast.makeText(activity_edit_dish_final.this, "price is changed", Toast.LENGTH_SHORT).show();
                         // Assuming you are in an activity

@@ -46,8 +46,8 @@ public class login_page extends AppCompatActivity implements View.OnClickListene
     @Override
     protected void onResume() {
         super.onResume();
-        usersRead.parser(this);
-        adminRead.parser(this);
+//        usersRead.parser(this);
+//        adminRead.parser(this);
     }
     public void Login(){
         String email = emailEdit.getText().toString();

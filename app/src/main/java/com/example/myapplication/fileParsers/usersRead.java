@@ -26,42 +26,53 @@ import java.io.FileInputStream;
 public class usersRead {
 
         public static List<Map<String, String>> accounts = new ArrayList<>();
+        public static void copy(Context context){
+            SharedPreferences sharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+            boolean fileCopied = sharedPreferences.getBoolean("fileCopied", false);
 
-    public static void start(Context context) {
-        SharedPreferences sharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
-        boolean fileCopied = sharedPreferences.getBoolean("fileCopied", false);
+            if (!fileCopied) {
+                try {
+                    InputStream inputStream = context.getAssets().open("users.txt");
+                    OutputStream outputStream = new FileOutputStream(new File(context.getFilesDir(), "users.txt"));
 
-        if (!fileCopied) {
-            try {
-                InputStream inputStream = context.getAssets().open("users.txt");
-                OutputStream outputStream = new FileOutputStream(new File(context.getFilesDir(), "users.txt"));
+                    byte[] buffer = new byte[1024];
+                    int length;
+                    while ((length = inputStream.read(buffer)) > 0) {
+                        outputStream.write(buffer, 0, length);
+                    }
 
-                byte[] buffer = new byte[1024];
-                int length;
-                while ((length = inputStream.read(buffer)) > 0) {
-                    outputStream.write(buffer, 0, length);
+
+                    inputStream = context.getAssets().open("admins.txt");
+                    outputStream = new FileOutputStream(new File(context.getFilesDir(), "admins.txt"));
+
+                    buffer = new byte[1024];
+
+                    while ((length = inputStream.read(buffer)) > 0) {
+                        outputStream.write(buffer, 0, length);
+                    }
+                    inputStream = context.getAssets().open("dishes.txt");
+                    outputStream = new FileOutputStream(new File(context.getFilesDir(), "dishes.txt"));
+
+                    buffer = new byte[1024];
+
+                    while ((length = inputStream.read(buffer)) > 0) {
+                        outputStream.write(buffer, 0, length);
+                    }
+
+                    outputStream.flush();
+                    outputStream.close();
+                    inputStream.close();
+
+                    // Set the flag to indicate that the file has been copied
+                    sharedPreferences.edit().putBoolean("fileCopied", true).apply();
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
-
-
-               inputStream = context.getAssets().open("admins.txt");
-                outputStream = new FileOutputStream(new File(context.getFilesDir(), "admins.txt"));
-
-                buffer = new byte[1024];
-
-                while ((length = inputStream.read(buffer)) > 0) {
-                    outputStream.write(buffer, 0, length);
-                }
-
-                outputStream.flush();
-                outputStream.close();
-                inputStream.close();
-
-                // Set the flag to indicate that the file has been copied
-                sharedPreferences.edit().putBoolean("fileCopied", true).apply();
-            } catch (IOException e) {
-                e.printStackTrace();
             }
         }
+
+    public static void start(Context context) {
+
 
         // Read the file contents
         try (InputStream inputStream = new FileInputStream(new File(context.getFilesDir(), "users.txt"));

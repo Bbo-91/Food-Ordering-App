@@ -11,6 +11,10 @@ import android.widget.Button;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.myapplication.fileParsers.adminRead;
+import com.example.myapplication.fileParsers.dishesRead;
+import com.example.myapplication.fileParsers.usersRead;
+
 public class activity_home extends AppCompatActivity {
 
     Button start;
@@ -20,6 +24,10 @@ public class activity_home extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        usersRead.copy(this);
+        usersRead.parser(this);
+        adminRead.parser(this);
+        dishesRead.parser(this);
 
 
         start = findViewById(R.id.start);

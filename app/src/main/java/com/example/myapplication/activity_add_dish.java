@@ -17,6 +17,8 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.myapplication.Classes.Dishes;
 import com.example.myapplication.Classes.admin;
 import com.example.myapplication.Database.database;
+import com.example.myapplication.fileParsers.dishesRead;
+import com.example.myapplication.fileParsers.dishesWrite;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -60,7 +62,7 @@ public class activity_add_dish extends AppCompatActivity {
                         admin currentAdmin = admins.get(index);
 
                         Dishes newDish = new Dishes(nameOfDish.getText().toString(), description.getText().toString(), floatValue, selectedCuisine, selectedMeal, currentAdmin.getResturant());
-
+                        dishesWrite.addDish(getApplicationContext(),nameOfDish.getText().toString(), description.getText().toString(),Float.toString(floatValue),currentAdmin.getResturant(),selectedCuisine.toString(), selectedMeal.toString(), Integer.toString(newDish.getId()) );
                         database.addDish(newDish);
 
                         Toast.makeText(activity_add_dish.this, "Dish is added", Toast.LENGTH_SHORT).show();

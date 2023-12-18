@@ -99,7 +99,6 @@ public static void addUser(Context context, String email, String username, Strin
             // Handle the case where deletion or renaming failed
         }
     }
-
     public static void addUserLogout( String email,Context context) {
         boolean emailFound = false;
         List<String> fileLines = new ArrayList<>();
@@ -142,16 +141,15 @@ public static void addUser(Context context, String email, String username, Strin
             e.printStackTrace();
         }
 
-        // Delete the original file and rename the temp file to the original file
         File originalFile = new File(context.getFilesDir(), "users.txt");
         File tempFile = new File(context.getFilesDir(), "users_temp.txt");
 
         if (originalFile.delete() && tempFile.renameTo(originalFile)) {
-            // Deletion and renaming successful
         } else {
-            // Handle the case where deletion or renaming failed
         }
     }
+
+
 
 
 
