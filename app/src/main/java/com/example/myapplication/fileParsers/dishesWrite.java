@@ -9,28 +9,52 @@ import java.util.List;
 import java.io.IOException;
 public class dishesWrite {
 
-    public static void addDish(Context context,String name,String desc,String price,String restName,String cuisine,String category,String id ) {
+    public static void addDish(Context context, String name, String desc, String price, String restName, String cuisine, String category, String id) {
         try {
-            FileWriter writer = new FileWriter(new File(context.getFilesDir(), "dishes.txt"), true);
-            writer.append("id:" + id + "\n");
-            writer.append("name:" + name + "\n");
-            writer.append("price:" + price + "\n");
-            writer.append("desc:" + desc + "\n");
-            writer.append("restName:" + restName + "\n");
-            writer.append("cuisine:" + cuisine + "\n");
-            writer.append("category:" + category + "\n");
-            writer.append("---\n");
-            writer.flush();
-            writer.close();
+            // Read the current content of the dishes.txt file
+            List<String> fileLines = new ArrayList<>();
+            try (BufferedReader reader = new BufferedReader(new FileReader(new File(context.getFilesDir(), "dishes.txt")))) {
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    // Add each line to a list
+                    fileLines.add(line);
+                }
+            }
 
-            Log.d("dishAddition", "dish added successfully.");
+            // Append the new dish details to the fileLines list
+            fileLines.add("id:" + id);
+            fileLines.add("name:" + name);
+            fileLines.add("price:" + price);
+            fileLines.add("desc:" + desc);
+            fileLines.add("restName:" + restName);
+            fileLines.add("cuisine:" + cuisine);
+            fileLines.add("category:" + category);
+            fileLines.add("---");
 
+            // Update the dishes.txt file with the updated content
+            updateDishesFile(context, fileLines);
+
+            Log.d("dishAddition", "Dish added successfully.");
 
         } catch (IOException e) {
             e.printStackTrace();
             Log.e("dish", "Error adding dish: " + e.getMessage());
         }
     }
+
+    // Method to update the dishes file with new content
+    public static void updateDishesFile(Context context, List<String> updatedFileContent) {
+        try (PrintWriter writer = new PrintWriter(new FileWriter(new File(context.getFilesDir(), "dishes.txt"), true))) {
+            for (String line : updatedFileContent) {
+                writer.println(line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            Log.e("dish", "Error updating dishes file: " + e.getMessage());
+        }
+    }
+
+
     public static void removeDish( String id,Context context) {
         boolean dishFound = false;
         List<String> fileLines = new ArrayList<>();

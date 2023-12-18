@@ -26,6 +26,8 @@ import java.util.Map;
 public class dishesRead {
     public static List<Map<String, String>> accounts = new ArrayList<>();
     public static void start(Context context){
+
+
         // Read the file contents
         try (InputStream inputStream = new FileInputStream(new File(context.getFilesDir(), "dishes.txt"));
              InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
@@ -60,20 +62,20 @@ public class dishesRead {
         start(context);
 
         for (Map<String, String> account : accounts) {
-            cuisines cuisine=cuisines.MEXICAN;
-            categories cat=categories.BREAKFAST;
-//            for (cuisines c : cuisines.values()) {
-//                if (account.get("cuisine").equals(c.toString())) {
-//                    cuisine = c;
-//                    break;
-//                }
-//            }
-//            for (categories c : categories.values()) {
-//                if (account.get("category").equals(c.toString())) {
-//                    cat = c;
-//                    break;
-//                }
-//            }
+            cuisines cuisine=null;
+            categories cat=null;
+            for (cuisines c : cuisines.values()) {
+                if (account.get("cuisine").equals(c.toString())) {
+                    cuisine = c;
+                    break;
+                }
+            }
+            for (categories c : categories.values()) {
+                if (account.get("category").equals(c.toString())) {
+                    cat = c;
+                    break;
+                }
+            }
             Dishes dish = new Dishes(account.get("name"),account.get("desc"),Float.parseFloat(account.get("price")),cuisine,cat,account.get("restName"));
             dish.setId( Integer.parseInt(account.get("id")));
 
