@@ -3,9 +3,11 @@ package com.example.myapplication.Database;
 import android.media.Rating;
 
 import com.example.myapplication.Classes.Dishes;
+import com.example.myapplication.Classes.LoginHandler;
 import com.example.myapplication.Classes.Payment;
 import com.example.myapplication.Classes.Ratings;
 import com.example.myapplication.Classes.Restaurants;
+import com.example.myapplication.Classes.cart;
 import com.example.myapplication.Classes.user;
 import com.example.myapplication.Classes.admin;
 import com.example.myapplication.R;
@@ -19,6 +21,7 @@ public class database {
 
     public static ArrayList<Dishes> dishes = new ArrayList<>();
     public static ArrayList<Ratings> ratings = new ArrayList<>();
+    public static ArrayList<cart> carts = new ArrayList<>();
 
 
 
@@ -147,5 +150,25 @@ public class database {
             }
         }
         return rate;
+    }
+    public static cart addtoCart(Dishes dish){
+        for(cart c:carts){
+            if(c.userID == LoginHandler.USER.getId()){
+                c.dishes.add(dish);
+                return c;
+            }
+        }
+        cart newCart = new cart(LoginHandler.USER.getId());
+        carts.add(newCart);
+        return newCart;
+
+    }
+    public static cart getCart(){
+        for(cart c:carts){
+            if(LoginHandler.USER.getId() == c.userID){
+                return c;
+            }
+        }
+        return null;
     }
 }

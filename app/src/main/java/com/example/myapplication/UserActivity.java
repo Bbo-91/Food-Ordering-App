@@ -69,6 +69,10 @@ public class UserActivity extends AppCompatActivity {
                 return true;
             } else if (itemId == R.id.ResCart) {
                 replaceFragment(new CartFragment(), userId);
+                if(!LoginHandler.isLoggedIn()){
+                    Intent intent = new Intent(UserActivity.this, login_page.class);
+                    startActivity(intent);
+                }
                 return true;
             } else if (itemId == R.id.ResSearch) {
                 replaceFragment(new SearchFragment(), userId);

@@ -108,6 +108,7 @@ public class activity_customize extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 addToCart.setBackgroundColor(Color.RED);
+                database.addtoCart( dishes.get(index));
 
             }
         });
