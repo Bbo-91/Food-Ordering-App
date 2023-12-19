@@ -177,7 +177,7 @@ public class activity_menu extends AppCompatActivity implements RecyclerViewInte
             for (Dishes dish: allDishes){
                 for (Dishes fdish: filteredDishes){
                     if (fdish.getName().equals(dish.getName()) && fdish.getRestaurantName().equals(dish.getRestaurantName())){
-                        pos = allDishes.indexOf(dish);
+                        pos = allDishes.indexOf(fdish);
                     }
                 }
             }

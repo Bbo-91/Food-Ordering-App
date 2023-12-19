@@ -79,7 +79,7 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
                 @Override
                 public void onClick(View v) {
                     if (recyclerViewInterface != null) {
-                        int pos = getAdapterPosition();
+                        int pos = getBindingAdapterPosition();
                         if(pos != RecyclerView.NO_POSITION){
                             recyclerViewInterface.onClick(pos);
                         }
