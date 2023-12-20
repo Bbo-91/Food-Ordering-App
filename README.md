@@ -1,4 +1,4 @@
-# **Food Ordering Android App.**
+# **Food Ordering Android Application**
 
 ## **Bil Hana Wel Shiffa**
 
